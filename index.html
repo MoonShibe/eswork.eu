@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES Work SIA — Рекрутинг из Прибалтики в Германию</title>
+    <style>
+        /* Общие стили */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        a {
+            color: #007acc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        /* Хедер */
+        header {
+            background-color: #f4f4f4;
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007acc;
+        }
+        /* Главный экран */
+        .hero {
+            background: url('hero-bg.jpg') center/cover no-repeat;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 20px;
+        }
+        /* Секции */
+        section {
+            padding: 60px 0;
+        }
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .service-item {
+            flex: 1 1 calc(33% - 20px);
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .service-item h3 {
+            margin-top: 0;
+            color: #007acc;
+        }
+        /* Контакты */
+        footer {
+            background-color: #f4f4f4;
+            padding: 20px 0;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        .contact-list li {
+            margin: 5px 0;
+        }
+        @media(max-width: 768px) {
+            .services {
+                flex-direction: column;
+            }
+            .service-item {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">ES Work</div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Рекрутинг квалифицированных специалистов из Прибалтики</h1>
+            <p>Отправляем квалифицированный персонал из Латвии, Литвы и Эстонии на работу в Германию</p>
+        </div>
+    </div>
+
+    <section id="about">
+        <div class="container">
+            <h2>О компании</h2>
+            <p>ES Work SIA, базирующаяся в Латвии, специализируется на подборе квалифицированных специалистов из Прибалтики для предприятий в Германии. Мы выступаем прямым работодателем и обеспечиваем полный спектр юридических и административных услуг, что делает наше сотрудничество для вас максимально выгодным и удобным.</p>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>Наши услуги</h2>
+            <div class="services">
+                <div class="service-item">
+                    <h3>Подбор персонала</h3>
+                    <p>Подбор специалистов в соответствии с вашими требованиями в области производства, электрики, логистики, строительства и других отраслей.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Юридическая поддержка</h3>
+                    <p>Полная правовая и административная обработка трудовых отношений, оформление документов для легальной работы в Германии.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Гибкость и надежность</h3>
+                    <p>Быстрый обмен сотрудниками по запросу, гибкие условия сотрудничества, индивидуальный подход к каждому клиенту.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h2>Контакты</h2>
+            <ul class="contact-list">
+                <li>📞 +371 25296639</li>
+                <li>✉️ <a href="mailto:info@eswork.eu">info@eswork.eu</a></li>
+                <li>🌐 <a href="https://www.eswork.eu" target="_blank" rel="noopener">www.eswork.eu</a></li>
+            </ul>
+            <p>© 2025 ES Work SIA. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
