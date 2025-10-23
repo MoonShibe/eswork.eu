@@ -20,998 +20,7 @@
     <meta name="twitter:description" content="Schnelle Vermittlung von Fachkräften und vollständige Personaladministration für deutsche Unternehmen.">
     <meta name="twitter:image" content="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80">
     <title>ES Work - Qualifizierte Fachkräfte aus dem Baltikum</title>
-    <style>
-        :root {
-            --primary: #005daa;
-            --secondary: #f8f9fa;
-            --accent: #ffc107;
-            --dark: #343a40;
-            --text: #212529;
-            --light-text: #6c757d;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            line-height: 1.6;
-            color: var(--text);
-            background-color: #ffffff;
-        }
-
-        body.modal-open {
-            overflow: hidden;
-        }
-
-        .container {
-            width: min(90%, 1200px);
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            gap: 1rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            letter-spacing: 0.03em;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-
-        .nav-links li {
-            position: relative;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-contact {
-            display: none;
-        }
-
-        .nav-contact a {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a:focus-visible,
-        .btn:focus-visible {
-            outline: 3px solid rgba(0, 93, 170, 0.4);
-            outline-offset: 3px;
-        }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: 2px solid transparent;
-            border-radius: 6px;
-            padding: 0.35rem 0.75rem;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--primary);
-            cursor: pointer;
-            transition: background-color 0.3s, border-color 0.3s;
-        }
-
-        .nav-toggle:hover {
-            background-color: rgba(0, 93, 170, 0.1);
-            border-color: rgba(0, 93, 170, 0.2);
-        }
-
-        main {
-            display: block;
-        }
-
-        section {
-            scroll-margin-top: 6rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 6rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.25rem, 4vw, 3.5rem);
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: clamp(1.05rem, 2vw, 1.35rem);
-            max-width: 720px;
-            margin: 0 auto 2rem;
-            color: rgba(255, 255, 255, 0.95);
-        }
-
-        .hero-highlights {
-            display: flex;
-            justify-content: center;
-            align-items: stretch;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 2.75rem;
-        }
-
-        .hero-highlight {
-            flex: 1 1 220px;
-            max-width: 260px;
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 16px;
-            border-left: 4px solid var(--accent);
-            padding: 1.1rem 1.35rem;
-            text-align: left;
-            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(6px);
-            color: rgba(255, 255, 255, 0.92);
-            opacity: 0;
-            transform: translateY(40px);
-            animation: heroPanel 0.9s ease forwards;
-            display: flex;
-            flex-direction: column;
-            gap: 0.65rem;
-            justify-content: space-between;
-            min-height: 160px;
-        }
-
-        .hero-highlight:nth-child(2) {
-            animation-delay: 0.15s;
-        }
-
-        .hero-highlight:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .hero-highlight strong {
-            display: block;
-            font-size: clamp(1.1rem, 2vw, 1.35rem);
-            letter-spacing: 0.02em;
-            color: #ffffff;
-            margin-bottom: 0.35rem;
-        }
-
-        .hero-highlight span {
-            display: block;
-            font-size: 0.95rem;
-            line-height: 1.55;
-        }
-
-        .highlight-primary {
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--dark);
-            padding: 0.8rem 2rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #e0a800;
-        }
-
-        .btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        /* Services Section */
-        .services {
-            padding: clamp(3.5rem, 8vw, 5rem) 0;
-            background-color: var(--secondary);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--primary);
-            font-size: clamp(1.8rem, 3vw, 2.4rem);
-            font-weight: 700;
-        }
-
-        .section-intro {
-            max-width: 760px;
-            margin: 0 auto 2.5rem;
-            text-align: center;
-            color: var(--light-text);
-            font-size: clamp(1rem, 1.9vw, 1.15rem);
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(35px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .reveal.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            display: flex;
-            flex-direction: column;
-            min-height: 100%;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .service-content {
-            padding: 2rem;
-        }
-        
-        .service-content h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .service-content p {
-            color: var(--light-text);
-        }
-
-        /* Offer Section */
-        .offer {
-            padding: clamp(3.5rem, 8vw, 5rem) 0;
-        }
-
-        .offer-content {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #e9f7fe;
-            padding: 2.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary);
-            box-shadow: 0 10px 30px rgba(0, 93, 170, 0.1);
-        }
-
-        .offer-list {
-            margin: 1.5rem 0;
-            padding-left: 1.5rem;
-        }
-
-        .offer-list li {
-            margin-bottom: 0.8rem;
-            color: var(--light-text);
-        }
-
-        /* Insights Section */
-        .insight {
-            padding: clamp(3.75rem, 8vw, 5.5rem) 0;
-            background-color: #ffffff;
-        }
-
-        .insight-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: clamp(2rem, 4vw, 3rem);
-            align-items: center;
-        }
-
-        .video-wrapper {
-            position: relative;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 25px 55px rgba(0, 93, 170, 0.15);
-            background: #000000;
-        }
-
-        .video-wrapper::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(0, 93, 170, 0.08), transparent 60%);
-            pointer-events: none;
-        }
-
-        .video-wrapper iframe {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border: 0;
-            display: block;
-        }
-
-        .insight-content {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .insight-content h2 {
-            color: var(--primary);
-            font-size: clamp(1.9rem, 3.2vw, 2.4rem);
-        }
-
-        .insight-content p {
-            color: var(--light-text);
-            font-size: 1.05rem;
-        }
-
-        .insight-points {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .insight-point {
-            display: flex;
-            gap: 0.9rem;
-            align-items: flex-start;
-            padding: 1.1rem 1.35rem;
-            border-radius: 14px;
-            border: 1px solid rgba(0, 93, 170, 0.1);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
-            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
-        }
-
-        .insight-point strong {
-            display: block;
-            margin-bottom: 0.35rem;
-            color: var(--primary);
-        }
-
-        .insight-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: rgba(0, 93, 170, 0.08);
-            color: var(--primary);
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        /* Form Section */
-        .contact-form {
-            padding: clamp(3.5rem, 8vw, 5rem) 0;
-            background-color: var(--secondary);
-        }
-
-        .form-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 1px solid rgba(0, 93, 170, 0.08);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        textarea.form-control {
-            min-height: 110px;
-            resize: vertical;
-        }
-
-        .form-control.is-invalid {
-            border-color: #dc3545;
-            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.1);
-        }
-
-        .error-message {
-            font-size: 0.875rem;
-            color: #dc3545;
-            margin-top: 0.35rem;
-            display: none;
-        }
-
-        .error-message.active {
-            display: block;
-        }
-
-        /* Blog Section */
-        .blog {
-            padding: clamp(3.5rem, 8vw, 5rem) 0;
-        }
-
-        .vacancy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        
-        .vacancy-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-top: 3px solid var(--primary);
-        }
-        
-        .vacancy-body {
-            padding: 1.5rem;
-        }
-        
-        .vacancy-body h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .vacancy-meta {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-        
-        .vacancy-footer {
-            padding: 1rem 1.5rem;
-            background-color: #f8f9fa;
-            border-top: 1px solid #eee;
-        }
-
-        .modal-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(2px);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            z-index: 990;
-        }
-
-        .modal-backdrop.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .form-modal {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            z-index: 1000;
-        }
-
-        .form-modal.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .form-modal__content {
-            background: linear-gradient(135deg, rgba(0, 93, 170, 0.97), rgba(0, 141, 210, 0.95));
-            color: #ffffff;
-            border-radius: 16px;
-            padding: clamp(2rem, 6vw, 3rem);
-            max-width: 480px;
-            width: min(100%, 480px);
-            text-align: center;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
-            position: relative;
-        }
-
-        .form-modal__content::after {
-            content: '';
-            position: absolute;
-            inset: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 12px;
-            pointer-events: none;
-        }
-
-        .form-modal__title {
-            font-size: clamp(1.5rem, 3vw, 1.9rem);
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .form-modal__message {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 1.75rem;
-        }
-
-        .form-modal__cta {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            background-color: #ffc107;
-            color: #343a40;
-            font-weight: 600;
-            padding: 0.75rem 1.75rem;
-            border-radius: 999px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .form-modal__cta:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 12px 25px rgba(255, 193, 7, 0.3);
-        }
-
-        .form-modal--error .form-modal__content {
-            background: linear-gradient(135deg, rgba(220, 53, 69, 0.98), rgba(255, 99, 132, 0.95));
-        }
-
-        .form-modal--error .form-modal__cta {
-            background-color: #ffffff;
-            color: #c82333;
-        }
-
-        .form-modal--error .form-modal__cta:hover {
-            box-shadow: 0 12px 25px rgba(255, 255, 255, 0.35);
-        }
-
-        .lead-capture {
-            position: fixed;
-            inset: 0;
-            background: rgba(7, 23, 41, 0.78);
-            backdrop-filter: blur(4px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: clamp(1.5rem, 5vw, 3rem);
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: opacity 0.35s ease, visibility 0.35s ease;
-            z-index: 995;
-        }
-
-        .lead-capture.is-visible {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
-
-        .lead-capture__dialog {
-            background: linear-gradient(140deg, rgba(255, 255, 255, 0.97), rgba(244, 249, 255, 0.94));
-            border-radius: 18px;
-            padding: clamp(1.75rem, 4vw, 2.75rem);
-            max-width: 520px;
-            width: min(100%, 520px);
-            max-height: min(90vh, 720px);
-            overflow-y: auto;
-            overscroll-behavior: contain;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-gutter: stable both-edges;
-            box-shadow: 0 35px 80px rgba(0, 28, 68, 0.35);
-            position: relative;
-            border: 1px solid rgba(0, 93, 170, 0.12);
-            transform: translateY(24px);
-            transition: transform 0.35s ease;
-        }
-
-        .lead-capture.is-visible .lead-capture__dialog {
-            transform: translateY(0);
-        }
-
-        .lead-capture__tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--primary);
-            background: rgba(0, 93, 170, 0.08);
-            padding: 0.35rem 0.75rem;
-            border-radius: 999px;
-            margin-bottom: 1rem;
-        }
-
-        .lead-capture__title {
-            font-size: clamp(1.45rem, 3vw, 1.9rem);
-            color: var(--dark);
-            margin-bottom: 0.6rem;
-        }
-
-        .lead-capture__subtitle {
-            font-size: 1rem;
-            color: var(--light-text);
-            margin-bottom: 1.5rem;
-        }
-
-        .lead-capture__close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: white;
-            border: 1px solid rgba(0, 93, 170, 0.15);
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            color: var(--dark);
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-
-        .lead-capture__close:hover {
-            background: rgba(0, 93, 170, 0.1);
-            transform: scale(1.05);
-        }
-
-        .lead-capture__list {
-            list-style: none;
-            display: grid;
-            gap: 0.75rem;
-            margin-bottom: 1.75rem;
-            padding: 0;
-        }
-
-        .lead-capture__list li {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-size: 0.95rem;
-            color: var(--dark);
-        }
-
-        .lead-capture__list li span {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: rgba(0, 93, 170, 0.12);
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.75rem;
-        }
-
-        .lead-capture form {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .lead-capture .form-group {
-            margin-bottom: 0;
-        }
-
-        .lead-capture .btn {
-            justify-content: center;
-            width: 100%;
-            font-size: 1.05rem;
-            padding: 0.9rem 1.5rem;
-        }
-
-        @keyframes heroPanel {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 3rem 0;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .footer-column p,
-        .footer-column li {
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .footer-column h3 {
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-        
-        .contact-list {
-            list-style: none;
-        }
-        
-        .contact-list li {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .contact-list i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid #555;
-        }
-
-        @media (max-width: 1100px) {
-            .services-grid {
-                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            }
-
-            .vacancy-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            }
-        }
-
-        @media (max-width: 992px) {
-            .navbar {
-                flex-wrap: wrap;
-            }
-
-            .nav-toggle {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background-color: white;
-                padding: 1rem 0;
-                border-top: 1px solid rgba(0,0,0,0.08);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                margin: 0;
-                text-align: center;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 0.75rem 1rem;
-            }
-
-            .nav-contact {
-                display: block;
-                font-size: 1rem;
-                border-top: 1px solid rgba(0, 0, 0, 0.06);
-                padding-top: 0.5rem;
-            }
-
-            .nav-contact a {
-                padding: 0.5rem 1rem;
-                display: block;
-            }
-
-            .hero {
-                padding: 5rem 0;
-            }
-
-            .hero-highlights {
-                margin-top: 2.25rem;
-            }
-
-            .form-container {
-                padding: 2.25rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
-            }
-
-            .hero {
-                padding: 4.5rem 0;
-            }
-
-            .offer-content {
-                padding: 2rem;
-            }
-
-            .insight-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .vacancy-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .lead-capture__dialog {
-                padding: 1.75rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .navbar {
-                padding: 0.75rem 0;
-            }
-
-            .logo {
-                font-size: 1.5rem;
-            }
-
-            .hero {
-                padding: 4rem 0;
-            }
-
-            .hero p {
-                margin-bottom: 1.5rem;
-            }
-
-            .hero-highlights {
-                gap: 1rem;
-            }
-
-            .hero-highlight {
-                flex-basis: 100%;
-                max-width: none;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 320px;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-container {
-                padding: 1.75rem;
-            }
-
-            footer {
-                text-align: center;
-            }
-
-            footer .footer-grid {
-                gap: 1.5rem;
-                justify-items: center;
-            }
-
-            footer .footer-column h3::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .lead-capture {
-                padding: 1.25rem;
-            }
-
-            .lead-capture__dialog {
-                border-radius: 14px;
-            }
-
-            .lead-capture__close {
-                top: 0.75rem;
-                right: 0.75rem;
-            }
-
-            .lead-capture__list li {
-                align-items: flex-start;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-
-            .hero-highlight,
-            .reveal {
-                animation: none !important;
-                opacity: 1 !important;
-                transform: none !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/styles.css">
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -1025,26 +34,37 @@
             "areaServed": ["Deutschland", "Lettland", "Litauen", "Estland"]
         }
     </script>
+    <script defer src="assets/js/translations.js"></script>
+    <script defer src="assets/js/main.js"></script>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <nav class="navbar" aria-label="Hauptnavigation">
-                <a class="logo" href="#top" aria-label="Zur Startseite von ES Work">ES Work</a>
-                <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
-                    Menü
-                </button>
+                <a class="logo" href="#top" aria-label="ES Work" data-l10n="nav_logo">ES Work</a>
+                <div class="nav-controls">
+                    <div class="language-switcher" data-language-switcher aria-label="Sprachauswahl" data-l10n-aria-label="language_label">
+                        <button type="button" class="language-option" data-lang="de" title="Deutsch" aria-label="Deutsch">🇩🇪</button>
+                        <button type="button" class="language-option" data-lang="en" title="English" aria-label="English">🇬🇧</button>
+                        <button type="button" class="language-option" data-lang="ru" title="Русский" aria-label="Русский">🇷🇺</button>
+                        <button type="button" class="language-option" data-lang="lv" title="Latviešu" aria-label="Latviešu">🇱🇻</button>
+                    </div>
+                    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-l10n="nav_toggle" data-l10n-aria-label="nav_toggle_label">Menü</button>
+                </div>
                 <ul class="nav-links" id="primary-navigation">
-                    <li><a href="#services">Dienstleistungen</a></li>
-                    <li><a href="#offer">Angebot</a></li>
-                    <li><a href="#contact">Anfrage</a></li>
-                    <li><a href="#vacancies">Stellenangebote</a></li>
-                    <li class="nav-contact">
-                        <a href="tel:+37125296639">📞 +371 25296639</a>
-                    </li>
-                    <li class="nav-contact">
-                        <a href="mailto:info@eswork.eu">✉️ info@eswork.eu</a>
+                    <li><a href="#services" data-l10n="nav_services">Dienstleistungen</a></li>
+                    <li><a href="#offer" data-l10n="nav_offer">Angebot</a></li>
+                    <li><a href="#contact" data-l10n="nav_contact">Anfrage</a></li>
+                    <li><a href="#vacancies" data-l10n="nav_vacancies">Stellenangebote</a></li>
+                    <li class="nav-contact"><a href="tel:+37125296639" data-l10n="nav_phone_text" data-l10n-aria-label="nav_phone_label">📞 +371 25296639</a></li>
+                    <li class="nav-contact"><a href="mailto:info@eswork.eu" data-l10n="nav_email_text" data-l10n-aria-label="nav_email_label">✉️ info@eswork.eu</a></li>
+                    <li class="nav-language">
+                        <div class="language-switcher language-switcher--menu" data-language-switcher aria-label="Sprachauswahl" data-l10n-aria-label="language_label">
+                            <button type="button" class="language-option" data-lang="de" title="Deutsch" aria-label="Deutsch">🇩🇪</button>
+                            <button type="button" class="language-option" data-lang="en" title="English" aria-label="English">🇬🇧</button>
+                            <button type="button" class="language-option" data-lang="ru" title="Русский" aria-label="Русский">🇷🇺</button>
+                            <button type="button" class="language-option" data-lang="lv" title="Latviešu" aria-label="Latviešu">🇱🇻</button>
+                        </div>
                     </li>
                 </ul>
             </nav>
@@ -1052,58 +72,55 @@
     </header>
 
     <main id="top">
-        <!-- Hero Section -->
         <section class="hero" aria-labelledby="hero-title">
             <div class="container">
-                <h1 id="hero-title">Qualifizierte Fachkräfte aus dem Baltikum</h1>
-                <p>Schnelle und zuverlässige Vermittlung von Fach- und Hilfskräften für Ihren Unternehmenserfolg in Deutschland.</p>
-                <a href="#contact" class="btn">Jetzt Personal anfragen</a>
-                <div class="hero-highlights" aria-label="Erfolgskennzahlen">
+                <h1 id="hero-title" data-l10n="hero_title">Qualifizierte Fachkräfte aus dem Baltikum</h1>
+                <p data-l10n="hero_description">Schnelle und zuverlässige Vermittlung von Fach- und Hilfskräften für Ihren Unternehmenserfolg in Deutschland.</p>
+                <a href="#contact" class="btn" data-l10n="hero_cta">Jetzt Personal anfragen</a>
+                <div class="hero-highlights" aria-label="Kennzahlen">
                     <div class="hero-highlight" role="presentation">
-                        <strong>24 Stunden</strong>
-                        <span>Erste Kandidatenprofile für dringende Projekteinsätze.</span>
+                        <strong data-l10n="hero_highlight1_title">24 Stunden</strong>
+                        <span data-l10n="hero_highlight1_text">Erste Kandidatenprofile für dringende Projekteinsätze.</span>
                     </div>
                     <div class="hero-highlight" role="presentation">
-                        <strong>+300 Expert:innen</strong>
-                        <span>Aktives Netzwerk an geprüften Fach- und Hilfskräften im Baltikum.</span>
+                        <strong data-l10n="hero_highlight2_title">+300 Expert:innen</strong>
+                        <span data-l10n="hero_highlight2_text">Aktives Netzwerk an geprüften Fach- und Hilfskräften im Baltikum.</span>
                     </div>
                     <div class="hero-highlight" role="presentation">
-                        <strong>100% Compliance</strong>
-                        <span>Komplette Übernahme von Verträgen, Abgaben und Versicherungspflichten.</span>
+                        <strong data-l10n="hero_highlight3_title">100% Compliance</strong>
+                        <span data-l10n="hero_highlight3_text">Komplette Übernahme von Verträgen, Abgaben und Versicherungspflichten.</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Services Section -->
         <section id="services" class="services" aria-labelledby="services-title">
             <div class="container">
-                <h2 class="section-title" id="services-title">Unsere Dienstleistungen</h2>
-                <p class="section-intro">Wir finden die passenden Spezialistinnen und Spezialisten für Ihr Unternehmen und begleiten beide Seiten vom ersten Kontakt bis zum erfolgreichen Projekteinsatz.</p>
+                <h2 class="section-title" id="services-title" data-l10n="services_title">Unsere Dienstleistungen</h2>
+                <p class="section-intro" data-l10n="services_intro">Wir finden die passenden Spezialistinnen und Spezialisten für Ihr Unternehmen und begleiten beide Seiten vom ersten Kontakt bis zum erfolgreichen Projekteinsatz.</p>
                 <div class="services-grid">
                     <article class="service-card reveal" data-reveal aria-labelledby="service-staffing">
                         <div class="service-content">
-                            <h3 id="service-staffing">Personalvermittlung</h3>
-                            <p>Wir vermitteln qualifizierte Fach- und Hilfskräfte aus Lettland, Litauen und Estland an deutsche Unternehmen in Branchen wie <span class="highlight-primary">Bau</span>, <span class="highlight-primary">Metall</span>, <span class="highlight-primary">Logistik</span> und <span class="highlight-primary">Pflege</span>.</p>
+                            <h3 id="service-staffing" data-l10n="service_staffing_title">Personalvermittlung</h3>
+                            <p data-l10n="service_staffing_text">Wir vermitteln qualifizierte Fach- und Hilfskräfte aus Lettland, Litauen und Estland an deutsche Unternehmen in Branchen wie <span class="highlight-primary">Bau</span>, <span class="highlight-primary">Metall</span>, <span class="highlight-primary">Logistik</span> und <span class="highlight-primary">Pflege</span>.</p>
                         </div>
                     </article>
                     <article class="service-card reveal" data-reveal aria-labelledby="service-admin">
                         <div class="service-content">
-                            <h3 id="service-admin">Vollständige Administration</h3>
-                            <p>Wir übernehmen alle <span class="highlight-primary">gesetzlichen Abgaben</span>, <span class="highlight-primary">Versicherungen</span> und die <span class="highlight-primary">Lohnabrechnung</span>. Sie erhalten wöchentliche, transparente Abrechnungen und können sich auf Ihr Kerngeschäft konzentrieren.</p>
+                            <h3 id="service-admin" data-l10n="service_admin_title">Vollständige Administration</h3>
+                            <p data-l10n="service_admin_text">Wir übernehmen alle <span class="highlight-primary">gesetzlichen Abgaben</span>, <span class="highlight-primary">Versicherungen</span> und die <span class="highlight-primary">Lohnabrechnung</span>. Sie erhalten wöchentliche, transparente Abrechnungen und können sich auf Ihr Kerngeschäft konzentrieren.</p>
                         </div>
                     </article>
                     <article class="service-card reveal" data-reveal aria-labelledby="service-speed">
                         <div class="service-content">
-                            <h3 id="service-speed">Schnelle Besetzung</h3>
-                            <p>Durch unser gewachsenes Netzwerk im Baltikum besetzen wir vakante Stellen <span class="highlight-primary">schnell und zuverlässig</span> – auch für kurzfristige Projekteinsätze.</p>
+                            <h3 id="service-speed" data-l10n="service_speed_title">Schnelle Besetzung</h3>
+                            <p data-l10n="service_speed_text">Durch unser gewachsenes Netzwerk im Baltikum besetzen wir vakante Stellen <span class="highlight-primary">schnell und zuverlässig</span> – auch für kurzfristige Projekteinsätze.</p>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- Insight Video Section -->
         <section class="insight" aria-labelledby="insight-title">
             <div class="container">
                 <div class="insight-grid">
@@ -1111,28 +128,28 @@
                         <iframe src="https://www.youtube.com/embed/8qKkX8UB0FY" title="ES Work – Einblick in unsere Projektbetreuung" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="insight-content reveal" data-reveal>
-                        <h2 id="insight-title">So bringen wir Projekte schnell in Bewegung</h2>
-                        <p>Unser Team begleitet Unternehmen aus Industrie, Bau und Gesundheitswesen ganzheitlich – vom ersten Briefing über die Vorauswahl bis zur laufenden Betreuung der Mitarbeitenden vor Ort.</p>
+                        <h2 id="insight-title" data-l10n="insight_title">So bringen wir Projekte schnell in Bewegung</h2>
+                        <p data-l10n="insight_intro">Unser Team begleitet Unternehmen aus Industrie, Bau und Gesundheitswesen ganzheitlich – vom ersten Briefing über die Vorauswahl bis zur laufenden Betreuung der Mitarbeitenden vor Ort.</p>
                         <div class="insight-points" role="list">
                             <div class="insight-point" role="listitem">
                                 <div class="insight-badge">1</div>
                                 <div>
-                                    <strong>Analyse &amp; Briefing</strong>
-                                    <span>Wir definieren Anforderungsprofile und Zeitpläne präzise, damit Ihr Projektstart reibungslos gelingt.</span>
+                                    <strong data-l10n="insight_step1_title">Analyse &amp; Briefing</strong>
+                                    <span data-l10n="insight_step1_text">Wir definieren Anforderungsprofile und Zeitpläne präzise, damit Ihr Projektstart reibungslos gelingt.</span>
                                 </div>
                             </div>
                             <div class="insight-point" role="listitem">
                                 <div class="insight-badge">2</div>
                                 <div>
-                                    <strong>Matching &amp; Screening</strong>
-                                    <span>Gezielte Direktansprache im Baltikum und persönliche Interviews garantieren verlässliche Personalentscheidungen.</span>
+                                    <strong data-l10n="insight_step2_title">Matching &amp; Screening</strong>
+                                    <span data-l10n="insight_step2_text">Gezielte Direktansprache im Baltikum und persönliche Interviews garantieren verlässliche Personalentscheidungen.</span>
                                 </div>
                             </div>
                             <div class="insight-point" role="listitem">
                                 <div class="insight-badge">3</div>
                                 <div>
-                                    <strong>Onboarding &amp; Betreuung</strong>
-                                    <span>Wir organisieren Anreise, Unterkunft und begleiten alle vertraglichen sowie administrativen Schritte.</span>
+                                    <strong data-l10n="insight_step3_title">Onboarding &amp; Betreuung</strong>
+                                    <span data-l10n="insight_step3_text">Wir organisieren Anreise, Unterkunft und begleiten alle vertraglichen sowie administrativen Schritte.</span>
                                 </div>
                             </div>
                         </div>
@@ -1141,53 +158,51 @@
             </div>
         </section>
 
-        <!-- Current Offer Section -->
         <section id="offer" class="offer reveal" data-reveal aria-labelledby="offer-title">
             <div class="container">
-                <h2 class="section-title" id="offer-title">Aktuelles Stellenangebot</h2>
+                <h2 class="section-title" id="offer-title" data-l10n="offer_title">Aktuelles Stellenangebot</h2>
                 <div class="offer-content" role="region" aria-live="polite">
-                    <h3>Erfahrener Dachdeckerhelfer</h3>
+                    <h3 data-l10n="offer_role">Erfahrener Dachdeckerhelfer</h3>
                     <ul class="offer-list">
-                        <li><strong>Berufserfahrung:</strong> Über 20 Jahre im Dachdeckerhandwerk</li>
-                        <li><strong>Eigenschaften:</strong> Fleißig, zuverlässig, teamfähig</li>
-                        <li><strong>Sprachkenntnisse:</strong> Deutsch (eingeschränkt), Englisch (Grundkenntnisse), Russisch (sehr gut)</li>
-                        <li><strong>Verfügbarkeit:</strong> Kurzfristig verfügbar</li>
-                        <li><strong>Konditionen:</strong> ab 29,00 €/Std. netto (MwSt. 0%)</li>
+                        <li data-l10n="offer_experience"><strong>Berufserfahrung:</strong> Über 20 Jahre im Dachdeckerhandwerk</li>
+                        <li data-l10n="offer_traits"><strong>Eigenschaften:</strong> Fleißig, zuverlässig, teamfähig</li>
+                        <li data-l10n="offer_languages"><strong>Sprachkenntnisse:</strong> Deutsch (eingeschränkt), Englisch (Grundkenntnisse), Russisch (sehr gut)</li>
+                        <li data-l10n="offer_availability"><strong>Verfügbarkeit:</strong> Kurzfristig verfügbar</li>
+                        <li data-l10n="offer_rate"><strong>Konditionen:</strong> ab 29,00 €/Std. netto (MwSt. 0%)</li>
                     </ul>
-                    <p>Der Mitarbeiter ist fest bei uns angestellt. Wir übernehmen alle gesetzlichen Abgaben, Versicherungen sowie die Lohnabrechnung.</p>
+                    <p data-l10n="offer_note">Der Mitarbeiter ist fest bei uns angestellt. Wir übernehmen alle gesetzlichen Abgaben, Versicherungen sowie die Lohnabrechnung.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Form -->
         <section id="contact" class="contact-form reveal" data-reveal aria-labelledby="contact-title">
             <div class="container">
-                <h2 class="section-title" id="contact-title">Personalbedarf anfragen</h2>
-                <p class="section-intro">Schildern Sie uns Ihren Personalbedarf. Wir melden uns innerhalb eines Werktags mit passenden Profilen.</p>
+                <h2 class="section-title" id="contact-title" data-l10n="contact_title">Personalbedarf anfragen</h2>
+                <p class="section-intro" data-l10n="contact_intro">Schildern Sie uns Ihren Personalbedarf. Wir melden uns innerhalb eines Werktags mit passenden Profilen.</p>
                 <div class="form-container">
                     <form id="requestForm" action="https://formsubmit.co/info@eswork.eu" method="POST" aria-label="Kontaktformular für Personalbedarf" autocomplete="on">
-                        <input type="hidden" name="_subject" value="Neue Personal-Anfrage über die Website">
+                        <input type="hidden" name="_subject" data-l10n-value="contact_subject" value="Neue Personal-Anfrage über die Website">
                         <input type="hidden" name="_template" value="table">
                         <div class="form-group">
-                            <label for="name">Name*</label>
+                            <label for="name" data-l10n="contact_name_label">Name*</label>
                             <input type="text" id="name" name="Name" class="form-control" autocomplete="name" autocapitalize="words" required>
                         </div>
                         <div class="form-group">
-                            <label for="company">Firma*</label>
+                            <label for="company" data-l10n="contact_company_label">Firma*</label>
                             <input type="text" id="company" name="Firma" class="form-control" autocomplete="organization" autocapitalize="words" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Telefon*</label>
+                            <label for="phone" data-l10n="contact_phone_label">Telefon*</label>
                             <input type="tel" id="phone" name="Telefon" class="form-control" autocomplete="tel" inputmode="tel" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">E-Mail*</label>
+                            <label for="email" data-l10n="contact_email_label">E-Mail*</label>
                             <input type="email" id="email" name="E-Mail" class="form-control" autocomplete="email" aria-describedby="email-error" required>
                             <p class="error-message" id="email-error" role="alert" aria-live="polite"></p>
                         </div>
                         <div class="form-group">
-                            <label for="locations">Einsatzstandorte*</label>
-                            <input type="text" id="locations" name="Einsatzstandorte" class="form-control" list="german-city-options" placeholder="z. B. Berlin, München" autocomplete="address-level2" autocapitalize="words" required>
+                            <label for="locations" data-l10n="contact_locations_label">Einsatzstandorte*</label>
+                            <input type="text" id="locations" name="Einsatzstandorte" class="form-control" list="german-city-options" placeholder="z. B. Berlin, München" autocomplete="address-level2" autocapitalize="words" required data-l10n-placeholder="contact_locations_placeholder">
                             <datalist id="german-city-options">
                                 <option value="Berlin"></option>
                                 <option value="Hamburg"></option>
@@ -1207,124 +222,117 @@
                             </datalist>
                         </div>
                         <div class="form-group">
-                            <label for="start-date">Gewünschter Starttermin*</label>
+                            <label for="start-date" data-l10n="contact_start_label">Gewünschter Starttermin*</label>
                             <input type="date" id="start-date" name="Starttermin" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="activities">Welche Fachkräfte suchen Sie?*</label>
-                            <textarea id="activities" name="Tätigkeiten" class="form-control" rows="3" autocomplete="off" required></textarea>
+                            <label for="activities" data-l10n="contact_activities_label">Welche Fachkräfte suchen Sie?*</label>
+                            <textarea id="activities" name="Tätigkeiten" class="form-control" rows="3" autocomplete="off" required data-l10n-placeholder="contact_activities_placeholder"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="message">Weitere Informationen</label>
-                            <textarea id="message" name="Weitere Informationen" class="form-control" rows="3" placeholder="Projektumfang, gewünschte Qualifikationen"></textarea>
+                            <label for="message" data-l10n="contact_additional_label">Weitere Informationen</label>
+                            <textarea id="message" name="Weitere Informationen" class="form-control" rows="3" placeholder="Projektumfang, gewünschte Qualifikationen" data-l10n-placeholder="contact_additional_placeholder"></textarea>
                         </div>
                         <div class="form-group" style="display:none;">
                             <label for="honeypot">Bitte leer lassen</label>
                             <input type="text" id="honeypot" name="_honey" tabindex="-1" autocomplete="off">
                         </div>
                         <input type="hidden" name="_next" value="https://eswork.eu/danke.html">
-                        <button type="submit" class="btn">Anfrage senden</button>
+                        <button type="submit" class="btn" data-l10n="contact_submit">Anfrage senden</button>
                     </form>
                 </div>
             </div>
         </section>
 
-        <!-- Vacancies Blog -->
         <section id="vacancies" class="blog reveal" data-reveal aria-labelledby="vacancies-title">
             <div class="container">
-                <h2 class="section-title" id="vacancies-title">Aktuelle Stellenangebote</h2>
-                <p class="section-intro">Eine Auswahl unserer verfügbaren Fachkräfte, die kurzfristig in Projekten in ganz Deutschland starten können.</p>
+                <h2 class="section-title" id="vacancies-title" data-l10n="vacancies_title">Aktuelle Stellenangebote</h2>
+                <p class="section-intro" data-l10n="vacancies_intro">Eine Auswahl unserer verfügbaren Fachkräfte, die kurzfristig in Projekten in ganz Deutschland starten können.</p>
                 <div class="vacancy-grid">
-                    <!-- Vacancy 1 -->
                     <article class="vacancy-card" aria-labelledby="vacancy-construction">
                         <div class="vacancy-body">
-                            <h3 id="vacancy-construction">Bauhelfer (m/w/d)</h3>
+                            <h3 id="vacancy-construction" data-l10n="vacancy1_title">Bauhelfer (m/w/d)</h3>
                             <div class="vacancy-meta">
-                                <span>Branche: Baugewerbe | Erfahrung: 2+ Jahre</span>
+                                <span data-l10n="vacancy1_meta">Branche: Baugewerbe | Erfahrung: 2+ Jahre</span>
                             </div>
-                            <p>Wir vermitteln zuverlässige Bauhelfer mit Erfahrung im Hoch- und Tiefbau. Gute körperliche Verfassung und Teamfähigkeit vorausgesetzt.</p>
+                            <p data-l10n="vacancy1_text">Wir vermitteln zuverlässige Bauhelfer mit Erfahrung im Hoch- und Tiefbau. Gute körperliche Verfassung und Teamfähigkeit vorausgesetzt.</p>
                         </div>
                         <div class="vacancy-footer">
-                            <strong>Sprachen:</strong> Russisch (Muttersprache), Deutsch (Grundkenntnisse)
+                            <strong data-l10n="vacancy_languages_label">Sprachen:</strong> <span data-l10n="vacancy1_languages">Russisch (Muttersprache), Deutsch (Grundkenntnisse)</span>
                         </div>
                     </article>
-
-                    <!-- Vacancy 2 -->
                     <article class="vacancy-card" aria-labelledby="vacancy-metal">
                         <div class="vacancy-body">
-                            <h3 id="vacancy-metal">Metallbauer (m/w/d)</h3>
+                            <h3 id="vacancy-metal" data-l10n="vacancy2_title">Metallbauer (m/w/d)</h3>
                             <div class="vacancy-meta">
-                                <span>Branche: Metallverarbeitung | Erfahrung: 5+ Jahre</span>
+                                <span data-l10n="vacancy2_meta">Branche: Metallverarbeitung | Erfahrung: 5+ Jahre</span>
                             </div>
-                            <p>Qualifizierte Metallbauer mit Erfahrung in Schweißtechniken (MIG/MAG, WIG). Kenntnisse in Metallkonstruktionen, Montage und Zeichnungslesen.</p>
+                            <p data-l10n="vacancy2_text">Qualifizierte Metallbauer mit Erfahrung in Schweißtechniken (MIG/MAG, WIG). Kenntnisse in Metallkonstruktionen, Montage und Zeichnungslesen.</p>
                         </div>
                         <div class="vacancy-footer">
-                            <strong>Sprachen:</strong> Englisch (fließend), Deutsch (Grundkenntnisse)
+                            <strong data-l10n="vacancy_languages_label">Sprachen:</strong> <span data-l10n="vacancy2_languages">Englisch (fließend), Deutsch (Grundkenntnisse)</span>
                         </div>
                     </article>
-
-                    <!-- Vacancy 3 -->
                     <article class="vacancy-card" aria-labelledby="vacancy-care">
                         <div class="vacancy-body">
-                            <h3 id="vacancy-care">Pflegehilfskraft (m/w/d)</h3>
+                            <h3 id="vacancy-care" data-l10n="vacancy3_title">Pflegehilfskraft (m/w/d)</h3>
                             <div class="vacancy-meta">
-                                <span>Branche: Gesundheitswesen | Erfahrung: 3+ Jahre</span>
+                                <span data-l10n="vacancy3_meta">Branche: Gesundheitswesen | Erfahrung: 3+ Jahre</span>
                             </div>
-                            <p>Einfühlsame Pflegekräfte mit nachgewiesener Berufserfahrung in der Altenpflege. Unterstützung bei Grundpflege, Mobilisation und Betreuung.</p>
+                            <p data-l10n="vacancy3_text">Einfühlsame Pflegekräfte mit nachgewiesener Berufserfahrung in der Altenpflege. Unterstützung bei Grundpflege, Mobilisation und Betreuung.</p>
                         </div>
                         <div class="vacancy-footer">
-                            <strong>Sprachen:</strong> Deutsch (B1), Russisch (Muttersprache)
+                            <strong data-l10n="vacancy_languages_label">Sprachen:</strong> <span data-l10n="vacancy3_languages">Deutsch (B1), Russisch (Muttersprache)</span>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
-
     </main>
 
     <div class="lead-capture" id="lead-capture" role="dialog" aria-modal="true" aria-labelledby="lead-capture-title" aria-describedby="lead-capture-subtitle" hidden>
         <div class="lead-capture__dialog">
-            <button type="button" class="lead-capture__close" aria-label="Popup schließen" data-lead-close>&times;</button>
-            <div class="lead-capture__tag">Kostenloser Rückruf</div>
-            <h3 class="lead-capture__title" id="lead-capture-title">Wir rufen Sie innerhalb von 24&nbsp;Stunden zurück</h3>
-            <p class="lead-capture__subtitle" id="lead-capture-subtitle">Teilen Sie uns kurz mit, wie wir Sie erreichen können. Unser Team meldet sich zeitnah mit passenden Fachkräften.</p>
-            <ul class="lead-capture__list" aria-label="Ihre Vorteile">
-                <li><span>1</span> Persönliche Projektberatung durch unsere Disponent:innen</li>
-                <li><span>2</span> Komplette Übernahme von Verträgen, Abgaben und Versicherungen</li>
-                <li><span>3</span> Verlässlicher Starttermin nach Ihren Vorgaben</li>
+            <button type="button" class="lead-capture__close" data-lead-close aria-label="Popup schließen" data-l10n-aria-label="lead_close_label">&times;</button>
+            <div class="lead-capture__tag" data-l10n="lead_tag">Kostenloser Rückruf</div>
+            <h3 class="lead-capture__title" id="lead-capture-title" data-l10n="lead_title">Wir rufen Sie innerhalb von 24&nbsp;Stunden zurück</h3>
+            <p class="lead-capture__subtitle" id="lead-capture-subtitle" data-l10n="lead_subtitle">Teilen Sie uns kurz mit, wie wir Sie erreichen können. Unser Team meldet sich zeitnah mit passenden Fachkräften.</p>
+            <ul class="lead-capture__list" aria-label="Vorteile">
+                <li data-l10n="lead_point1"><span>1</span> Persönliche Projektberatung durch unsere Disponent:innen</li>
+                <li data-l10n="lead_point2"><span>2</span> Komplette Übernahme von Verträgen, Abgaben und Versicherungen</li>
+                <li data-l10n="lead_point3"><span>3</span> Verlässlicher Starttermin nach Ihren Vorgaben</li>
             </ul>
             <form id="callbackForm" action="https://formsubmit.co/info@eswork.eu" method="POST" autocomplete="on">
-                <input type="hidden" name="_subject" value="Rückruf-Anfrage über Popup">
+                <input type="hidden" name="_subject" data-l10n-value="lead_subject" value="Rückruf-Anfrage über Popup">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="Quelle" value="Lead Popup">
                 <div class="form-group">
-                    <label for="callback-name">Name*</label>
+                    <label for="callback-name" data-l10n="lead_name_label">Name*</label>
                     <input type="text" id="callback-name" name="Name" class="form-control" autocomplete="name" autocapitalize="words" required>
                 </div>
                 <div class="form-group">
-                    <label for="callback-phone">Telefon*</label>
+                    <label for="callback-phone" data-l10n="lead_phone_label">Telefon*</label>
                     <input type="tel" id="callback-phone" name="Telefon" class="form-control" autocomplete="tel" inputmode="tel" required>
                 </div>
                 <div class="form-group">
-                    <label for="callback-company">Unternehmen</label>
+                    <label for="callback-company" data-l10n="lead_company_label">Unternehmen</label>
                     <input type="text" id="callback-company" name="Unternehmen" class="form-control" autocomplete="organization" autocapitalize="words">
                 </div>
                 <div class="form-group">
-                    <label for="callback-time">Beste Rückrufzeit</label>
+                    <label for="callback-time" data-l10n="lead_time_label">Beste Rückrufzeit</label>
                     <select id="callback-time" name="Beste Rückrufzeit" class="form-control">
-                        <option value="" selected>Bitte wählen</option>
-                        <option value="08:00 - 10:00 Uhr">08:00 - 10:00 Uhr</option>
-                        <option value="10:00 - 12:00 Uhr">10:00 - 12:00 Uhr</option>
-                        <option value="12:00 - 14:00 Uhr">12:00 - 14:00 Uhr</option>
-                        <option value="14:00 - 16:00 Uhr">14:00 - 16:00 Uhr</option>
-                        <option value="16:00 - 18:00 Uhr">16:00 - 18:00 Uhr</option>
+                        <option value="" data-l10n="lead_time_option_placeholder" selected>Bitte wählen</option>
+                        <option value="08:00 - 10:00" data-l10n="lead_time_option_morning">08:00 - 10:00 Uhr</option>
+                        <option value="10:00 - 12:00" data-l10n="lead_time_option_midmorning">10:00 - 12:00 Uhr</option>
+                        <option value="12:00 - 14:00" data-l10n="lead_time_option_noon">12:00 - 14:00 Uhr</option>
+                        <option value="14:00 - 16:00" data-l10n="lead_time_option_afternoon">14:00 - 16:00 Uhr</option>
+                        <option value="16:00 - 18:00" data-l10n="lead_time_option_evening">16:00 - 18:00 Uhr</option>
                     </select>
                 </div>
                 <div class="form-group" style="display:none;">
                     <label for="callback-honeypot">Bitte leer lassen</label>
                     <input type="text" id="callback-honeypot" name="_honey" tabindex="-1" autocomplete="off">
                 </div>
-                <button type="submit" class="btn">Rückruf anfordern</button>
+                <button type="submit" class="btn" data-l10n="lead_submit">Rückruf anfordern</button>
             </form>
         </div>
     </div>
@@ -1332,473 +340,41 @@
     <div class="modal-backdrop" id="modal-backdrop" hidden></div>
     <div class="form-modal" id="form-modal" role="dialog" aria-modal="true" aria-labelledby="form-modal-title" hidden>
         <div class="form-modal__content">
-            <h3 class="form-modal__title" id="form-modal-title">Vielen Dank!</h3>
-            <p class="form-modal__message" id="form-modal-message">Ihre Anfrage wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.</p>
-            <button type="button" class="form-modal__cta" id="form-modal-button" data-modal-close>Zur Startseite</button>
+            <h3 class="form-modal__title" id="form-modal-title" data-l10n="modal_success_title">Vielen Dank!</h3>
+            <p class="form-modal__message" id="form-modal-message" data-l10n="modal_success_message">Ihre Anfrage wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.</p>
+            <button type="button" class="form-modal__cta" id="form-modal-button" data-modal-close data-l10n="modal_success_cta">Zur Startseite</button>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-column">
-                    <h3>ES Work SIA</h3>
-                    <p>Ihr zuverlässiger Partner für die Vermittlung qualifizierter Fachkräfte aus dem Baltikum nach Deutschland. Wir unterstützen Sie bei kurzfristigen Einsätzen und langfristigen Projekten.</p>
+                    <h3 data-l10n="footer_about_title">ES Work SIA</h3>
+                    <p data-l10n="footer_about_text">Ihr zuverlässiger Partner für die Vermittlung qualifizierter Fachkräfte aus dem Baltikum nach Deutschland. Wir unterstützen Sie bei kurzfristigen Einsätzen und langfristigen Projekten.</p>
                 </div>
-
                 <div class="footer-column">
-                    <h3>Kontakt</h3>
+                    <h3 data-l10n="footer_contact_title">Kontakt</h3>
                     <ul class="contact-list">
-                        <li><i aria-hidden="true">📞</i> <a href="tel:+37125296639" style="color: inherit; text-decoration: none;">+371 25296639</a></li>
-                        <li><i aria-hidden="true">✉️</i> <a href="mailto:info@eswork.eu" style="color: inherit; text-decoration: none;">info@eswork.eu</a></li>
-                        <li><i aria-hidden="true">🌐</i> <a href="https://www.eswork.eu" style="color: inherit; text-decoration: none;">www.eswork.eu</a></li>
+                        <li><i aria-hidden="true">📞</i> <a href="tel:+37125296639" data-l10n="footer_phone_text" data-l10n-aria-label="footer_phone_label" style="color: inherit; text-decoration: none;">+371 25296639</a></li>
+                        <li><i aria-hidden="true">✉️</i> <a href="mailto:info@eswork.eu" data-l10n="footer_email_text" data-l10n-aria-label="footer_email_label" style="color: inherit; text-decoration: none;">info@eswork.eu</a></li>
+                        <li><i aria-hidden="true">🌐</i> <a href="https://www.eswork.eu" rel="noopener" target="_blank" style="color: inherit; text-decoration: none;">www.eswork.eu</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-column">
-                    <h3>Leistungen</h3>
+                    <h3 data-l10n="footer_services_title">Leistungen</h3>
                     <ul class="contact-list">
-                        <li>Fachkräftevermittlung</li>
-                        <li>Personalüberlassung</li>
-                        <li>Lohnabrechnung</li>
-                        <li>Administrative Abwicklung</li>
+                        <li data-l10n="footer_service_item1">Fachkräftevermittlung</li>
+                        <li data-l10n="footer_service_item2">Personalüberlassung</li>
+                        <li data-l10n="footer_service_item3">Lohnabrechnung</li>
+                        <li data-l10n="footer_service_item4">Administrative Abwicklung</li>
                     </ul>
                 </div>
             </div>
-
             <div class="copyright">
-                <p>&copy; 2024 ES Work SIA. Alle Rechte vorbehalten.</p>
+                <p data-l10n="footer_rights">&copy; 2024 ES Work SIA. Alle Rechte vorbehalten.</p>
             </div>
         </div>
     </footer>
-
-    <script>
-        const body = document.body;
-        const navToggle = document.querySelector('.nav-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const revealElements = document.querySelectorAll('[data-reveal]');
-        const modal = document.getElementById('form-modal');
-        const modalBackdrop = document.getElementById('modal-backdrop');
-        const modalTitle = document.getElementById('form-modal-title');
-        const modalMessage = document.getElementById('form-modal-message');
-        const modalButton = document.getElementById('form-modal-button');
-        const leadCapture = document.getElementById('lead-capture');
-        const leadCloseTriggers = document.querySelectorAll('[data-lead-close]');
-        const leadForm = document.getElementById('callbackForm');
-
-        let activeElementBeforeModal = null;
-        let leadActiveFocus = null;
-        let leadTimer = null;
-        const LEAD_STORAGE_KEY = 'leadCaptureDismissed';
-        const safeSession = {
-            get(key) {
-                try {
-                    return window.sessionStorage.getItem(key);
-                } catch (error) {
-                    return null;
-                }
-            },
-            set(key, value) {
-                try {
-                    window.sessionStorage.setItem(key, value);
-                } catch (error) {
-                    /* noop */
-                }
-            }
-        };
-
-        if (revealElements.length) {
-            if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('is-visible');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, {
-                    threshold: 0.2,
-                    rootMargin: '0px 0px -10% 0px'
-                });
-
-                revealElements.forEach((element) => observer.observe(element));
-            } else {
-                revealElements.forEach((element) => element.classList.add('is-visible'));
-            }
-        }
-
-        if (navToggle && navLinks) {
-            navToggle.addEventListener('click', () => {
-                const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-                navToggle.setAttribute('aria-expanded', String(!isExpanded));
-                navLinks.classList.toggle('active');
-            });
-
-            navLinks.querySelectorAll('a').forEach((link) => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    navToggle.setAttribute('aria-expanded', 'false');
-                });
-            });
-        }
-
-        const openModal = ({ title, message, isError = false, ctaText = 'Schließen' }) => {
-            if (!modal || !modalBackdrop || !modalTitle || !modalMessage || !modalButton) {
-                return;
-            }
-
-            activeElementBeforeModal = document.activeElement;
-            modal.classList.toggle('form-modal--error', Boolean(isError));
-            modalTitle.textContent = title;
-            modalMessage.textContent = message;
-            modalButton.textContent = ctaText;
-
-            modal.removeAttribute('hidden');
-            modalBackdrop.removeAttribute('hidden');
-            body.classList.add('modal-open');
-
-            requestAnimationFrame(() => {
-                modal.classList.add('active');
-                modalBackdrop.classList.add('active');
-                modalButton.focus({ preventScroll: true });
-            });
-        };
-
-        const closeModal = () => {
-            if (!modal || !modalBackdrop) {
-                return;
-            }
-
-            modal.classList.remove('active');
-            modalBackdrop.classList.remove('active');
-
-            const hideElements = () => {
-                modal.setAttribute('hidden', '');
-                modalBackdrop.setAttribute('hidden', '');
-                if (!leadCapture || !leadCapture.classList.contains('is-visible')) {
-                    body.classList.remove('modal-open');
-                }
-                if (activeElementBeforeModal && typeof activeElementBeforeModal.focus === 'function') {
-                    activeElementBeforeModal.focus({ preventScroll: true });
-                }
-                activeElementBeforeModal = null;
-            };
-
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                hideElements();
-            } else {
-                setTimeout(hideElements, 300);
-            }
-        };
-
-        if (modalButton) {
-            modalButton.addEventListener('click', closeModal);
-        }
-
-        if (modalBackdrop) {
-            modalBackdrop.addEventListener('click', closeModal);
-        }
-
-        const cancelLeadTimer = () => {
-            window.clearTimeout(leadTimer);
-            leadTimer = null;
-        };
-
-        const markLeadCapture = () => {
-            safeSession.set(LEAD_STORAGE_KEY, 'true');
-            cancelLeadTimer();
-        };
-
-        const hideLeadCapture = () => {
-            if (!leadCapture) {
-                return;
-            }
-
-            leadCapture.classList.remove('is-visible');
-
-            const finalize = () => {
-                if (!leadCapture.hasAttribute('hidden')) {
-                    leadCapture.setAttribute('hidden', '');
-                }
-
-                if ((!modal || modal.hasAttribute('hidden')) && body.classList.contains('modal-open')) {
-                    body.classList.remove('modal-open');
-                }
-
-                if (leadActiveFocus && typeof leadActiveFocus.focus === 'function') {
-                    leadActiveFocus.focus({ preventScroll: true });
-                }
-
-                leadActiveFocus = null;
-            };
-
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                finalize();
-            } else {
-                setTimeout(finalize, 350);
-            }
-        };
-
-        const showLeadCapture = () => {
-            if (!leadCapture || leadCapture.classList.contains('is-visible')) {
-                return;
-            }
-
-            cancelLeadTimer();
-            leadActiveFocus = document.activeElement;
-            leadCapture.removeAttribute('hidden');
-
-            requestAnimationFrame(() => {
-                leadCapture.classList.add('is-visible');
-                body.classList.add('modal-open');
-                const focusTarget = leadCapture.querySelector('input, select, textarea, button');
-                if (focusTarget) {
-                    focusTarget.focus({ preventScroll: true });
-                }
-            });
-        };
-
-        const startLeadTimer = (delay = 60000) => {
-            if (!leadCapture || safeSession.get(LEAD_STORAGE_KEY) === 'true') {
-                return;
-            }
-
-            cancelLeadTimer();
-            leadTimer = window.setTimeout(showLeadCapture, delay);
-        };
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key !== 'Escape') {
-                return;
-            }
-
-            if (modal && !modal.hasAttribute('hidden')) {
-                closeModal();
-            }
-
-            if (leadCapture && leadCapture.classList.contains('is-visible')) {
-                markLeadCapture();
-                hideLeadCapture();
-            }
-        });
-
-        const sendFormViaAjax = async (formElement) => {
-            const formData = new FormData(formElement);
-
-            if (!formData.has('_captcha')) {
-                formData.append('_captcha', 'false');
-            }
-
-            const action = formElement.getAttribute('action') || 'https://formsubmit.co/info@eswork.eu';
-            const endpoint = action.includes('/ajax/')
-                ? action
-                : action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
-
-            const response = await fetch(endpoint, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json'
-                },
-                body: formData
-            });
-
-            if (!response.ok) {
-                throw new Error('Netzwerkfehler');
-            }
-
-            const result = await response.json();
-
-            if (result.success !== 'true' && result.success !== true) {
-                throw new Error('FormSubmit-Fehler');
-            }
-        };
-
-        const requestForm = document.getElementById('requestForm');
-
-        if (requestForm) {
-            const emailInput = document.getElementById('email');
-            const emailError = document.getElementById('email-error');
-            const submitButton = requestForm.querySelector('button[type="submit"]');
-
-            const setEmailError = (message = '') => {
-                if (!emailInput || !emailError) {
-                    return;
-                }
-
-                if (message) {
-                    emailInput.classList.add('is-invalid');
-                    emailInput.setAttribute('aria-invalid', 'true');
-                    emailInput.setCustomValidity(message);
-                    emailError.textContent = message;
-                    emailError.classList.add('active');
-                } else {
-                    emailInput.classList.remove('is-invalid');
-                    emailInput.removeAttribute('aria-invalid');
-                    emailInput.setCustomValidity('');
-                    emailError.textContent = '';
-                    emailError.classList.remove('active');
-                }
-            };
-
-            const validateEmail = () => {
-                if (!emailInput) {
-                    return true;
-                }
-
-                const value = emailInput.value.trim();
-
-                if (!value) {
-                    setEmailError('Bitte geben Sie Ihre E-Mail-Adresse an.');
-                    return false;
-                }
-
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-                if (!emailPattern.test(value)) {
-                    setEmailError('Die E-Mail-Adresse muss das Format name@beispiel.de haben.');
-                    return false;
-                }
-
-                setEmailError();
-                return true;
-            };
-
-            if (emailInput) {
-                emailInput.addEventListener('input', validateEmail);
-                emailInput.addEventListener('blur', validateEmail);
-            }
-
-            requestForm.addEventListener('submit', async (event) => {
-                event.preventDefault();
-
-                const emailIsValid = validateEmail();
-                if (!emailIsValid) {
-                    if (emailInput) {
-                        emailInput.focus({ preventScroll: true });
-                        emailInput.reportValidity();
-                    }
-                    return;
-                }
-
-                if (!requestForm.checkValidity()) {
-                    requestForm.reportValidity();
-                    return;
-                }
-
-                const originalButtonText = submitButton ? submitButton.textContent : '';
-
-                if (submitButton) {
-                    submitButton.disabled = true;
-                    submitButton.textContent = 'Wird gesendet...';
-                }
-
-                try {
-                    await sendFormViaAjax(requestForm);
-                    requestForm.reset();
-                    setEmailError();
-
-                    openModal({
-                        title: 'Vielen Dank!',
-                        message: 'Ihre Anfrage wurde erfolgreich gesendet. Wir melden uns innerhalb eines Werktags.',
-                        isError: false,
-                        ctaText: 'Alles klar'
-                    });
-                } catch (error) {
-                    console.error('Formularübermittlung fehlgeschlagen:', error);
-
-                    openModal({
-                        title: 'Ups, das hat nicht geklappt',
-                        message: 'Leider konnte Ihre Anfrage nicht gesendet werden. Bitte prüfen Sie Ihre Internetverbindung oder schreiben Sie direkt an info@eswork.eu.',
-                        isError: true,
-                        ctaText: 'Erneut versuchen'
-                    });
-                } finally {
-                    if (submitButton) {
-                        submitButton.disabled = false;
-                        submitButton.textContent = originalButtonText;
-                    }
-                }
-            });
-        }
-
-        if (leadCapture) {
-            startLeadTimer();
-
-            leadCapture.addEventListener('click', (event) => {
-                if (event.target === leadCapture) {
-                    markLeadCapture();
-                    hideLeadCapture();
-                }
-            });
-        }
-
-        leadCloseTriggers.forEach((trigger) => {
-            trigger.addEventListener('click', () => {
-                markLeadCapture();
-                hideLeadCapture();
-            });
-        });
-
-        if (leadForm) {
-            const leadSubmitButton = leadForm.querySelector('button[type="submit"]');
-
-            leadForm.addEventListener('submit', async (event) => {
-                event.preventDefault();
-
-                if (!leadForm.checkValidity()) {
-                    leadForm.reportValidity();
-                    return;
-                }
-
-                const originalText = leadSubmitButton ? leadSubmitButton.textContent : '';
-
-                if (leadSubmitButton) {
-                    leadSubmitButton.disabled = true;
-                    leadSubmitButton.textContent = 'Wird gesendet...';
-                }
-
-                try {
-                    await sendFormViaAjax(leadForm);
-                    leadForm.reset();
-                    markLeadCapture();
-                    hideLeadCapture();
-
-                    openModal({
-                        title: 'Wir melden uns umgehend!',
-                        message: 'Vielen Dank für Ihre Rückrufbitte. Unser Team meldet sich innerhalb eines Werktags telefonisch bei Ihnen.',
-                        isError: false,
-                        ctaText: 'Perfekt'
-                    });
-                } catch (error) {
-                    console.error('Rückruf-Anfrage fehlgeschlagen:', error);
-
-                    openModal({
-                        title: 'Leider nicht gesendet',
-                        message: 'Bitte versuchen Sie es erneut oder rufen Sie uns direkt unter +371 25296639 an.',
-                        isError: true,
-                        ctaText: 'Nochmal versuchen'
-                    });
-                } finally {
-                    if (leadSubmitButton) {
-                        leadSubmitButton.disabled = false;
-                        leadSubmitButton.textContent = originalText;
-                    }
-                }
-            });
-        }
-
-        document.addEventListener('visibilitychange', () => {
-            if (!leadCapture || safeSession.get(LEAD_STORAGE_KEY) === 'true') {
-                return;
-            }
-
-            if (document.visibilityState === 'hidden') {
-                cancelLeadTimer();
-            } else if (!leadCapture.classList.contains('is-visible')) {
-                startLeadTimer(1500);
-            }
-        });
-    </script>
 </body>
 </html>
