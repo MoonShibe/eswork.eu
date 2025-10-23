@@ -47,6 +47,10 @@
             background-color: #ffffff;
         }
 
+        body.modal-open {
+            overflow: hidden;
+        }
+
         .container {
             width: min(90%, 1200px);
             max-width: 1200px;
@@ -188,6 +192,11 @@
             opacity: 0;
             transform: translateY(40px);
             animation: heroPanel 0.9s ease forwards;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            justify-content: space-between;
+            min-height: 160px;
         }
 
         .hero-highlight:nth-child(2) {
@@ -200,15 +209,16 @@
 
         .hero-highlight strong {
             display: block;
-            font-size: 1.35rem;
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            letter-spacing: 0.02em;
             color: #ffffff;
             margin-bottom: 0.35rem;
         }
 
         .hero-highlight span {
-            font-size: 0.95rem;
             display: block;
-            line-height: 1.5;
+            font-size: 0.95rem;
+            line-height: 1.55;
         }
 
         .btn {
@@ -608,6 +618,140 @@
             box-shadow: 0 12px 25px rgba(255, 255, 255, 0.35);
         }
 
+        .lead-capture {
+            position: fixed;
+            inset: 0;
+            background: rgba(7, 23, 41, 0.78);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(1.5rem, 5vw, 3rem);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+            z-index: 995;
+        }
+
+        .lead-capture.is-visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .lead-capture__dialog {
+            background: linear-gradient(140deg, rgba(255, 255, 255, 0.97), rgba(244, 249, 255, 0.94));
+            border-radius: 18px;
+            padding: clamp(1.75rem, 4vw, 2.75rem);
+            max-width: 520px;
+            width: min(100%, 520px);
+            box-shadow: 0 35px 80px rgba(0, 28, 68, 0.35);
+            position: relative;
+            border: 1px solid rgba(0, 93, 170, 0.12);
+            transform: translateY(24px);
+            transition: transform 0.35s ease;
+        }
+
+        .lead-capture.is-visible .lead-capture__dialog {
+            transform: translateY(0);
+        }
+
+        .lead-capture__tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--primary);
+            background: rgba(0, 93, 170, 0.08);
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+        }
+
+        .lead-capture__title {
+            font-size: clamp(1.45rem, 3vw, 1.9rem);
+            color: var(--dark);
+            margin-bottom: 0.6rem;
+        }
+
+        .lead-capture__subtitle {
+            font-size: 1rem;
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .lead-capture__close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: white;
+            border: 1px solid rgba(0, 93, 170, 0.15);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .lead-capture__close:hover {
+            background: rgba(0, 93, 170, 0.1);
+            transform: scale(1.05);
+        }
+
+        .lead-capture__list {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+            margin-bottom: 1.75rem;
+            padding: 0;
+        }
+
+        .lead-capture__list li {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+            color: var(--dark);
+        }
+
+        .lead-capture__list li span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(0, 93, 170, 0.12);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        .lead-capture form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .lead-capture .form-group {
+            margin-bottom: 0;
+        }
+
+        .lead-capture .btn {
+            justify-content: center;
+            width: 100%;
+            font-size: 1.05rem;
+            padding: 0.9rem 1.5rem;
+        }
+
         @keyframes heroPanel {
             from {
                 opacity: 0;
@@ -765,6 +909,10 @@
             .vacancy-grid {
                 grid-template-columns: 1fr;
             }
+
+            .lead-capture__dialog {
+                padding: 1.75rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -818,6 +966,23 @@
             footer .footer-column h3::after {
                 left: 50%;
                 transform: translateX(-50%);
+            }
+
+            .lead-capture {
+                padding: 1.25rem;
+            }
+
+            .lead-capture__dialog {
+                border-radius: 14px;
+            }
+
+            .lead-capture__close {
+                top: 0.75rem;
+                right: 0.75rem;
+            }
+
+            .lead-capture__list li {
+                align-items: flex-start;
             }
         }
 
@@ -1090,6 +1255,53 @@
 
     </main>
 
+    <div class="lead-capture" id="lead-capture" role="dialog" aria-modal="true" aria-labelledby="lead-capture-title" aria-describedby="lead-capture-subtitle" hidden>
+        <div class="lead-capture__dialog">
+            <button type="button" class="lead-capture__close" aria-label="Popup schließen" data-lead-close>&times;</button>
+            <div class="lead-capture__tag">Kostenloser Rückruf</div>
+            <h3 class="lead-capture__title" id="lead-capture-title">Wir rufen Sie innerhalb von 24&nbsp;Stunden zurück</h3>
+            <p class="lead-capture__subtitle" id="lead-capture-subtitle">Teilen Sie uns kurz mit, wie wir Sie erreichen können. Unser Team meldet sich zeitnah mit passenden Fachkräften.</p>
+            <ul class="lead-capture__list" aria-label="Ihre Vorteile">
+                <li><span>1</span> Persönliche Projektberatung durch unsere Disponent:innen</li>
+                <li><span>2</span> Komplette Übernahme von Verträgen, Abgaben und Versicherungen</li>
+                <li><span>3</span> Verlässlicher Starttermin nach Ihren Vorgaben</li>
+            </ul>
+            <form id="callbackForm" action="https://formsubmit.co/info@eswork.eu" method="POST" autocomplete="on">
+                <input type="hidden" name="_subject" value="Rückruf-Anfrage über Popup">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="Quelle" value="Lead Popup">
+                <div class="form-group">
+                    <label for="callback-name">Name*</label>
+                    <input type="text" id="callback-name" name="Name" class="form-control" autocomplete="name" autocapitalize="words" required>
+                </div>
+                <div class="form-group">
+                    <label for="callback-phone">Telefon*</label>
+                    <input type="tel" id="callback-phone" name="Telefon" class="form-control" autocomplete="tel" inputmode="tel" required>
+                </div>
+                <div class="form-group">
+                    <label for="callback-company">Unternehmen</label>
+                    <input type="text" id="callback-company" name="Unternehmen" class="form-control" autocomplete="organization" autocapitalize="words">
+                </div>
+                <div class="form-group">
+                    <label for="callback-time">Beste Rückrufzeit</label>
+                    <select id="callback-time" name="Beste Rückrufzeit" class="form-control">
+                        <option value="" selected>Bitte wählen</option>
+                        <option value="08:00 - 10:00 Uhr">08:00 - 10:00 Uhr</option>
+                        <option value="10:00 - 12:00 Uhr">10:00 - 12:00 Uhr</option>
+                        <option value="12:00 - 14:00 Uhr">12:00 - 14:00 Uhr</option>
+                        <option value="14:00 - 16:00 Uhr">14:00 - 16:00 Uhr</option>
+                        <option value="16:00 - 18:00 Uhr">16:00 - 18:00 Uhr</option>
+                    </select>
+                </div>
+                <div class="form-group" style="display:none;">
+                    <label for="callback-honeypot">Bitte leer lassen</label>
+                    <input type="text" id="callback-honeypot" name="_honey" tabindex="-1" autocomplete="off">
+                </div>
+                <button type="submit" class="btn">Rückruf anfordern</button>
+            </form>
+        </div>
+    </div>
+
     <div class="modal-backdrop" id="modal-backdrop" hidden></div>
     <div class="form-modal" id="form-modal" role="dialog" aria-modal="true" aria-labelledby="form-modal-title" hidden>
         <div class="form-modal__content">
@@ -1135,9 +1347,39 @@
     </footer>
 
     <script>
+        const body = document.body;
         const navToggle = document.querySelector('.nav-toggle');
         const navLinks = document.querySelector('.nav-links');
         const revealElements = document.querySelectorAll('[data-reveal]');
+        const modal = document.getElementById('form-modal');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const modalTitle = document.getElementById('form-modal-title');
+        const modalMessage = document.getElementById('form-modal-message');
+        const modalButton = document.getElementById('form-modal-button');
+        const leadCapture = document.getElementById('lead-capture');
+        const leadCloseTriggers = document.querySelectorAll('[data-lead-close]');
+        const leadForm = document.getElementById('callbackForm');
+
+        let activeElementBeforeModal = null;
+        let leadActiveFocus = null;
+        let leadTimer = null;
+        const LEAD_STORAGE_KEY = 'leadCaptureDismissed';
+        const safeSession = {
+            get(key) {
+                try {
+                    return window.sessionStorage.getItem(key);
+                } catch (error) {
+                    return null;
+                }
+            },
+            set(key, value) {
+                try {
+                    window.sessionStorage.setItem(key, value);
+                } catch (error) {
+                    /* noop */
+                }
+            }
+        };
 
         if (revealElements.length) {
             if ('IntersectionObserver' in window) {
@@ -1166,7 +1408,7 @@
                 navLinks.classList.toggle('active');
             });
 
-            navLinks.querySelectorAll('a').forEach(link => {
+            navLinks.querySelectorAll('a').forEach((link) => {
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
                     navToggle.setAttribute('aria-expanded', 'false');
@@ -1174,78 +1416,183 @@
             });
         }
 
-        const form = document.getElementById('requestForm');
+        const openModal = ({ title, message, isError = false, ctaText = 'Schließen' }) => {
+            if (!modal || !modalBackdrop || !modalTitle || !modalMessage || !modalButton) {
+                return;
+            }
 
-        if (form) {
-            const emailInput = document.getElementById('email');
-            const emailError = document.getElementById('email-error');
-            const modal = document.getElementById('form-modal');
-            const modalBackdrop = document.getElementById('modal-backdrop');
-            const modalTitle = document.getElementById('form-modal-title');
-            const modalMessage = document.getElementById('form-modal-message');
-            const modalButton = document.getElementById('form-modal-button');
-            const submitButton = form.querySelector('button[type="submit"]');
-            let activeElementBeforeModal = null;
+            activeElementBeforeModal = document.activeElement;
+            modal.classList.toggle('form-modal--error', Boolean(isError));
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modalButton.textContent = ctaText;
 
-            const openModal = ({ title, message, isError = false, ctaText = 'Schließen' }) => {
-                if (!modal || !modalBackdrop || !modalTitle || !modalMessage || !modalButton) {
-                    return;
+            modal.removeAttribute('hidden');
+            modalBackdrop.removeAttribute('hidden');
+            body.classList.add('modal-open');
+
+            requestAnimationFrame(() => {
+                modal.classList.add('active');
+                modalBackdrop.classList.add('active');
+                modalButton.focus({ preventScroll: true });
+            });
+        };
+
+        const closeModal = () => {
+            if (!modal || !modalBackdrop) {
+                return;
+            }
+
+            modal.classList.remove('active');
+            modalBackdrop.classList.remove('active');
+
+            const hideElements = () => {
+                modal.setAttribute('hidden', '');
+                modalBackdrop.setAttribute('hidden', '');
+                if (!leadCapture || !leadCapture.classList.contains('is-visible')) {
+                    body.classList.remove('modal-open');
                 }
-
-                activeElementBeforeModal = document.activeElement;
-                modal.classList.toggle('form-modal--error', Boolean(isError));
-                modalTitle.textContent = title;
-                modalMessage.textContent = message;
-                modalButton.textContent = ctaText;
-
-                modal.removeAttribute('hidden');
-                modalBackdrop.removeAttribute('hidden');
-
-                requestAnimationFrame(() => {
-                    modal.classList.add('active');
-                    modalBackdrop.classList.add('active');
-                    modalButton.focus({ preventScroll: true });
-                });
-            };
-
-            const closeModal = () => {
-                if (!modal || !modalBackdrop) {
-                    return;
-                }
-
-                modal.classList.remove('active');
-                modalBackdrop.classList.remove('active');
-
-                const hideElements = () => {
-                    modal.setAttribute('hidden', '');
-                    modalBackdrop.setAttribute('hidden', '');
-                    activeElementBeforeModal = null;
-                };
-
-                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                    hideElements();
-                } else {
-                    setTimeout(hideElements, 300);
-                }
-
                 if (activeElementBeforeModal && typeof activeElementBeforeModal.focus === 'function') {
                     activeElementBeforeModal.focus({ preventScroll: true });
                 }
+                activeElementBeforeModal = null;
             };
 
-            if (modalButton) {
-                modalButton.addEventListener('click', closeModal);
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                hideElements();
+            } else {
+                setTimeout(hideElements, 300);
+            }
+        };
+
+        if (modalButton) {
+            modalButton.addEventListener('click', closeModal);
+        }
+
+        if (modalBackdrop) {
+            modalBackdrop.addEventListener('click', closeModal);
+        }
+
+        const cancelLeadTimer = () => {
+            window.clearTimeout(leadTimer);
+            leadTimer = null;
+        };
+
+        const markLeadCapture = () => {
+            safeSession.set(LEAD_STORAGE_KEY, 'true');
+            cancelLeadTimer();
+        };
+
+        const hideLeadCapture = () => {
+            if (!leadCapture) {
+                return;
             }
 
-            if (modalBackdrop) {
-                modalBackdrop.addEventListener('click', closeModal);
+            leadCapture.classList.remove('is-visible');
+
+            const finalize = () => {
+                if (!leadCapture.hasAttribute('hidden')) {
+                    leadCapture.setAttribute('hidden', '');
+                }
+
+                if ((!modal || modal.hasAttribute('hidden')) && body.classList.contains('modal-open')) {
+                    body.classList.remove('modal-open');
+                }
+
+                if (leadActiveFocus && typeof leadActiveFocus.focus === 'function') {
+                    leadActiveFocus.focus({ preventScroll: true });
+                }
+
+                leadActiveFocus = null;
+            };
+
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                finalize();
+            } else {
+                setTimeout(finalize, 350);
+            }
+        };
+
+        const showLeadCapture = () => {
+            if (!leadCapture || leadCapture.classList.contains('is-visible')) {
+                return;
             }
 
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && modal && !modal.hasAttribute('hidden')) {
-                    closeModal();
+            cancelLeadTimer();
+            leadActiveFocus = document.activeElement;
+            leadCapture.removeAttribute('hidden');
+
+            requestAnimationFrame(() => {
+                leadCapture.classList.add('is-visible');
+                body.classList.add('modal-open');
+                const focusTarget = leadCapture.querySelector('input, select, textarea, button');
+                if (focusTarget) {
+                    focusTarget.focus({ preventScroll: true });
                 }
             });
+        };
+
+        const startLeadTimer = (delay = 60000) => {
+            if (!leadCapture || safeSession.get(LEAD_STORAGE_KEY) === 'true') {
+                return;
+            }
+
+            cancelLeadTimer();
+            leadTimer = window.setTimeout(showLeadCapture, delay);
+        };
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key !== 'Escape') {
+                return;
+            }
+
+            if (modal && !modal.hasAttribute('hidden')) {
+                closeModal();
+            }
+
+            if (leadCapture && leadCapture.classList.contains('is-visible')) {
+                markLeadCapture();
+                hideLeadCapture();
+            }
+        });
+
+        const sendFormViaAjax = async (formElement) => {
+            const formData = new FormData(formElement);
+
+            if (!formData.has('_captcha')) {
+                formData.append('_captcha', 'false');
+            }
+
+            const action = formElement.getAttribute('action') || 'https://formsubmit.co/info@eswork.eu';
+            const endpoint = action.includes('/ajax/')
+                ? action
+                : action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Netzwerkfehler');
+            }
+
+            const result = await response.json();
+
+            if (result.success !== 'true' && result.success !== true) {
+                throw new Error('FormSubmit-Fehler');
+            }
+        };
+
+        const requestForm = document.getElementById('requestForm');
+
+        if (requestForm) {
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('email-error');
+            const submitButton = requestForm.querySelector('button[type="submit"]');
 
             const setEmailError = (message = '') => {
                 if (!emailInput || !emailError) {
@@ -1295,7 +1642,7 @@
                 emailInput.addEventListener('blur', validateEmail);
             }
 
-            form.addEventListener('submit', async (event) => {
+            requestForm.addEventListener('submit', async (event) => {
                 event.preventDefault();
 
                 const emailIsValid = validateEmail();
@@ -1307,13 +1654,10 @@
                     return;
                 }
 
-                if (!form.checkValidity()) {
-                    form.reportValidity();
+                if (!requestForm.checkValidity()) {
+                    requestForm.reportValidity();
                     return;
                 }
-
-                const formData = new FormData(form);
-                formData.append('_captcha', 'false');
 
                 const originalButtonText = submitButton ? submitButton.textContent : '';
 
@@ -1322,30 +1666,9 @@
                     submitButton.textContent = 'Wird gesendet...';
                 }
 
-                const endpoint = form.action.includes('/ajax/')
-                    ? form.action
-                    : form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
-
                 try {
-                    const response = await fetch(endpoint, {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json'
-                        },
-                        body: formData
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Netzwerkfehler');
-                    }
-
-                    const result = await response.json();
-
-                    if (result.success !== 'true' && result.success !== true) {
-                        throw new Error('FormSubmit-Fehler');
-                    }
-
-                    form.reset();
+                    await sendFormViaAjax(requestForm);
+                    requestForm.reset();
                     setEmailError();
 
                     openModal({
@@ -1371,6 +1694,84 @@
                 }
             });
         }
+
+        if (leadCapture) {
+            startLeadTimer();
+
+            leadCapture.addEventListener('click', (event) => {
+                if (event.target === leadCapture) {
+                    markLeadCapture();
+                    hideLeadCapture();
+                }
+            });
+        }
+
+        leadCloseTriggers.forEach((trigger) => {
+            trigger.addEventListener('click', () => {
+                markLeadCapture();
+                hideLeadCapture();
+            });
+        });
+
+        if (leadForm) {
+            const leadSubmitButton = leadForm.querySelector('button[type="submit"]');
+
+            leadForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                if (!leadForm.checkValidity()) {
+                    leadForm.reportValidity();
+                    return;
+                }
+
+                const originalText = leadSubmitButton ? leadSubmitButton.textContent : '';
+
+                if (leadSubmitButton) {
+                    leadSubmitButton.disabled = true;
+                    leadSubmitButton.textContent = 'Wird gesendet...';
+                }
+
+                try {
+                    await sendFormViaAjax(leadForm);
+                    leadForm.reset();
+                    markLeadCapture();
+                    hideLeadCapture();
+
+                    openModal({
+                        title: 'Wir melden uns umgehend!',
+                        message: 'Vielen Dank für Ihre Rückrufbitte. Unser Team meldet sich innerhalb eines Werktags telefonisch bei Ihnen.',
+                        isError: false,
+                        ctaText: 'Perfekt'
+                    });
+                } catch (error) {
+                    console.error('Rückruf-Anfrage fehlgeschlagen:', error);
+
+                    openModal({
+                        title: 'Leider nicht gesendet',
+                        message: 'Bitte versuchen Sie es erneut oder rufen Sie uns direkt unter +371 25296639 an.',
+                        isError: true,
+                        ctaText: 'Nochmal versuchen'
+                    });
+                } finally {
+                    if (leadSubmitButton) {
+                        leadSubmitButton.disabled = false;
+                        leadSubmitButton.textContent = originalText;
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            if (!leadCapture || safeSession.get(LEAD_STORAGE_KEY) === 'true') {
+                return;
+            }
+
+            if (document.visibilityState === 'hidden') {
+                cancelLeadTimer();
+            } else if (!leadCapture.classList.contains('is-visible')) {
+                startLeadTimer(1500);
+            }
+        });
     </script>
 </body>
 </html>
