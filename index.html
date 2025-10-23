@@ -96,6 +96,15 @@
             transition: color 0.3s;
         }
 
+        .nav-contact {
+            display: none;
+        }
+
+        .nav-contact a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
         .nav-links a:hover {
             color: var(--primary);
         }
@@ -170,6 +179,11 @@
 
         .btn:hover {
             background-color: #e0a800;
+        }
+
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
         }
 
         /* Services Section */
@@ -272,24 +286,41 @@
         .form-group {
             margin-bottom: 1.5rem;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
         }
-        
+
         .form-control {
             width: 100%;
             padding: 0.8rem;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
-        
+
         textarea.form-control {
             min-height: 150px;
             resize: vertical;
+        }
+
+        .form-control.is-invalid {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.1);
+        }
+
+        .error-message {
+            font-size: 0.875rem;
+            color: #dc3545;
+            margin-top: 0.35rem;
+            display: none;
+        }
+
+        .error-message.active {
+            display: block;
         }
 
         /* Blog Section */
@@ -331,7 +362,108 @@
             background-color: #f8f9fa;
             border-top: 1px solid #eee;
         }
-        
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 990;
+        }
+
+        .modal-backdrop.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .form-modal {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .form-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .form-modal__content {
+            background: linear-gradient(135deg, rgba(0, 93, 170, 0.97), rgba(0, 141, 210, 0.95));
+            color: #ffffff;
+            border-radius: 16px;
+            padding: clamp(2rem, 6vw, 3rem);
+            max-width: 480px;
+            width: min(100%, 480px);
+            text-align: center;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+
+        .form-modal__content::after {
+            content: '';
+            position: absolute;
+            inset: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        .form-modal__title {
+            font-size: clamp(1.5rem, 3vw, 1.9rem);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .form-modal__message {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.75rem;
+        }
+
+        .form-modal__cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: #ffc107;
+            color: #343a40;
+            font-weight: 600;
+            padding: 0.75rem 1.75rem;
+            border-radius: 999px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-modal__cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 25px rgba(255, 193, 7, 0.3);
+        }
+
+        .form-modal--error .form-modal__content {
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.98), rgba(255, 99, 132, 0.95));
+        }
+
+        .form-modal--error .form-modal__cta {
+            background-color: #ffffff;
+            color: #c82333;
+        }
+
+        .form-modal--error .form-modal__cta:hover {
+            box-shadow: 0 12px 25px rgba(255, 255, 255, 0.35);
+        }
+
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -430,6 +562,18 @@
             .nav-links a {
                 display: block;
                 padding: 0.75rem 1rem;
+            }
+
+            .nav-contact {
+                display: block;
+                font-size: 1rem;
+                border-top: 1px solid rgba(0, 0, 0, 0.06);
+                padding-top: 0.5rem;
+            }
+
+            .nav-contact a {
+                padding: 0.5rem 1rem;
+                display: block;
             }
 
             .hero {
@@ -541,6 +685,12 @@
                     <li><a href="#offer">Angebot</a></li>
                     <li><a href="#contact">Anfrage</a></li>
                     <li><a href="#vacancies">Stellenangebote</a></li>
+                    <li class="nav-contact">
+                        <a href="tel:+37125296639">📞 +371 25296639</a>
+                    </li>
+                    <li class="nav-contact">
+                        <a href="mailto:info@eswork.eu">✉️ info@eswork.eu</a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -608,16 +758,16 @@
                 <h2 class="section-title" id="contact-title">Personalbedarf anfragen</h2>
                 <p class="section-intro">Schildern Sie uns Ihren Personalbedarf. Wir melden uns innerhalb eines Werktags mit passenden Profilen.</p>
                 <div class="form-container">
-                    <form id="requestForm" action="https://formsubmit.co/info@eswork.eu" method="POST" aria-label="Kontaktformular für Personalbedarf">
+                    <form id="requestForm" action="https://formsubmit.co/info@eswork.eu" method="POST" aria-label="Kontaktformular für Personalbedarf" autocomplete="on">
                         <input type="hidden" name="_subject" value="Neue Personal-Anfrage über die Website">
                         <input type="hidden" name="_template" value="table">
                         <div class="form-group">
                             <label for="name">Name*</label>
-                            <input type="text" id="name" name="Name" class="form-control" autocomplete="name" required>
+                            <input type="text" id="name" name="Name" class="form-control" autocomplete="name" autocapitalize="words" required>
                         </div>
                         <div class="form-group">
                             <label for="company">Firma*</label>
-                            <input type="text" id="company" name="Firma" class="form-control" autocomplete="organization" required>
+                            <input type="text" id="company" name="Firma" class="form-control" autocomplete="organization" autocapitalize="words" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Telefon*</label>
@@ -625,11 +775,12 @@
                         </div>
                         <div class="form-group">
                             <label for="email">E-Mail*</label>
-                            <input type="email" id="email" name="E-Mail" class="form-control" autocomplete="email" required>
+                            <input type="email" id="email" name="E-Mail" class="form-control" autocomplete="email" aria-describedby="email-error" required>
+                            <p class="error-message" id="email-error" role="alert" aria-live="polite"></p>
                         </div>
                         <div class="form-group">
                             <label for="locations">Einsatzstandorte*</label>
-                            <input type="text" id="locations" name="Einsatzstandorte" class="form-control" placeholder="z. B. Berlin, München" required>
+                            <input type="text" id="locations" name="Einsatzstandorte" class="form-control" placeholder="z. B. Berlin, München" autocomplete="address-level2" autocapitalize="words" required>
                         </div>
                         <div class="form-group">
                             <label for="start-date">Gewünschter Starttermin*</label>
@@ -637,7 +788,7 @@
                         </div>
                         <div class="form-group">
                             <label for="activities">Konkrete Tätigkeiten*</label>
-                            <textarea id="activities" name="Tätigkeiten" class="form-control" rows="4" required></textarea>
+                            <textarea id="activities" name="Tätigkeiten" class="form-control" rows="4" autocomplete="off" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="message">Weitere Informationen</label>
@@ -707,6 +858,15 @@
 
     </main>
 
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+    <div class="form-modal" id="form-modal" role="dialog" aria-modal="true" aria-labelledby="form-modal-title" hidden>
+        <div class="form-modal__content">
+            <h3 class="form-modal__title" id="form-modal-title">Vielen Dank!</h3>
+            <p class="form-modal__message" id="form-modal-message">Ihre Anfrage wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.</p>
+            <button type="button" class="form-modal__cta" id="form-modal-button" data-modal-close>Zur Startseite</button>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -758,6 +918,204 @@
                     navLinks.classList.remove('active');
                     navToggle.setAttribute('aria-expanded', 'false');
                 });
+            });
+        }
+
+        const form = document.getElementById('requestForm');
+
+        if (form) {
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('email-error');
+            const modal = document.getElementById('form-modal');
+            const modalBackdrop = document.getElementById('modal-backdrop');
+            const modalTitle = document.getElementById('form-modal-title');
+            const modalMessage = document.getElementById('form-modal-message');
+            const modalButton = document.getElementById('form-modal-button');
+            const submitButton = form.querySelector('button[type="submit"]');
+            let activeElementBeforeModal = null;
+
+            const openModal = ({ title, message, isError = false, ctaText = 'Schließen' }) => {
+                if (!modal || !modalBackdrop || !modalTitle || !modalMessage || !modalButton) {
+                    return;
+                }
+
+                activeElementBeforeModal = document.activeElement;
+                modal.classList.toggle('form-modal--error', Boolean(isError));
+                modalTitle.textContent = title;
+                modalMessage.textContent = message;
+                modalButton.textContent = ctaText;
+
+                modal.removeAttribute('hidden');
+                modalBackdrop.removeAttribute('hidden');
+
+                requestAnimationFrame(() => {
+                    modal.classList.add('active');
+                    modalBackdrop.classList.add('active');
+                    modalButton.focus({ preventScroll: true });
+                });
+            };
+
+            const closeModal = () => {
+                if (!modal || !modalBackdrop) {
+                    return;
+                }
+
+                modal.classList.remove('active');
+                modalBackdrop.classList.remove('active');
+
+                const hideElements = () => {
+                    modal.setAttribute('hidden', '');
+                    modalBackdrop.setAttribute('hidden', '');
+                    activeElementBeforeModal = null;
+                };
+
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    hideElements();
+                } else {
+                    setTimeout(hideElements, 300);
+                }
+
+                if (activeElementBeforeModal && typeof activeElementBeforeModal.focus === 'function') {
+                    activeElementBeforeModal.focus({ preventScroll: true });
+                }
+            };
+
+            if (modalButton) {
+                modalButton.addEventListener('click', closeModal);
+            }
+
+            if (modalBackdrop) {
+                modalBackdrop.addEventListener('click', closeModal);
+            }
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && modal && !modal.hasAttribute('hidden')) {
+                    closeModal();
+                }
+            });
+
+            const setEmailError = (message = '') => {
+                if (!emailInput || !emailError) {
+                    return;
+                }
+
+                if (message) {
+                    emailInput.classList.add('is-invalid');
+                    emailInput.setAttribute('aria-invalid', 'true');
+                    emailInput.setCustomValidity(message);
+                    emailError.textContent = message;
+                    emailError.classList.add('active');
+                } else {
+                    emailInput.classList.remove('is-invalid');
+                    emailInput.removeAttribute('aria-invalid');
+                    emailInput.setCustomValidity('');
+                    emailError.textContent = '';
+                    emailError.classList.remove('active');
+                }
+            };
+
+            const validateEmail = () => {
+                if (!emailInput) {
+                    return true;
+                }
+
+                const value = emailInput.value.trim();
+
+                if (!value) {
+                    setEmailError('Bitte geben Sie Ihre E-Mail-Adresse an.');
+                    return false;
+                }
+
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+                if (!emailPattern.test(value)) {
+                    setEmailError('Die E-Mail-Adresse muss das Format name@beispiel.de haben.');
+                    return false;
+                }
+
+                setEmailError();
+                return true;
+            };
+
+            if (emailInput) {
+                emailInput.addEventListener('input', validateEmail);
+                emailInput.addEventListener('blur', validateEmail);
+            }
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const emailIsValid = validateEmail();
+                if (!emailIsValid) {
+                    if (emailInput) {
+                        emailInput.focus({ preventScroll: true });
+                        emailInput.reportValidity();
+                    }
+                    return;
+                }
+
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+
+                const formData = new FormData(form);
+                formData.append('_captcha', 'false');
+
+                const originalButtonText = submitButton ? submitButton.textContent : '';
+
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Wird gesendet...';
+                }
+
+                const endpoint = form.action.includes('/ajax/')
+                    ? form.action
+                    : form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+
+                try {
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json'
+                        },
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Netzwerkfehler');
+                    }
+
+                    const result = await response.json();
+
+                    if (result.success !== 'true' && result.success !== true) {
+                        throw new Error('FormSubmit-Fehler');
+                    }
+
+                    form.reset();
+                    setEmailError();
+
+                    openModal({
+                        title: 'Vielen Dank!',
+                        message: 'Ihre Anfrage wurde erfolgreich gesendet. Wir melden uns innerhalb eines Werktags.',
+                        isError: false,
+                        ctaText: 'Alles klar'
+                    });
+                } catch (error) {
+                    console.error('Formularübermittlung fehlgeschlagen:', error);
+
+                    openModal({
+                        title: 'Ups, das hat nicht geklappt',
+                        message: 'Leider konnte Ihre Anfrage nicht gesendet werden. Bitte prüfen Sie Ihre Internetverbindung oder schreiben Sie direkt an info@eswork.eu.',
+                        isError: true,
+                        ctaText: 'Erneut versuchen'
+                    });
+                } finally {
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalButtonText;
+                    }
+                }
             });
         }
     </script>
