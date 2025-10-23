@@ -3,6 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ES Work SIA vermittelt qualifizierte Fach- und Hilfskräfte aus dem Baltikum an Unternehmen in Deutschland. Wir übernehmen Administration, Lohnabrechnung und die komplette Personalbetreuung.">
+    <meta name="keywords" content="Personalvermittlung Baltikum, Fachkräfte Deutschland, Zeitarbeit Lettland, Hilfskräfte Estland, Arbeitnehmerüberlassung Litauen">
+    <meta name="author" content="ES Work SIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.eswork.eu/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:site_name" content="ES Work">
+    <meta property="og:title" content="ES Work – Qualifizierte Fachkräfte aus dem Baltikum">
+    <meta property="og:description" content="Wir vermitteln qualifizierte Fach- und Hilfskräfte aus Lettland, Litauen und Estland an deutsche Unternehmen und übernehmen alle administrativen Aufgaben.">
+    <meta property="og:url" content="https://www.eswork.eu/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ES Work – Qualifizierte Fachkräfte aus dem Baltikum">
+    <meta name="twitter:description" content="Schnelle Vermittlung von Fachkräften und vollständige Personaladministration für deutsche Unternehmen.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80">
     <title>ES Work - Qualifizierte Fachkräfte aus dem Baltikum</title>
     <style>
         :root {
@@ -10,27 +26,34 @@
             --secondary: #f8f9fa;
             --accent: #ffc107;
             --dark: #343a40;
+            --text: #212529;
+            --light-text: #6c757d;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             line-height: 1.6;
-            color: #333;
+            color: var(--text);
+            background-color: #ffffff;
         }
-        
+
         .container {
-            width: 90%;
+            width: min(90%, 1200px);
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 1.5rem;
         }
-        
+
         /* Header Styles */
         header {
             background-color: white;
@@ -39,40 +62,76 @@
             top: 0;
             z-index: 100;
         }
-        
+
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
+            gap: 1rem;
         }
-        
+
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 0.03em;
         }
-        
+
         .nav-links {
             display: flex;
             list-style: none;
+            gap: 1.5rem;
         }
-        
+
         .nav-links li {
-            margin-left: 2rem;
+            position: relative;
         }
-        
+
         .nav-links a {
             text-decoration: none;
             color: var(--dark);
             font-weight: 500;
             transition: color 0.3s;
         }
-        
+
         .nav-links a:hover {
             color: var(--primary);
         }
-        
+
+        .nav-links a:focus-visible,
+        .btn:focus-visible {
+            outline: 3px solid rgba(0, 93, 170, 0.4);
+            outline-offset: 3px;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            padding: 0.35rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .nav-toggle:hover {
+            background-color: rgba(0, 93, 170, 0.1);
+            border-color: rgba(0, 93, 170, 0.2);
+        }
+
+        main {
+            display: block;
+        }
+
+        section {
+            scroll-margin-top: 6rem;
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
@@ -81,19 +140,21 @@
             color: white;
             padding: 6rem 0;
             text-align: center;
+            position: relative;
         }
-        
+
         .hero h1 {
-            font-size: 3rem;
+            font-size: clamp(2.25rem, 4vw, 3.5rem);
             margin-bottom: 1rem;
         }
-        
+
         .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
+            max-width: 720px;
             margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.95);
         }
-        
+
         .btn {
             display: inline-block;
             background-color: var(--accent);
@@ -106,41 +167,54 @@
             border: none;
             cursor: pointer;
         }
-        
+
         .btn:hover {
             background-color: #e0a800;
         }
-        
+
         /* Services Section */
         .services {
-            padding: 5rem 0;
+            padding: clamp(3.5rem, 8vw, 5rem) 0;
             background-color: var(--secondary);
         }
-        
+
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
             color: var(--primary);
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 700;
         }
-        
+
+        .section-intro {
+            max-width: 760px;
+            margin: 0 auto 2.5rem;
+            text-align: center;
+            color: var(--light-text);
+            font-size: clamp(1rem, 1.9vw, 1.15rem);
+        }
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
-        
+
         .service-card {
             background: white;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
         }
-        
+
         .service-card:hover {
             transform: translateY(-10px);
         }
-        
+
         .service-content {
             padding: 2rem;
         }
@@ -149,12 +223,16 @@
             color: var(--primary);
             margin-bottom: 1rem;
         }
-        
+
+        .service-content p {
+            color: var(--light-text);
+        }
+
         /* Offer Section */
         .offer {
-            padding: 5rem 0;
+            padding: clamp(3.5rem, 8vw, 5rem) 0;
         }
-        
+
         .offer-content {
             max-width: 800px;
             margin: 0 auto;
@@ -162,19 +240,25 @@
             padding: 2.5rem;
             border-radius: 8px;
             border-left: 4px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 93, 170, 0.1);
         }
-        
+
         .offer-list {
             margin: 1.5rem 0;
             padding-left: 1.5rem;
         }
-        
+
+        .offer-list li {
+            margin-bottom: 0.8rem;
+            color: var(--light-text);
+        }
+
         /* Form Section */
         .contact-form {
-            padding: 5rem 0;
+            padding: clamp(3.5rem, 8vw, 5rem) 0;
             background-color: var(--secondary);
         }
-        
+
         .form-container {
             max-width: 700px;
             margin: 0 auto;
@@ -182,8 +266,9 @@
             padding: 3rem;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0, 93, 170, 0.08);
         }
-        
+
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -206,12 +291,12 @@
             min-height: 150px;
             resize: vertical;
         }
-        
+
         /* Blog Section */
         .blog {
-            padding: 5rem 0;
+            padding: clamp(3.5rem, 8vw, 5rem) 0;
         }
-        
+
         .vacancy-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -253,13 +338,18 @@
             color: white;
             padding: 3rem 0;
         }
-        
+
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
         }
-        
+
+        .footer-column p,
+        .footer-column li {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
         .footer-column h3 {
             margin-bottom: 1.5rem;
             position: relative;
@@ -297,35 +387,156 @@
             margin-top: 2rem;
             border-top: 1px solid #555;
         }
-        
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                text-align: center;
+
+        @media (max-width: 1100px) {
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             }
-            
-            .nav-links {
-                margin-top: 1rem;
+
+            .vacancy-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                align-items: center;
                 justify-content: center;
             }
-            
-            .nav-links li {
-                margin: 0 0.5rem;
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: white;
+                padding: 1rem 0;
+                border-top: 1px solid rgba(0,0,0,0.08);
             }
-            
-            .hero h1 {
-                font-size: 2.2rem;
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 0.75rem 1rem;
+            }
+
+            .hero {
+                padding: 5rem 0;
+            }
+
+            .form-container {
+                padding: 2.25rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 4.5rem 0;
+            }
+
+            .offer-content {
+                padding: 2rem;
+            }
+
+            .vacancy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar {
+                padding: 0.75rem 0;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                padding: 4rem 0;
+            }
+
+            .hero p {
+                margin-bottom: 1.5rem;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                padding: 1.75rem;
+            }
+
+            footer {
+                text-align: center;
+            }
+
+            footer .footer-grid {
+                gap: 1.5rem;
+                justify-items: center;
+            }
+
+            footer .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
             }
         }
     </style>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "ES Work SIA",
+            "url": "https://www.eswork.eu/",
+            "logo": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=512&q=80",
+            "description": "ES Work SIA vermittelt qualifizierte Fach- und Hilfskräfte aus dem Baltikum nach Deutschland und übernimmt die komplette Personaladministration.",
+            "email": "info@eswork.eu",
+            "telephone": "+37125296639",
+            "areaServed": ["Deutschland", "Lettland", "Litauen", "Estland"]
+        }
+    </script>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container">
-            <nav class="navbar">
-                <div class="logo">ES Work</div>
-                <ul class="nav-links">
+            <nav class="navbar" aria-label="Hauptnavigation">
+                <a class="logo" href="#top" aria-label="Zur Startseite von ES Work">ES Work</a>
+                <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+                    Menü
+                </button>
+                <ul class="nav-links" id="primary-navigation">
                     <li><a href="#services">Dienstleistungen</a></li>
                     <li><a href="#offer">Angebot</a></li>
                     <li><a href="#contact">Anfrage</a></li>
@@ -335,160 +546,166 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Qualifizierte Fachkräfte aus dem Baltikum</h1>
-            <p>Schnelle und zuverlässige Vermittlung von Fach- und Hilfskräften für Ihren Unternehmenserfolg in Deutschland</p>
-            <a href="#contact" class="btn">Jetzt Personal anfragen</a>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Unsere Dienstleistungen</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-content">
-                        <h3>Personalvermittlung</h3>
-                        <p>Wir vermitteln qualifizierte Fach- und Hilfskräfte aus Lettland, Litauen und Estland an deutsche Unternehmen in verschiedenen Branchen.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-content">
-                        <h3>Vollständige Administration</h3>
-                        <p>Wir übernehmen alle gesetzlichen Abgaben, Versicherungen und die Lohnabrechnung - Sie erhalten wöchentlich eine klare Rechnung.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-content">
-                        <h3>Schnelle Besetzung</h3>
-                        <p>Durch unser großes Netzwerk im Baltikum finden wir schnell passende Kandidaten für Ihre vakanten Positionen.</p>
-                    </div>
-                </div>
+    <main id="top">
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container">
+                <h1 id="hero-title">Qualifizierte Fachkräfte aus dem Baltikum</h1>
+                <p>Schnelle und zuverlässige Vermittlung von Fach- und Hilfskräften für Ihren Unternehmenserfolg in Deutschland.</p>
+                <a href="#contact" class="btn">Jetzt Personal anfragen</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Current Offer Section -->
-    <section id="offer" class="offer">
-        <div class="container">
-            <h2 class="section-title">Aktuelles Stellenangebot</h2>
-            <div class="offer-content">
-                <h3>Erfahrener Dachdeckerhelfer</h3>
-                <ul class="offer-list">
-                    <li><strong>Berufserfahrung:</strong> Über 20 Jahre im Dachdeckerhandwerk</li>
-                    <li><strong>Eigenschaften:</strong> Fleißig, zuverlässig, teamfähig</li>
-                    <li><strong>Sprachkenntnisse:</strong> Deutsch (eingeschränkt), Englisch (Grundkenntnisse), Russisch (sehr gut)</li>
-                    <li><strong>Verfügbarkeit:</strong> Kurzfristig verfügbar</li>
-                    <li><strong>Konditionen:</strong> 32,00 €/Std. netto (MwSt. 0%)</li>
-                </ul>
-                <p>Der Mitarbeiter ist fest bei uns angestellt. Wir übernehmen alle gesetzlichen Abgaben, Versicherungen sowie die Lohnabrechnung.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Form -->
-    <section id="contact" class="contact-form">
-        <div class="container">
-            <h2 class="section-title">Personalbedarf anfragen</h2>
-            <div class="form-container">
-                <form id="requestForm" action="https://formsubmit.co/info@eswork.eu" method="POST">
-                    <input type="hidden" name="_subject" value="Neue Personal-Anfrage über die Website">
-                    <input type="hidden" name="_template" value="table">
-                    <div class="form-group">
-                        <label for="name">Name*</label>
-                        <input type="text" id="name" name="Name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Firma*</label>
-                        <input type="text" id="company" name="Firma" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Telefon*</label>
-                        <input type="tel" id="phone" name="Telefon" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-Mail*</label>
-                        <input type="email" id="email" name="E-Mail" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="locations">Einsatzstandorte*</label>
-                        <input type="text" id="locations" name="Einsatzstandorte" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="start-date">Gewünschter Starttermin*</label>
-                        <input type="date" id="start-date" name="Starttermin" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="activities">Konkrete Tätigkeiten*</label>
-                        <textarea id="activities" name="Tätigkeiten" class="form-control" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Weitere Informationen</label>
-                        <textarea id="message" name="Weitere Informationen" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group" style="display:none;">
-                        <label for="honeypot">Bitte leer lassen</label>
-                        <input type="text" id="honeypot" name="_honey">
-                    </div>
-                    <input type="hidden" name="_next" value="https://eswork.eu/danke.html">
-                    <button type="submit" class="btn">Anfrage senden</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Vacancies Blog -->
-    <section id="vacancies" class="blog">
-        <div class="container">
-            <h2 class="section-title">Aktuelle Stellenangebote</h2>
-            <div class="vacancy-grid">
-                <!-- Vacancy 1 -->
-                <div class="vacancy-card">
-                    <div class="vacancy-body">
-                        <h3>Bauhelfer (m/w/d)</h3>
-                        <div class="vacancy-meta">
-                            <span>Branche: Baugewerbe | Erfahrung: 2+ Jahre</span>
+        <!-- Services Section -->
+        <section id="services" class="services" aria-labelledby="services-title">
+            <div class="container">
+                <h2 class="section-title" id="services-title">Unsere Dienstleistungen</h2>
+                <p class="section-intro">Wir finden die passenden Spezialistinnen und Spezialisten für Ihr Unternehmen und begleiten beide Seiten vom ersten Kontakt bis zum erfolgreichen Projekteinsatz.</p>
+                <div class="services-grid">
+                    <article class="service-card" aria-labelledby="service-staffing">
+                        <div class="service-content">
+                            <h3 id="service-staffing">Personalvermittlung</h3>
+                            <p>Wir vermitteln qualifizierte Fach- und Hilfskräfte aus Lettland, Litauen und Estland an deutsche Unternehmen in Branchen wie Bau, Metall, Logistik und Pflege.</p>
                         </div>
-                        <p>Wir vermitteln zuverlässige Bauhelfer mit Erfahrung im Hoch- und Tiefbau. Gute körperliche Verfassung und Teamfähigkeit vorausgesetzt.</p>
-                    </div>
-                    <div class="vacancy-footer">
-                        <strong>Sprachen:</strong> Russisch (Muttersprache), Deutsch (Grundkenntnisse)
-                    </div>
-                </div>
-                
-                <!-- Vacancy 2 -->
-                <div class="vacancy-card">
-                    <div class="vacancy-body">
-                        <h3>Metallbauer (m/w/d)</h3>
-                        <div class="vacancy-meta">
-                            <span>Branche: Metallverarbeitung | Erfahrung: 5+ Jahre</span>
+                    </article>
+                    <article class="service-card" aria-labelledby="service-admin">
+                        <div class="service-content">
+                            <h3 id="service-admin">Vollständige Administration</h3>
+                            <p>Wir übernehmen alle gesetzlichen Abgaben, Versicherungen und die Lohnabrechnung. Sie erhalten wöchentliche, transparente Abrechnungen und können sich auf Ihr Kerngeschäft konzentrieren.</p>
                         </div>
-                        <p>Qualifizierte Metallbauer mit Erfahrung in Schweißtechniken (MIG/MAG, WIG) gesucht. Kenntnisse in Metallkonstruktionen und Montage.</p>
-                    </div>
-                    <div class="vacancy-footer">
-                        <strong>Sprachen:</strong> Englisch (fließend), Deutsch (Grundkenntnisse)
-                    </div>
-                </div>
-                
-                <!-- Vacancy 3 -->
-                <div class="vacancy-card">
-                    <div class="vacancy-body">
-                        <h3>Pflegehilfskraft (m/w/d)</h3>
-                        <div class="vacancy-meta">
-                            <span>Branche: Gesundheitswesen | Erfahrung: 3+ Jahre</span>
+                    </article>
+                    <article class="service-card" aria-labelledby="service-speed">
+                        <div class="service-content">
+                            <h3 id="service-speed">Schnelle Besetzung</h3>
+                            <p>Durch unser gewachsenes Netzwerk im Baltikum besetzen wir vakante Stellen schnell und zuverlässig – auch für kurzfristige Projekteinsätze.</p>
                         </div>
-                        <p>Einfühlsame Pflegekräfte mit nachgewiesener Berufserfahrung in der Altenpflege. Anerkennung der Qualifikation in Deutschland im Prozess.</p>
-                    </div>
-                    <div class="vacancy-footer">
-                        <strong>Sprachen:</strong> Deutsch (B1), Russisch (Muttersprache)
-                    </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Current Offer Section -->
+        <section id="offer" class="offer" aria-labelledby="offer-title">
+            <div class="container">
+                <h2 class="section-title" id="offer-title">Aktuelles Stellenangebot</h2>
+                <div class="offer-content" role="region" aria-live="polite">
+                    <h3>Erfahrener Dachdeckerhelfer</h3>
+                    <ul class="offer-list">
+                        <li><strong>Berufserfahrung:</strong> Über 20 Jahre im Dachdeckerhandwerk</li>
+                        <li><strong>Eigenschaften:</strong> Fleißig, zuverlässig, teamfähig</li>
+                        <li><strong>Sprachkenntnisse:</strong> Deutsch (eingeschränkt), Englisch (Grundkenntnisse), Russisch (sehr gut)</li>
+                        <li><strong>Verfügbarkeit:</strong> Kurzfristig verfügbar</li>
+                        <li><strong>Konditionen:</strong> 32,00 €/Std. netto (MwSt. 0%)</li>
+                    </ul>
+                    <p>Der Mitarbeiter ist fest bei uns angestellt. Wir übernehmen alle gesetzlichen Abgaben, Versicherungen sowie die Lohnabrechnung.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section id="contact" class="contact-form" aria-labelledby="contact-title">
+            <div class="container">
+                <h2 class="section-title" id="contact-title">Personalbedarf anfragen</h2>
+                <p class="section-intro">Schildern Sie uns Ihren Personalbedarf. Wir melden uns innerhalb eines Werktags mit passenden Profilen.</p>
+                <div class="form-container">
+                    <form id="requestForm" action="https://formsubmit.co/info@eswork.eu" method="POST" aria-label="Kontaktformular für Personalbedarf">
+                        <input type="hidden" name="_subject" value="Neue Personal-Anfrage über die Website">
+                        <input type="hidden" name="_template" value="table">
+                        <div class="form-group">
+                            <label for="name">Name*</label>
+                            <input type="text" id="name" name="Name" class="form-control" autocomplete="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Firma*</label>
+                            <input type="text" id="company" name="Firma" class="form-control" autocomplete="organization" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon*</label>
+                            <input type="tel" id="phone" name="Telefon" class="form-control" autocomplete="tel" inputmode="tel" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-Mail*</label>
+                            <input type="email" id="email" name="E-Mail" class="form-control" autocomplete="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="locations">Einsatzstandorte*</label>
+                            <input type="text" id="locations" name="Einsatzstandorte" class="form-control" placeholder="z. B. Berlin, München" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="start-date">Gewünschter Starttermin*</label>
+                            <input type="date" id="start-date" name="Starttermin" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="activities">Konkrete Tätigkeiten*</label>
+                            <textarea id="activities" name="Tätigkeiten" class="form-control" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Weitere Informationen</label>
+                            <textarea id="message" name="Weitere Informationen" class="form-control" rows="4" placeholder="Projektumfang, gewünschte Qualifikationen"></textarea>
+                        </div>
+                        <div class="form-group" style="display:none;">
+                            <label for="honeypot">Bitte leer lassen</label>
+                            <input type="text" id="honeypot" name="_honey" tabindex="-1" autocomplete="off">
+                        </div>
+                        <input type="hidden" name="_next" value="https://eswork.eu/danke.html">
+                        <button type="submit" class="btn">Anfrage senden</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vacancies Blog -->
+        <section id="vacancies" class="blog" aria-labelledby="vacancies-title">
+            <div class="container">
+                <h2 class="section-title" id="vacancies-title">Aktuelle Stellenangebote</h2>
+                <p class="section-intro">Eine Auswahl unserer verfügbaren Fachkräfte, die kurzfristig in Projekten in ganz Deutschland starten können.</p>
+                <div class="vacancy-grid">
+                    <!-- Vacancy 1 -->
+                    <article class="vacancy-card" aria-labelledby="vacancy-construction">
+                        <div class="vacancy-body">
+                            <h3 id="vacancy-construction">Bauhelfer (m/w/d)</h3>
+                            <div class="vacancy-meta">
+                                <span>Branche: Baugewerbe | Erfahrung: 2+ Jahre</span>
+                            </div>
+                            <p>Wir vermitteln zuverlässige Bauhelfer mit Erfahrung im Hoch- und Tiefbau. Gute körperliche Verfassung und Teamfähigkeit vorausgesetzt.</p>
+                        </div>
+                        <div class="vacancy-footer">
+                            <strong>Sprachen:</strong> Russisch (Muttersprache), Deutsch (Grundkenntnisse)
+                        </div>
+                    </article>
+
+                    <!-- Vacancy 2 -->
+                    <article class="vacancy-card" aria-labelledby="vacancy-metal">
+                        <div class="vacancy-body">
+                            <h3 id="vacancy-metal">Metallbauer (m/w/d)</h3>
+                            <div class="vacancy-meta">
+                                <span>Branche: Metallverarbeitung | Erfahrung: 5+ Jahre</span>
+                            </div>
+                            <p>Qualifizierte Metallbauer mit Erfahrung in Schweißtechniken (MIG/MAG, WIG). Kenntnisse in Metallkonstruktionen, Montage und Zeichnungslesen.</p>
+                        </div>
+                        <div class="vacancy-footer">
+                            <strong>Sprachen:</strong> Englisch (fließend), Deutsch (Grundkenntnisse)
+                        </div>
+                    </article>
+
+                    <!-- Vacancy 3 -->
+                    <article class="vacancy-card" aria-labelledby="vacancy-care">
+                        <div class="vacancy-body">
+                            <h3 id="vacancy-care">Pflegehilfskraft (m/w/d)</h3>
+                            <div class="vacancy-meta">
+                                <span>Branche: Gesundheitswesen | Erfahrung: 3+ Jahre</span>
+                            </div>
+                            <p>Einfühlsame Pflegekräfte mit nachgewiesener Berufserfahrung in der Altenpflege. Unterstützung bei Grundpflege, Mobilisation und Betreuung.</p>
+                        </div>
+                        <div class="vacancy-footer">
+                            <strong>Sprachen:</strong> Deutsch (B1), Russisch (Muttersprache)
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -496,18 +713,18 @@
             <div class="footer-grid">
                 <div class="footer-column">
                     <h3>ES Work SIA</h3>
-                    <p>Ihr zuverlässiger Partner für die Vermittlung qualifizierter Fachkräfte aus dem Baltikum nach Deutschland.</p>
+                    <p>Ihr zuverlässiger Partner für die Vermittlung qualifizierter Fachkräfte aus dem Baltikum nach Deutschland. Wir unterstützen Sie bei kurzfristigen Einsätzen und langfristigen Projekten.</p>
                 </div>
-                
+
                 <div class="footer-column">
                     <h3>Kontakt</h3>
                     <ul class="contact-list">
-                        <li><i>📞</i> +371 25296639</li>
-                        <li><i>✉️</i> info@eswork.eu</li>
-                        <li><i>🌐</i> www.eswork.eu</li>
+                        <li><i aria-hidden="true">📞</i> <a href="tel:+37125296639" style="color: inherit; text-decoration: none;">+371 25296639</a></li>
+                        <li><i aria-hidden="true">✉️</i> <a href="mailto:info@eswork.eu" style="color: inherit; text-decoration: none;">info@eswork.eu</a></li>
+                        <li><i aria-hidden="true">🌐</i> <a href="https://www.eswork.eu" style="color: inherit; text-decoration: none;">www.eswork.eu</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-column">
                     <h3>Leistungen</h3>
                     <ul class="contact-list">
@@ -518,11 +735,31 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="copyright">
-                <p>&copy; 2023 ES Work SIA. Alle Rechte vorbehalten.</p>
+                <p>&copy; 2024 ES Work SIA. Alle Rechte vorbehalten.</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', () => {
+                const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', String(!isExpanded));
+                navLinks.classList.toggle('active');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+    </script>
 </body>
 </html>
