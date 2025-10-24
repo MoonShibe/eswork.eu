@@ -9,6 +9,8 @@
     <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="UOQwzP0bRWM3GeMENxH4F38Gn2sN0T10IjxLlWZ8xcw">
     <link rel="canonical" href="https://www.eswork.eu/">
+    <link rel="preload" href="assets/css/styles.css" as="style">
+    <link rel="preload" href="assets/img/hero-pattern.svg" as="image" type="image/svg+xml">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="de_DE">
     <meta property="og:site_name" content="ES Work">
@@ -74,6 +76,10 @@
 
     <main id="top">
         <section class="hero" aria-labelledby="hero-title">
+            <picture class="hero-media" aria-hidden="true">
+                <source srcset="assets/img/hero-pattern.svg" type="image/svg+xml">
+                <img src="assets/img/hero-pattern.svg" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
+            </picture>
             <div class="container">
                 <h1 id="hero-title" data-l10n="hero_title">Qualifizierte Fachkräfte aus dem Baltikum</h1>
                 <p data-l10n="hero_description">Schnelle und zuverlässige Vermittlung von Fach- und Hilfskräften für Ihren Unternehmenserfolg in Deutschland.</p>
