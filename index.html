@@ -3,163 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ES Work SIA — Rekrutierung aus dem Baltikum nach Deutschland</title>
-    <style>
-        /* Reset и общие стили */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { height: 100%; width: 100%; scroll-behavior: smooth; font-family: Arial, sans-serif; color: #333; }
-        a { color: #007acc; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-
-        /* Хедер */
-        header { background-color: #f4f4f4; border-bottom: 1px solid #ddd; }
-        .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; }
-        .logo { font-size: 1.5rem; font-weight: bold; color: #007acc; }
-        .lang-select a { margin: 0 5px; padding: 6px 10px; text-transform: uppercase; font-weight: bold; cursor: pointer; font-size: 0.875rem; }
-        .lang-select .active { color: #fff; background-color: #007acc; border-radius: 4px; }
-
-        /* Главный экран во весь экран */
-        .hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center;color: color(display-p3 0.178 0.486 0.81);}
-        .hero::before { content: '';
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('photo_2025-05-09 15.16.38.jpeg') center/cover no-repeat;
-            filter: brightness(0.9);
-            z-index: -1;
+    <meta name="description" content="ES Work SIA vermittelt qualifizierte Fach- und Hilfskräfte aus dem Baltikum an Unternehmen in Deutschland. Wir übernehmen Administration, Lohnabrechnung und die komplette Personalbetreuung.">
+    <meta name="keywords" content="Personalvermittlung Baltikum, Fachkräfte Deutschland, Zeitarbeit Lettland, Hilfskräfte Estland, Arbeitnehmerüberlassung Litauen">
+    <meta name="author" content="ES Work SIA">
+    <meta name="robots" content="index, follow">
+    <meta name="google-site-verification" content="UOQwzP0bRWM3GeMENxH4F38Gn2sN0T10IjxLlWZ8xcw">
+    <link rel="canonical" href="https://www.eswork.eu/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:site_name" content="ES Work">
+    <meta property="og:title" content="ES Work – Qualifizierte Fachkräfte aus dem Baltikum">
+    <meta property="og:description" content="Wir vermitteln qualifizierte Fach- und Hilfskräfte aus Lettland, Litauen und Estland an deutsche Unternehmen und übernehmen alle administrativen Aufgaben.">
+    <meta property="og:url" content="https://www.eswork.eu/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ES Work – Qualifizierte Fachkräfte aus dem Baltikum">
+    <meta name="twitter:description" content="Schnelle Vermittlung von Fachkräften und vollständige Personaladministration für deutsche Unternehmen.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80">
+    <title>ES Work - Qualifizierte Fachkräfte aus dem Baltikum</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "ES Work SIA",
+            "url": "https://www.eswork.eu/",
+            "logo": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=512&q=80",
+            "description": "ES Work SIA vermittelt qualifizierte Fach- und Hilfskräfte aus dem Baltikum nach Deutschland und übernimmt die komplette Personaladministration.",
+            "email": "info@eswork.eu",
+            "telephone": "+37125296639",
+            "areaServed": ["Deutschland", "Lettland", "Litauen", "Estland"]
         }
-        .hero-content { text-align: center; padding: 0 1rem; position: absolute; top: 15%;}
-        .hero-content h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .hero-content p { font-size: 1.125rem; }
-
-        /* Секции */
-        section { padding: 4rem 0; }
-        section h2 { font-size: 2rem; margin-bottom: 1rem; color: #007acc; }
-        section p { font-size: 1rem; line-height: 1.6; }
-
-        .services { display: flex; flex-wrap: wrap; gap: 1.5rem; }
-        .service-item { flex: 1 1 calc(33% - 1.5rem); background-color: #f9f9f9; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-        .service-item h3 { margin-bottom: 0.75rem; font-size: 1.25rem; }
-        .service-item p { font-size: 0.95rem; }
-
-        /* Футер */
-        footer { background-color: #f4f4f4; padding: 2rem 0; border-top: 1px solid #ddd; }
-        .contact-list { list-style: none; margin-bottom: 1rem; }
-        .contact-list li { margin: 0.5rem 0; font-size: 0.95rem; }
-        footer p { font-size: 0.85rem; }
-
-        /* Отображение языковых блоков */
-        [lang-block] { display: none; }
-
-        /* Адаптивность */
-        @media (max-width: 1024px) {
-            .services { flex-direction: column; }
-            .service-item { flex: 1 1 100%; }
-        }
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2rem; }
-            .hero-content p { font-size: 1rem; }
-            .lang-select a { font-size: 0.75rem; padding: 5px 8px; }
-        }
-    </style>
+    </script>
+    <script defer src="assets/js/translations.js"></script>
+    <script defer src="assets/js/main.js"></script>
 </head>
 <body>
     <header>
-        <div class="container header-inner">
-            <div class="logo">ES Work</div>
-            <nav class="lang-select">
-                <a data-lang="de" class="active">DE</a>|
-                <a data-lang="en">EN</a>|
-                <a data-lang="ru">RU</a>
+        <div class="container">
+            <nav class="navbar" aria-label="Hauptnavigation">
+                <a class="logo" href="#top" aria-label="ES Work" data-l10n="nav_logo">ES Work</a>
+                <div class="nav-controls">
+                    <div class="language-switcher" data-language-switcher aria-label="Sprachauswahl" data-l10n-aria-label="language_label">
+                        <button type="button" class="language-option" data-lang="de" title="Deutsch" aria-label="Deutsch">🇩🇪</button>
+                        <button type="button" class="language-option" data-lang="en" title="English" aria-label="English">🇬🇧</button>
+                        <button type="button" class="language-option" data-lang="ru" title="Русский" aria-label="Русский">🇷🇺</button>
+                        <button type="button" class="language-option" data-lang="lv" title="Latviešu" aria-label="Latviešu">🇱🇻</button>
+                    </div>
+                    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-l10n="nav_toggle" data-l10n-aria-label="nav_toggle_label">Menü</button>
+                </div>
+                <ul class="nav-links" id="primary-navigation">
+                    <li><a href="#services" data-l10n="nav_services">Dienstleistungen</a></li>
+                    <li><a href="#offer" data-l10n="nav_offer">Top-Fachkraft</a></li>
+                    <li><a href="#contact" data-l10n="nav_contact">Anfrage</a></li>
+                    <li><a href="#vacancies" data-l10n="nav_vacancies">Stellenangebote</a></li>
+                    <li class="nav-contact"><a href="tel:+37125296639" data-l10n="nav_phone_text" data-l10n-aria-label="nav_phone_label">📞 +371 25296639</a></li>
+                    <li class="nav-contact"><a href="mailto:info@eswork.eu" data-l10n="nav_email_text" data-l10n-aria-label="nav_email_label">✉️ info@eswork.eu</a></li>
+                    <li class="nav-language">
+                        <div class="language-switcher language-switcher--menu" data-language-switcher aria-label="Sprachauswahl" data-l10n-aria-label="language_label">
+                            <button type="button" class="language-option" data-lang="de" title="Deutsch" aria-label="Deutsch">🇩🇪</button>
+                            <button type="button" class="language-option" data-lang="en" title="English" aria-label="English">🇬🇧</button>
+                            <button type="button" class="language-option" data-lang="ru" title="Русский" aria-label="Русский">🇷🇺</button>
+                            <button type="button" class="language-option" data-lang="lv" title="Latviešu" aria-label="Latviešu">🇱🇻</button>
+                        </div>
+                    </li>
+                </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Языковые блоки -->
-    <div lang-block="de">
-        <div class="hero">
-            <div class="hero-content container">
-                <h1>Rekrutierung qualifizierter Fachkräfte aus dem Baltikum</h1>
-                <p>Wir entsenden Ihre Mitarbeiter aus Lettland, Litauen und Estland direkt nach Deutschland.</p>
+    <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container">
+                <h1 id="hero-title" data-l10n="hero_title">Qualifizierte Fachkräfte aus dem Baltikum</h1>
+                <p data-l10n="hero_description">Schnelle und zuverlässige Vermittlung von Fach- und Hilfskräften für Ihren Unternehmenserfolg in Deutschland.</p>
+                <a href="#contact" class="btn" data-l10n="hero_cta">Jetzt Personal anfragen</a>
+                <div class="hero-highlights" aria-label="Kennzahlen">
+                    <div class="hero-highlight" role="presentation">
+                        <strong data-l10n="hero_highlight1_title">24 Stunden</strong>
+                        <span data-l10n="hero_highlight1_text">Erste Kandidatenprofile für dringende Projekteinsätze.</span>
+                    </div>
+                    <div class="hero-highlight" role="presentation">
+                        <strong data-l10n="hero_highlight2_title">+300 Expert:innen</strong>
+                        <span data-l10n="hero_highlight2_text">Aktives Netzwerk an geprüften Fach- und Hilfskräften im Baltikum.</span>
+                    </div>
+                    <div class="hero-highlight" role="presentation">
+                        <strong data-l10n="hero_highlight3_title">100% Compliance</strong>
+                        <span data-l10n="hero_highlight3_text">Komplette Übernahme von Verträgen, Abgaben und Versicherungspflichten.</span>
+                    </div>
+                </div>
             </div>
+        </section>
+
+        <section id="services" class="services" aria-labelledby="services-title">
+            <div class="container">
+                <h2 class="section-title" id="services-title" data-l10n="services_title">Unsere Dienstleistungen</h2>
+                <p class="section-intro" data-l10n="services_intro">Wir finden die passenden Spezialistinnen und Spezialisten für Ihr Unternehmen und begleiten beide Seiten vom ersten Kontakt bis zum erfolgreichen Projekteinsatz.</p>
+                <div class="services-grid">
+                    <article class="service-card reveal" data-reveal aria-labelledby="service-staffing">
+                        <div class="service-content">
+                            <h3 id="service-staffing" data-l10n="service_staffing_title">Personalvermittlung</h3>
+                            <p data-l10n="service_staffing_text">Wir vermitteln qualifizierte Fach- und Hilfskräfte aus Lettland, Litauen und Estland an deutsche Unternehmen in Branchen wie <span class="highlight-primary">Bau</span>, <span class="highlight-primary">Metall</span>, <span class="highlight-primary">Logistik</span> und <span class="highlight-primary">Pflege</span>.</p>
+                        </div>
+                    </article>
+                    <article class="service-card reveal" data-reveal aria-labelledby="service-admin">
+                        <div class="service-content">
+                            <h3 id="service-admin" data-l10n="service_admin_title">Vollständige Administration</h3>
+                            <p data-l10n="service_admin_text">Wir übernehmen alle <span class="highlight-primary">gesetzlichen Abgaben</span>, <span class="highlight-primary">Versicherungen</span> und die <span class="highlight-primary">Lohnabrechnung</span>. Sie erhalten wöchentliche, transparente Abrechnungen und können sich auf Ihr Kerngeschäft konzentrieren.</p>
+                        </div>
+                    </article>
+                    <article class="service-card reveal" data-reveal aria-labelledby="service-speed">
+                        <div class="service-content">
+                            <h3 id="service-speed" data-l10n="service_speed_title">Schnelle Besetzung</h3>
+                            <p data-l10n="service_speed_text">Durch unser gewachsenes Netzwerk im Baltikum besetzen wir vakante Stellen <span class="highlight-primary">schnell und zuverlässig</span> – auch für kurzfristige Projekteinsätze.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="insight" aria-labelledby="insight-title">
+            <div class="container">
+                <div class="insight-grid">
+                    <div class="video-wrapper reveal" data-reveal>
+                        <div class="video-placeholder" data-video-placeholder data-video-src="https://www.youtube-nocookie.com/embed/XO-MpjO7KoY?si=H-NT_uMG-Wtoindq" data-video-title="ES Work – Projektbegleitung im Fokus">
+                            <div class="video-placeholder__content">
+                                <strong class="video-placeholder__title" data-l10n="video_placeholder_title">Projekt-Einblicke</strong>
+                                <p class="video-placeholder__text" data-l10n="video_placeholder_text">Aktivieren Sie das Video, um unsere Zusammenarbeit mit Partnerbetrieben kennenzulernen.</p>
+                                <button type="button" class="video-placeholder__button" data-video-trigger>
+                                    <span class="video-placeholder__icon" aria-hidden="true">▶</span>
+                                    <span data-l10n="video_placeholder_button">Video laden</span>
+                                </button>
+                                <p class="video-placeholder__notice" data-l10n="video_placeholder_notice">Mit einem Klick stimmen Sie zu, dass Daten von YouTube geladen werden.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="insight-content reveal" data-reveal>
+                        <h2 id="insight-title" data-l10n="insight_title">So bringen wir Projekte schnell in Bewegung</h2>
+                        <p data-l10n="insight_intro">Unser Team begleitet Unternehmen aus Industrie, Bau und Gesundheitswesen ganzheitlich – vom ersten Briefing über die Vorauswahl bis zur laufenden Betreuung der Mitarbeitenden vor Ort.</p>
+                        <div class="insight-points" role="list">
+                            <div class="insight-point" role="listitem">
+                                <div class="insight-badge">1</div>
+                                <div>
+                                    <strong data-l10n="insight_step1_title">Analyse &amp; Briefing</strong>
+                                    <span data-l10n="insight_step1_text">Wir definieren Anforderungsprofile und Zeitpläne präzise, damit Ihr Projektstart reibungslos gelingt.</span>
+                                </div>
+                            </div>
+                            <div class="insight-point" role="listitem">
+                                <div class="insight-badge">2</div>
+                                <div>
+                                    <strong data-l10n="insight_step2_title">Matching &amp; Screening</strong>
+                                    <span data-l10n="insight_step2_text">Gezielte Direktansprache im Baltikum und persönliche Interviews garantieren verlässliche Personalentscheidungen.</span>
+                                </div>
+                            </div>
+                            <div class="insight-point" role="listitem">
+                                <div class="insight-badge">3</div>
+                                <div>
+                                    <strong data-l10n="insight_step3_title">Onboarding &amp; Betreuung</strong>
+                                    <span data-l10n="insight_step3_text">Wir organisieren Anreise, Unterkunft und begleiten alle vertraglichen sowie administrativen Schritte.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="offer" class="offer reveal" data-reveal aria-labelledby="offer-title">
+            <div class="container">
+                <h2 class="section-title" id="offer-title" data-l10n="offer_title">Empfohlene Fachkraft</h2>
+                <div class="offer-content" role="region" aria-live="polite">
+                    <h3 data-l10n="offer_role">Erfahrener Dachdeckerhelfer</h3>
+                    <ul class="offer-list">
+                        <li data-l10n="offer_experience"><strong>Berufserfahrung:</strong> Über 20 Jahre im Dachdeckerhandwerk</li>
+                        <li data-l10n="offer_traits"><strong>Eigenschaften:</strong> Fleißig, zuverlässig, teamfähig</li>
+                        <li data-l10n="offer_languages"><strong>Sprachkenntnisse:</strong> Deutsch (eingeschränkt), Englisch (Grundkenntnisse), Russisch (sehr gut)</li>
+                        <li data-l10n="offer_availability"><strong>Verfügbarkeit:</strong> Kurzfristig verfügbar</li>
+                        <li data-l10n="offer_rate"><strong>Konditionen:</strong> ab 29,00 €/Std. netto (MwSt. 0%)</li>
+                    </ul>
+                    <p data-l10n="offer_note">Der Mitarbeiter ist fest bei uns angestellt. Wir übernehmen alle gesetzlichen Abgaben, Versicherungen sowie die Lohnabrechnung.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-form reveal" data-reveal aria-labelledby="contact-title">
+            <div class="container">
+                <h2 class="section-title" id="contact-title" data-l10n="contact_title">Personalbedarf anfragen</h2>
+                <p class="section-intro" data-l10n="contact_intro">Schildern Sie uns Ihren Personalbedarf. Wir melden uns innerhalb eines Werktags mit passenden Profilen.</p>
+                <div class="form-container">
+                    <form id="requestForm" action="https://formsubmit.co/info@eswork.eu" method="POST" aria-label="Kontaktformular für Personalbedarf" autocomplete="on">
+                        <input type="hidden" name="_subject" data-l10n-value="contact_subject" value="Neue Personal-Anfrage über die Website">
+                        <input type="hidden" name="_template" value="table">
+                        <div class="form-group">
+                            <label for="name" data-l10n="contact_name_label">Name*</label>
+                            <input type="text" id="name" name="Name" class="form-control" autocomplete="name" autocapitalize="words" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company" data-l10n="contact_company_label">Firma*</label>
+                            <input type="text" id="company" name="Firma" class="form-control" autocomplete="organization" autocapitalize="words" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" data-l10n="contact_phone_label">Telefon*</label>
+                            <input type="tel" id="phone" name="Telefon" class="form-control" autocomplete="tel" inputmode="tel" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-l10n="contact_email_label">E-Mail*</label>
+                            <input type="email" id="email" name="E-Mail" class="form-control" autocomplete="email" aria-describedby="email-error" required>
+                            <p class="error-message" id="email-error" role="alert" aria-live="polite"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="locations" data-l10n="contact_locations_label">Einsatzstandorte*</label>
+                            <input type="text" id="locations" name="Einsatzstandorte" class="form-control" list="german-city-options" placeholder="z. B. Berlin, München" autocomplete="address-level2" autocapitalize="words" required data-l10n-placeholder="contact_locations_placeholder">
+                            <datalist id="german-city-options">
+                                <option value="Berlin"></option>
+                                <option value="Hamburg"></option>
+                                <option value="München"></option>
+                                <option value="Köln"></option>
+                                <option value="Frankfurt am Main"></option>
+                                <option value="Stuttgart"></option>
+                                <option value="Düsseldorf"></option>
+                                <option value="Dresden"></option>
+                                <option value="Leipzig"></option>
+                                <option value="Nürnberg"></option>
+                                <option value="Hannover"></option>
+                                <option value="Bremen"></option>
+                                <option value="Essen"></option>
+                                <option value="Dortmund"></option>
+                                <option value="Mannheim"></option>
+                            </datalist>
+                        </div>
+                        <div class="form-group">
+                            <label for="start-date" data-l10n="contact_start_label">Gewünschter Starttermin*</label>
+                            <input type="date" id="start-date" name="Starttermin" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="activities" data-l10n="contact_activities_label">Welche Fachkräfte suchen Sie?*</label>
+                            <textarea id="activities" name="Tätigkeiten" class="form-control" rows="3" autocomplete="off" required data-l10n-placeholder="contact_activities_placeholder"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-l10n="contact_additional_label">Weitere Informationen</label>
+                            <textarea id="message" name="Weitere Informationen" class="form-control" rows="3" placeholder="Projektumfang, gewünschte Qualifikationen" data-l10n-placeholder="contact_additional_placeholder"></textarea>
+                        </div>
+                        <div class="form-group" style="display:none;">
+                            <label for="honeypot">Bitte leer lassen</label>
+                            <input type="text" id="honeypot" name="_honey" tabindex="-1" autocomplete="off">
+                        </div>
+                        <input type="hidden" name="_next" value="https://eswork.eu/#kontakt">
+                        <button type="submit" class="btn" data-l10n="contact_submit">Anfrage senden</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="vacancies" class="blog reveal" data-reveal aria-labelledby="vacancies-title">
+            <div class="container">
+                <h2 class="section-title" id="vacancies-title" data-l10n="vacancies_title">Aktuelle Stellenangebote</h2>
+                <p class="section-intro" data-l10n="vacancies_intro">Eine Auswahl unserer verfügbaren Fachkräfte, die kurzfristig in Projekten in ganz Deutschland starten können.</p>
+                <div class="vacancy-grid">
+                    <article class="vacancy-card" aria-labelledby="vacancy-construction">
+                        <div class="vacancy-body">
+                            <h3 id="vacancy-construction" data-l10n="vacancy1_title">Bauhelfer (m/w/d)</h3>
+                            <div class="vacancy-meta">
+                                <span data-l10n="vacancy1_meta">Branche: Baugewerbe | Erfahrung: 2+ Jahre</span>
+                            </div>
+                            <p data-l10n="vacancy1_text">Wir vermitteln zuverlässige Bauhelfer mit Erfahrung im Hoch- und Tiefbau. Gute körperliche Verfassung und Teamfähigkeit vorausgesetzt.</p>
+                        </div>
+                        <div class="vacancy-footer">
+                            <strong data-l10n="vacancy_languages_label">Sprachen:</strong> <span data-l10n="vacancy1_languages">Russisch (Muttersprache), Deutsch (Grundkenntnisse)</span>
+                        </div>
+                    </article>
+                    <article class="vacancy-card" aria-labelledby="vacancy-metal">
+                        <div class="vacancy-body">
+                            <h3 id="vacancy-metal" data-l10n="vacancy2_title">Metallbauer (m/w/d)</h3>
+                            <div class="vacancy-meta">
+                                <span data-l10n="vacancy2_meta">Branche: Metallverarbeitung | Erfahrung: 5+ Jahre</span>
+                            </div>
+                            <p data-l10n="vacancy2_text">Qualifizierte Metallbauer mit Erfahrung in Schweißtechniken (MIG/MAG, WIG). Kenntnisse in Metallkonstruktionen, Montage und Zeichnungslesen.</p>
+                        </div>
+                        <div class="vacancy-footer">
+                            <strong data-l10n="vacancy_languages_label">Sprachen:</strong> <span data-l10n="vacancy2_languages">Englisch (fließend), Deutsch (Grundkenntnisse)</span>
+                        </div>
+                    </article>
+                    <article class="vacancy-card" aria-labelledby="vacancy-care">
+                        <div class="vacancy-body">
+                            <h3 id="vacancy-care" data-l10n="vacancy3_title">Produktionsmitarbeiter Montageband (m/w/d)</h3>
+                            <div class="vacancy-meta">
+                                <span data-l10n="vacancy3_meta">Branche: Automobilindustrie | Erfahrung: 2+ Jahre</span>
+                            </div>
+                            <p data-l10n="vacancy3_text">Erfahrene Mitarbeitende für die Fließbandmontage, die Fahrzeugbatterien präzise zusammensetzen, Qualitätschecks durchführen und Taktzeiten zuverlässig einhalten.</p>
+                        </div>
+                        <div class="vacancy-footer">
+                            <strong data-l10n="vacancy_languages_label">Sprachen:</strong> <span data-l10n="vacancy3_languages">Deutsch (A2), Russisch (Muttersprache), Englisch (Grundkenntnisse)</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="lead-capture" id="lead-capture" role="dialog" aria-modal="true" aria-labelledby="lead-capture-title" aria-describedby="lead-capture-subtitle" hidden>
+        <div class="lead-capture__dialog">
+            <button type="button" class="lead-capture__close" data-lead-close aria-label="Popup schließen" data-l10n-aria-label="lead_close_label">&times;</button>
+            <div class="lead-capture__tag" data-l10n="lead_tag">Kostenloser Rückruf</div>
+            <h3 class="lead-capture__title" id="lead-capture-title" data-l10n="lead_title">Wir rufen Sie innerhalb von 24&nbsp;Stunden zurück</h3>
+            <p class="lead-capture__subtitle" id="lead-capture-subtitle" data-l10n="lead_subtitle">Teilen Sie uns kurz mit, wie wir Sie erreichen können. Unser Team meldet sich zeitnah mit passenden Fachkräften.</p>
+            <ul class="lead-capture__list" aria-label="Vorteile">
+                <li data-l10n="lead_point1"><span>1</span> Persönliche Projektberatung durch unsere Disponent:innen</li>
+                <li data-l10n="lead_point2"><span>2</span> Komplette Übernahme von Verträgen, Abgaben und Versicherungen</li>
+                <li data-l10n="lead_point3"><span>3</span> Verlässlicher Starttermin nach Ihren Vorgaben</li>
+            </ul>
+            <form id="callbackForm" action="https://formsubmit.co/info@eswork.eu" method="POST" autocomplete="on">
+                <input type="hidden" name="_subject" data-l10n-value="lead_subject" value="Rückruf-Anfrage über Popup">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="Quelle" value="Lead Popup">
+                <div class="form-group">
+                    <label for="callback-name" data-l10n="lead_name_label">Name*</label>
+                    <input type="text" id="callback-name" name="Name" class="form-control" autocomplete="name" autocapitalize="words" required>
+                </div>
+                <div class="form-group">
+                    <label for="callback-phone" data-l10n="lead_phone_label">Telefon*</label>
+                    <input type="tel" id="callback-phone" name="Telefon" class="form-control" autocomplete="tel" inputmode="tel" required>
+                </div>
+                <div class="form-group">
+                    <label for="callback-company" data-l10n="lead_company_label">Unternehmen</label>
+                    <input type="text" id="callback-company" name="Unternehmen" class="form-control" autocomplete="organization" autocapitalize="words">
+                </div>
+                <div class="form-group">
+                    <label for="callback-time" data-l10n="lead_time_label">Beste Rückrufzeit</label>
+                    <select id="callback-time" name="Beste Rückrufzeit" class="form-control">
+                        <option value="" data-l10n="lead_time_option_placeholder" selected>Bitte wählen</option>
+                        <option value="08:00 - 10:00" data-l10n="lead_time_option_morning">08:00 - 10:00 Uhr</option>
+                        <option value="10:00 - 12:00" data-l10n="lead_time_option_midmorning">10:00 - 12:00 Uhr</option>
+                        <option value="12:00 - 14:00" data-l10n="lead_time_option_noon">12:00 - 14:00 Uhr</option>
+                        <option value="14:00 - 16:00" data-l10n="lead_time_option_afternoon">14:00 - 16:00 Uhr</option>
+                        <option value="16:00 - 18:00" data-l10n="lead_time_option_evening">16:00 - 18:00 Uhr</option>
+                    </select>
+                </div>
+                <div class="form-group" style="display:none;">
+                    <label for="callback-honeypot">Bitte leer lassen</label>
+                    <input type="text" id="callback-honeypot" name="_honey" tabindex="-1" autocomplete="off">
+                </div>
+                <button type="submit" class="btn" data-l10n="lead_submit">Rückruf anfordern</button>
+            </form>
         </div>
-        <section class="container">
-            <h2>Über uns</h2>
-            <p>ES Work SIA mit Sitz in Lettland ist spezialisiert auf die Bereitstellung von qualifiziertem Fachpersonal aus dem Baltikum für Unternehmen in Deutschland. Als direkter Arbeitgeber übernehmen wir alle administrativen und rechtlichen Aufgaben, wodurch Sie Zeit und Kosten sparen.</p>
-        </section>
-        <section class="container">
-            <h2>Unsere Leistungen</h2>
-            <div class="services">
-                <div class="service-item"><h3>Personalvermittlung</h3><p>Passgenaue Auswahl von Fachkräften für Produktion, Elektrotechnik, Logistik, Bauwesen und mehr.</p></div>
-                <div class="service-item"><h3>Rechtliche Abwicklung</h3><p>Vollständige rechtliche Betreuung und Dokumentenmanagement für Ihre neuen Mitarbeiter.</p></div>
-                <div class="service-item"><h3>Flexibilität & Zuverlässigkeit</h3><p>Schneller Austausch von Personal, individuelle Betreuung und flexible Vertragsbedingungen.</p></div>
-            </div>
-        </section>
     </div>
-    <div lang-block="en">
-        <div class="hero">
-            <div class="hero-content container">
-                <h1>Recruitment of Qualified Specialists from the Baltics</h1>
-                <p>We deploy skilled personnel from Latvia, Lithuania, and Estonia directly to Germany.</p>
-            </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+    <div class="form-modal" id="form-modal" role="dialog" aria-modal="true" aria-labelledby="form-modal-title" hidden>
+        <div class="form-modal__content">
+            <h3 class="form-modal__title" id="form-modal-title" data-l10n="modal_success_title">Vielen Dank!</h3>
+            <p class="form-modal__message" id="form-modal-message" data-l10n="modal_success_message">Ihre Anfrage wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.</p>
+            <button type="button" class="form-modal__cta" id="form-modal-button" data-modal-close data-l10n="modal_success_cta">Zur Startseite</button>
         </div>
-        <section class="container">
-            <h2>About Us</h2>
-            <p>ES Work SIA, based in Latvia, specializes in providing qualified workforce from the Baltics to companies in Germany. As a direct employer, we handle all administrative and legal procedures, saving you time and cost.</p>
-        </section>
-        <section class="container">
-            <h2>Our Services</h2>
-            <div class="services">
-                <div class="service-item"><h3>Staff Placement</h3><p>Tailored selection of specialists for production, electrical engineering, logistics, construction, and more.</p></div>
-                <div class="service-item"><h3>Legal Processing</h3><p>Complete legal support and document management for your new employees.</p></div>
-                <div class="service-item"><h3>Flexibility & Reliability</h3><p>Quick personnel exchange, personalized service, and flexible cooperation terms.</p></div>
-            </div>
-        </section>
-    </div>
-    <div lang-block="ru">
-        <div class="hero">
-            <div class="hero-content container">
-                <h1>Рекрутинг квалифицированных специалистов из Прибалтики</h1>
-                <p>Мы отправляем квалифицированный персонал из Латвии, Литвы и Эстонии прямо в Германию.</p>
-            </div>
-        </div>
-        <section class="container">
-            <h2>О нас</h2>
-            <p>ES Work SIA, базирующаяся в Латвии, специализируется на подборе квалифицированных специалистов из Прибалтики для компаний в Германии. В качестве прямого работодателя мы берем на себя все административные и юридические аспекты, экономя ваше время и средства.</p>
-        </section>
-        <section class="container">
-            <h2>Наши услуги</h2>
-            <div class="services">
-                <div class="service-item"><h3>Подбор персонала</h3><p>Индивидуальный подбор специалистов для производства, электрики, логистики, строительства и других сфер.</p></div>
-                <div class="service-item"><h3>Юридическая поддержка</h3><p>Полная правовая поддержка и оформление документов для ваших новых сотрудников.</p></div>
-                <div class="service-item"><h3>Гибкость и надежность</h3><p>Быстрая замена персонала, индивидуальное обслуживание и гибкие условия сотрудничества.</p></div>
-            </div>
-        </section>
     </div>
 
     <footer>
         <div class="container">
-            <h2>Kontakt / Contact / Контакты</h2>
-            <ul class="contact-list">
-                <li>📞 +371 25296639</li>
-                <li>✉️ <a href="mailto:info@eswork.eu">info@eswork.eu</a></li>
-                <li>🌐 <a href="https://www.eswork.eu" target="_blank" rel="noopener">www.eswork.eu</a></li>
-            </ul>
-            <p>© 2025 ES Work SIA. Alle Rechte vorbehalten.</p>
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3 data-l10n="footer_about_title">ES Work SIA</h3>
+                    <p data-l10n="footer_about_text">Ihr zuverlässiger Partner für die Vermittlung qualifizierter Fachkräfte aus dem Baltikum nach Deutschland. Wir unterstützen Sie bei kurzfristigen Einsätzen und langfristigen Projekten.</p>
+                </div>
+                <div class="footer-column">
+                    <h3 data-l10n="footer_contact_title">Kontakt</h3>
+                    <ul class="contact-list">
+                        <li><i aria-hidden="true">📞</i> <a href="tel:+37125296639" data-l10n="footer_phone_text" data-l10n-aria-label="footer_phone_label" style="color: inherit; text-decoration: none;">+371 25296639</a></li>
+                        <li><i aria-hidden="true">✉️</i> <a href="mailto:info@eswork.eu" data-l10n="footer_email_text" data-l10n-aria-label="footer_email_label" style="color: inherit; text-decoration: none;">info@eswork.eu</a></li>
+                        <li><i aria-hidden="true">🌐</i> <a href="https://www.eswork.eu" rel="noopener" target="_blank" style="color: inherit; text-decoration: none;">www.eswork.eu</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-l10n="footer_services_title">Leistungen</h3>
+                    <ul class="contact-list">
+                        <li data-l10n="footer_service_item1">Fachkräftevermittlung</li>
+                        <li data-l10n="footer_service_item2">Personalüberlassung</li>
+                        <li data-l10n="footer_service_item3">Lohnabrechnung</li>
+                        <li data-l10n="footer_service_item4">Administrative Abwicklung</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p data-l10n="footer_rights">&copy; 2024 ES Work SIA. Alle Rechte vorbehalten.</p>
+            </div>
         </div>
     </footer>
-
-    <script>
-        // Переключатель языков
-        const links = document.querySelectorAll('.lang-select a');
-        const blocks = document.querySelectorAll('[lang-block]');
-        function showLang(lang) {
-            blocks.forEach(div => div.style.display = div.getAttribute('lang-block') === lang ? 'block' : 'none');
-            links.forEach(a => a.classList.toggle('active', a.getAttribute('data-lang') === lang));
-            document.documentElement.lang = lang;
-        }
-        links.forEach(a => a.addEventListener('click', () => showLang(a.getAttribute('data-lang'))));
-        showLang('de');
-    </script>
 </body>
 </html>
-
