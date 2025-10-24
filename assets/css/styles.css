@@ -40,6 +40,11 @@ body {
     background-color: #ffffff;
 }
 
+main > section:not(.hero) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+}
+
 body.modal-open {
     overflow: hidden;
 }
@@ -389,7 +394,7 @@ section {
     max-width: 760px;
     margin: 0 auto 2.5rem;
     text-align: center;
-    color: var(--light-text);
+    color: #374151;
     font-size: clamp(1rem, 1.9vw, 1.15rem);
 }
 
