@@ -185,11 +185,7 @@
         if (stored && translations[stored]) {
             return stored;
         }
-        const browserLanguages = navigator.languages || [navigator.language || navigator.userLanguage || DEFAULT_LANG];
-        const normalized = browserLanguages
-            .map((code) => (code || '').slice(0, 2).toLowerCase())
-            .find((code) => translations[code]);
-        return normalized || DEFAULT_LANG;
+        return DEFAULT_LANG;
     };
 
     languageSwitchers.forEach((switcher) => {
@@ -423,12 +419,22 @@
         const action = formElement.getAttribute('action') || 'https://formsubmit.co/info@eswork.eu';
         const endpoint = action.includes('/ajax/') ? action : action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
 
+        const payload = new URLSearchParams();
+        formData.forEach((value, key) => {
+            if (typeof File !== 'undefined' && value instanceof File) {
+                payload.append(key, value.name);
+                return;
+            }
+            payload.append(key, value);
+        });
+
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
-                Accept: 'application/json'
+                Accept: 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: formData
+            body: payload
         });
 
         if (!response.ok) {
@@ -442,7 +448,7 @@
     };
 
     if (requestForm) {
-        requestForm.addEventListener('submit', async (event) => {
+        const handleRequestSubmit = async (event) => {
             event.preventDefault();
 
             const value = emailInput ? emailInput.value.trim() : '';
@@ -479,6 +485,15 @@
                     ctaText: copy('modal_success_cta')
                 });
             } catch (error) {
+                if (!requestForm.dataset.nativeSubmit) {
+                    requestForm.dataset.nativeSubmit = 'true';
+                    requestForm.removeEventListener('submit', handleRequestSubmit);
+                    requestForm.submit();
+                    requestForm.addEventListener('submit', handleRequestSubmit);
+                    delete requestForm.dataset.nativeSubmit;
+                    return;
+                }
+
                 openModal({
                     title: copy('modal_error_title'),
                     message: copy('modal_error_message'),
@@ -491,7 +506,9 @@
                     submitButton.textContent = originalText;
                 }
             }
-        });
+        };
+
+        requestForm.addEventListener('submit', handleRequestSubmit);
     }
 
     if (leadCapture) {
