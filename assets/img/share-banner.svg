@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">ES Work Share Banner</title>
+  <desc id="desc">Vorschau-Grafik mit ES Work Logo und Slogan für soziale Netzwerke.</desc>
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#005daa" />
+      <stop offset="100%" stop-color="#002b59" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffc107" />
+      <stop offset="100%" stop-color="#ff9800" />
+    </linearGradient>
+    <clipPath id="rounded">
+      <rect x="0" y="0" width="1200" height="630" rx="32" ry="32" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#rounded)">
+    <rect width="1200" height="630" fill="url(#bgGradient)" />
+    <circle cx="1030" cy="-80" r="420" fill="rgba(255,255,255,0.08)" />
+    <circle cx="-20" cy="610" r="360" fill="rgba(255,255,255,0.06)" />
+    <g transform="translate(96 120)">
+      <rect x="0" y="-12" width="240" height="120" rx="14" fill="#6d6d6d" />
+      <rect x="36" y="12" width="168" height="22" rx="6" fill="#ffffff" />
+      <rect x="36" y="47" width="108" height="22" rx="6" fill="#ffffff" />
+      <rect x="144" y="47" width="60" height="22" rx="6" fill="#f0f0f0" />
+      <rect x="36" y="82" width="168" height="22" rx="6" fill="#ffffff" />
+      <rect x="174" y="47" width="30" height="22" rx="6" fill="#6d6d6d" />
+      <text x="270" y="92" font-family="'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="84" font-weight="700" letter-spacing="-2" fill="#ffffff">ES <tspan fill="#ffc107">Work</tspan></text>
+    </g>
+    <text x="96" y="300" font-family="'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="700" fill="#ffffff">Qualifizierte Fachkräfte</text>
+    <text x="96" y="372" font-family="'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="54" font-weight="400" fill="#d7ecff">Aus dem Baltikum für Ihr Unternehmen</text>
+    <g transform="translate(96 420)">
+      <rect width="260" height="12" rx="6" fill="rgba(255,255,255,0.2)" />
+      <rect width="180" height="12" rx="6" fill="url(#accentGradient)" />
+    </g>
+    <text x="96" y="486" font-family="'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Komplette Administration · Schnelle Besetzung · Persönliche Betreuung</text>
+    <text x="96" y="540" font-family="'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="30" font-weight="400" fill="#d7ecff">www.eswork.eu · info@eswork.eu · +371 25296639</text>
+  </g>
+</svg>
