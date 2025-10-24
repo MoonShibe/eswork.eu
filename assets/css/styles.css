@@ -156,6 +156,41 @@ header {
     color: var(--primary);
 }
 
+.nav-collapse {
+    display: none;
+}
+
+.nav-collapse__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(0, 93, 170, 0.25);
+    background: rgba(0, 93, 170, 0.08);
+    color: var(--primary);
+    border-radius: 999px;
+    padding: 0.45rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-collapse__button:hover,
+.nav-collapse__button:focus-visible {
+    background: rgba(0, 93, 170, 0.16);
+    border-color: rgba(0, 93, 170, 0.35);
+    transform: translateY(-1px);
+}
+
+.nav-collapse__button:focus-visible {
+    outline: 3px solid rgba(0, 93, 170, 0.3);
+    outline-offset: 2px;
+}
+
+.nav-collapse__icon {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
 .nav-links a:focus-visible,
 .btn:focus-visible {
     outline: 3px solid rgba(0, 93, 170, 0.4);
@@ -1007,7 +1042,7 @@ footer .contact-list a {
     .nav-controls {
         order: 2;
         width: 100%;
-        justify-content: space-between;
+        justify-content: flex-end;
         margin-left: 0;
     }
 
@@ -1034,6 +1069,16 @@ footer .contact-list a {
     .nav-links li {
         margin: 0;
         text-align: center;
+    }
+
+    .nav-links .nav-collapse {
+        display: none;
+    }
+
+    .nav-links.active .nav-collapse {
+        display: flex;
+        justify-content: center;
+        padding-top: 0.5rem;
     }
 
     .nav-links a {

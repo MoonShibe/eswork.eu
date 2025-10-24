@@ -233,6 +233,13 @@
     }
 
     if (navToggle && navLinks) {
+        const collapseButtons = navLinks.querySelectorAll('[data-nav-collapse]');
+
+        const closeNav = () => {
+            navLinks.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        };
+
         navToggle.addEventListener('click', () => {
             const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
             navToggle.setAttribute('aria-expanded', String(!isExpanded));
@@ -240,10 +247,11 @@
         });
 
         navLinks.querySelectorAll('a').forEach((link) => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                navToggle.setAttribute('aria-expanded', 'false');
-            });
+            link.addEventListener('click', closeNav);
+        });
+
+        collapseButtons.forEach((button) => {
+            button.addEventListener('click', closeNav);
         });
     }
 
