@@ -4,31 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="ES Work SIA vermittelt qualifizierte Fach- und Hilfskräfte aus dem Baltikum an Unternehmen in Deutschland. Wir übernehmen Administration, Lohnabrechnung und die komplette Personalbetreuung.">
-    <meta name="keywords" content="Personalvermittlung Baltikum, Fachkräfte Deutschland, Zeitarbeit Lettland, Hilfskräfte Estland, Arbeitnehmerüberlassung Litauen">
+    <meta name="keywords" content="Personalvermittlung Baltikum, Fachkräfte Deutschland, Zeitarbeit Lettland, Hilfskräfte Estland, Arbeitnehmerüberlassung Litauen, Recruiting Osteuropa, Temporäre Arbeitskräfte Baltikum">
     <meta name="author" content="ES Work SIA">
     <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="UOQwzP0bRWM3GeMENxH4F38Gn2sN0T10IjxLlWZ8xcw">
     <link rel="canonical" href="https://www.eswork.eu/">
+    <link rel="preload" href="assets/css/styles.css" as="style">
+    <link rel="preload" href="assets/img/hero-pattern.svg" as="image" type="image/svg+xml">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="de_DE">
+    <meta property="og:locale:alternate" content="en_GB">
+    <meta property="og:locale:alternate" content="ru_RU">
+    <meta property="og:locale:alternate" content="lv_LV">
     <meta property="og:site_name" content="ES Work">
     <meta property="og:title" content="ES Work – Qualifizierte Fachkräfte aus dem Baltikum">
     <meta property="og:description" content="Wir vermitteln qualifizierte Fach- und Hilfskräfte aus Lettland, Litauen und Estland an deutsche Unternehmen und übernehmen alle administrativen Aufgaben.">
     <meta property="og:url" content="https://www.eswork.eu/">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:image" content="https://www.eswork.eu/assets/img/share-banner.svg">
+    <meta property="og:image:alt" content="ES Work – Personalvermittlung für Fachkräfte aus dem Baltikum">
+    <meta property="og:image:type" content="image/svg+xml">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ES Work – Qualifizierte Fachkräfte aus dem Baltikum">
     <meta name="twitter:description" content="Schnelle Vermittlung von Fachkräften und vollständige Personaladministration für deutsche Unternehmen.">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80">
+    <meta name="twitter:image" content="https://www.eswork.eu/assets/img/share-banner.svg">
+    <meta name="twitter:image:alt" content="ES Work – Personalvermittlung für Fachkräfte aus dem Baltikum">
     <title>ES Work - Qualifizierte Fachkräfte aus dem Baltikum</title>
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="alternate" hreflang="de" href="https://www.eswork.eu/?lang=de">
+    <link rel="alternate" hreflang="en" href="https://www.eswork.eu/?lang=en">
+    <link rel="alternate" hreflang="ru" href="https://www.eswork.eu/?lang=ru">
+    <link rel="alternate" hreflang="lv" href="https://www.eswork.eu/?lang=lv">
+    <link rel="alternate" hreflang="x-default" href="https://www.eswork.eu/">
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "ES Work SIA",
             "url": "https://www.eswork.eu/",
-            "logo": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=512&q=80",
+            "logo": "https://www.eswork.eu/assets/img/logo-eswork.svg",
+            "image": "https://www.eswork.eu/assets/img/share-banner.svg",
             "description": "ES Work SIA vermittelt qualifizierte Fach- und Hilfskräfte aus dem Baltikum nach Deutschland und übernimmt die komplette Personaladministration.",
             "email": "info@eswork.eu",
             "telephone": "+37125296639",
@@ -42,7 +58,10 @@
     <header>
         <div class="container">
             <nav class="navbar" aria-label="Hauptnavigation">
-                <a class="logo" href="#top" aria-label="ES Work" data-l10n="nav_logo">ES Work</a>
+                <a class="logo" href="#top" aria-label="ES Work">
+                    <img src="assets/img/logo-eswork.svg" alt="ES Work" width="180" height="60" loading="eager">
+                    <span class="sr-only" data-l10n="nav_logo">ES Work</span>
+                </a>
                 <div class="nav-controls">
                     <div class="language-switcher" data-language-switcher aria-label="Sprachauswahl" data-l10n-aria-label="language_label">
                         <button type="button" class="language-option" data-lang="de" title="Deutsch" aria-label="Deutsch">🇩🇪</button>
@@ -67,6 +86,12 @@
                             <button type="button" class="language-option" data-lang="lv" title="Latviešu" aria-label="Latviešu">🇱🇻</button>
                         </div>
                     </li>
+                    <li class="nav-collapse">
+                        <button type="button" class="nav-collapse__button" data-nav-collapse data-l10n-aria-label="nav_collapse_label">
+                            <span class="nav-collapse__icon" aria-hidden="true">▲</span>
+                            <span data-l10n="nav_collapse_text">Menü schließen</span>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -74,6 +99,10 @@
 
     <main id="top">
         <section class="hero" aria-labelledby="hero-title">
+            <picture class="hero-media" aria-hidden="true">
+                <source srcset="assets/img/hero-pattern.svg" type="image/svg+xml">
+                <img src="assets/img/hero-pattern.svg" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
+            </picture>
             <div class="container">
                 <h1 id="hero-title" data-l10n="hero_title">Qualifizierte Fachkräfte aus dem Baltikum</h1>
                 <p data-l10n="hero_description">Schnelle und zuverlässige Vermittlung von Fach- und Hilfskräften für Ihren Unternehmenserfolg in Deutschland.</p>
@@ -126,7 +155,17 @@
             <div class="container">
                 <div class="insight-grid">
                     <div class="video-wrapper reveal" data-reveal>
-                        <iframe src="https://www.youtube.com/embed/XO-MpjO7KoY?si=H-NT_uMG-Wtoindq" title="ES Work – Projektbegleitung im Fokus" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <div class="video-placeholder" data-video-placeholder data-video-src="https://www.youtube-nocookie.com/embed/XO-MpjO7KoY?si=H-NT_uMG-Wtoindq" data-video-title="ES Work – Projektbegleitung im Fokus">
+                            <div class="video-placeholder__content">
+                                <strong class="video-placeholder__title" data-l10n="video_placeholder_title">Projekt-Einblicke</strong>
+                                <p class="video-placeholder__text" data-l10n="video_placeholder_text">Aktivieren Sie das Video, um unsere Zusammenarbeit mit Partnerbetrieben kennenzulernen.</p>
+                                <button type="button" class="video-placeholder__button" data-video-trigger>
+                                    <span class="video-placeholder__icon" aria-hidden="true">▶</span>
+                                    <span data-l10n="video_placeholder_button">Video laden</span>
+                                </button>
+                                <p class="video-placeholder__notice" data-l10n="video_placeholder_notice">Mit einem Klick stimmen Sie zu, dass Daten von YouTube geladen werden.</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="insight-content reveal" data-reveal>
                         <h2 id="insight-title" data-l10n="insight_title">So bringen wir Projekte schnell in Bewegung</h2>

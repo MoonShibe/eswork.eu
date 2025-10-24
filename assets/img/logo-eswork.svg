@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" role="img" aria-labelledby="title desc">
+  <title id="title">ES Work Firmenlogo</title>
+  <desc id="desc">Graues ES-Monogramm mit schwarzen Buchstaben work.</desc>
+  <rect x="0" y="12" width="200" height="96" rx="10" fill="#6d6d6d" />
+  <rect x="30" y="30" width="140" height="18" rx="4" fill="#ffffff" />
+  <rect x="30" y="51" width="88" height="18" rx="4" fill="#ffffff" />
+  <rect x="122" y="51" width="48" height="18" rx="4" fill="#f0f0f0" />
+  <rect x="30" y="72" width="140" height="18" rx="4" fill="#ffffff" />
+  <rect x="146" y="51" width="24" height="18" rx="4" fill="#6d6d6d" />
+  <text x="228" y="82" font-family="'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="700" letter-spacing="-1.5" fill="#101010">work</text>
+</svg>
