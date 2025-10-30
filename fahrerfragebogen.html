@@ -31,8 +31,10 @@
         <div class="container questionnaire-grid">
             <section class="form-card" aria-labelledby="questionnaire-title">
                 <h2 id="questionnaire-title">Fragebogen ausfüllen</h2>
-                <p class="form-intro">Die mit <span aria-hidden="true" class="required-indicator">*</span> gekennzeichneten Felder sind Pflichtangaben. Nach dem Absenden öffnet sich Ihr E-Mail-Programm mit einer vorformatierten Nachricht an <a href="mailto:info@eswork.eu">info@eswork.eu</a>.</p>
-                <form id="driverQuestionnaire" action="mailto:info@eswork.eu" method="POST" enctype="text/plain" novalidate>
+                <p class="form-intro">Die mit <span aria-hidden="true" class="required-indicator">*</span> gekennzeichneten Felder sind Pflichtangaben. Nach dem Absenden erhalten wir Ihre Angaben direkt per E-Mail an <a href="mailto:info@eswork.eu">info@eswork.eu</a>.</p>
+                <form id="driverQuestionnaire" action="https://formsubmit.co/info@eswork.eu" method="POST" novalidate>
+                    <input type="hidden" name="_subject" value="Kundenfragebogen – Fahrerbedarf">
+                    <input type="hidden" name="_captcha" value="false">
                     <section class="form-section" aria-labelledby="section-general">
                         <div class="section-header">
                             <h3 id="section-general">1. Allgemeine Informationen</h3>
@@ -226,7 +228,11 @@
                                     <span>Russisch</span>
                                 </label>
                             </div>
-                            <p class="form-help" id="language-help">Mehrfachauswahl möglich.</p>
+                            <div class="form-field form-field--compact">
+                                <label for="languageOther" class="sr-only">Weitere Sprachen</label>
+                                <input type="text" id="languageOther" name="betriebssprache" placeholder="Weitere Sprachen eintragen" data-group-text="language" aria-describedby="language-help">
+                            </div>
+                            <p class="form-help" id="language-help">Mehrfachauswahl möglich. Sie können weitere Sprachen eintragen.</p>
                             <p class="form-error" id="language-error" aria-live="polite"></p>
                         </fieldset>
                     </section>
@@ -287,7 +293,6 @@
 
                     <div class="form-actions">
                         <button type="submit" class="btn">Fragebogen absenden</button>
-                        <button type="reset" class="btn btn--ghost">Eingaben zurücksetzen</button>
                     </div>
                 </form>
             </section>

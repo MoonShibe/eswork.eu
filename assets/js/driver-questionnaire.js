@@ -5,6 +5,7 @@
     }
 
     const statusElement = form.querySelector('[data-form-status]');
+    const submitButton = form.querySelector('[type="submit"]');
     const otherToggle = document.getElementById('licenseOther');
     const otherTextField = document.getElementById('licenseOtherText');
 
@@ -60,6 +61,7 @@
     ];
 
     const getGroupInputs = (name) => Array.from(form.querySelectorAll(`[data-required-group="${name}"]`));
+    const getGroupTextInputs = (name) => Array.from(form.querySelectorAll(`[data-group-text="${name}"]`));
 
     const clearStatus = () => {
         if (!statusElement) {
@@ -140,12 +142,20 @@
 
     const validateGroup = (config) => {
         const inputs = getGroupInputs(config.name);
+        const textInputs = getGroupTextInputs(config.name);
         const errorElement = document.getElementById(config.errorId);
-        if (!inputs.length || !errorElement) {
+        if ((!inputs.length && !textInputs.length) || !errorElement) {
             return true;
         }
 
-        const isValid = inputs.some((input) => input.checked);
+        const hasSelection = inputs.some((input) => {
+            if (input.type === 'checkbox' || input.type === 'radio') {
+                return input.checked;
+            }
+            return Boolean(input.value && input.value.trim());
+        });
+        const hasText = textInputs.some((input) => Boolean(input.value && input.value.trim()));
+        const isValid = hasSelection || hasText;
         errorElement.textContent = isValid ? '' : config.message;
 
         inputs.forEach((input) => {
@@ -156,16 +166,15 @@
             }
         });
 
-        return isValid;
-    };
+        textInputs.forEach((input) => {
+            if (isValid || (input.value && input.value.trim())) {
+                input.removeAttribute('aria-invalid');
+            } else {
+                input.setAttribute('aria-invalid', 'true');
+            }
+        });
 
-    const clearAllErrors = () => {
-        form.querySelectorAll('.form-error').forEach((element) => {
-            element.textContent = '';
-        });
-        form.querySelectorAll('[aria-invalid="true"]').forEach((element) => {
-            element.removeAttribute('aria-invalid');
-        });
+        return isValid;
     };
 
     const updateLicenseOtherField = () => {
@@ -183,74 +192,50 @@
         }
     };
 
-    const formatList = (values) => {
-        if (!values || !values.length) {
-            return '–';
+    const setSubmitting = (isSubmitting) => {
+        if (submitButton) {
+            submitButton.disabled = Boolean(isSubmitting);
         }
-        return values.join(', ');
+        form.classList.toggle('is-submitting', Boolean(isSubmitting));
     };
 
-    const buildMailtoBody = (formData) => {
-        const einsatzdauer = formData.getAll('einsatzdauer');
-        const fuehrerscheine = formData.getAll('fuehrerscheinklasse');
-        const sprachen = formData.getAll('betriebssprache');
-        const beschaeftigung = formData.getAll('beschaeftigungsform');
-
-        if (fuehrerscheine.includes('Andere')) {
-            const index = fuehrerscheine.indexOf('Andere');
-            const detail = formData.get('licenseOtherText');
-            fuehrerscheine[index] = detail ? `Andere (${detail})` : 'Andere';
-        }
-
-        const lines = [
-            'KUNDENFRAGEBOGEN – FAHRERBEDARF',
-            '',
-            '1. Allgemeine Informationen',
-            `Firma: ${formData.get('company') || '–'}`,
-            `Ansprechpartner: ${formData.get('contactPerson') || '–'}`,
-            `Position: ${formData.get('position') || '–'}`,
-            `Telefon: ${formData.get('phone') || '–'}`,
-            `E-Mail: ${formData.get('email') || '–'}`,
-            `Standorte: ${formData.get('locations') || '–'}`,
-            '',
-            '2. Bedarf an Fahrpersonal',
-            `Benötigte Fahrer:innen: ${formData.get('driverCount') || '–'}`,
-            `Einsatzbeginn: ${formData.get('startDate') || '–'}`,
-            `Einsatzdauer: ${formatList(einsatzdauer)}`,
-            `Einsatzart: ${formData.get('einsatztyp') || '–'}`,
-            `Führerscheinklassen: ${formatList(fuehrerscheine)}`,
-            `Fahrzeugtypen: ${formData.get('vehicleTypes') || '–'}`,
-            `Transportierte Güter: ${formData.get('goods') || '–'}`,
-            '',
-            '3. Einsatzbedingungen',
-            `Einsatzgebiet / Touren: ${formData.get('tourArea') || '–'}`,
-            `Arbeitszeiten / Schichtsystem: ${formData.get('workingHours') || '–'}`,
-            `Übernachtung im Fahrzeug: ${formData.get('overnight') || '–'}`,
-            `Unterkunft gestellt: ${formData.get('accommodation') || '–'}`,
-            `Sprache im Betrieb: ${formatList(sprachen)}`,
-            '',
-            '4. Konditionen & Organisation',
-            `Beschäftigungsform: ${formatList(beschaeftigung)}`,
-            `Abrechnung: ${formData.get('abrechnung') || '–'}`,
-            `Zielvorstellung / Budget: ${formData.get('budget') || '–'}`,
-            `Weitere Besonderheiten: ${formData.get('notes') || '–'}`
-        ];
-
-        return lines.join('\n');
-    };
-
-    const submitForm = () => {
+    const submitForm = async () => {
         const formData = new FormData(form);
-        const body = buildMailtoBody(formData);
-        const subject = 'Kundenfragebogen – Fahrerbedarf';
-        const mailtoUrl = `mailto:info@eswork.eu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = mailtoUrl;
-        showStatus('Fast geschafft! Ihr E-Mail-Programm wurde geöffnet. Bitte senden Sie die Nachricht an uns ab.', false);
-        form.reset();
-        updateLicenseOtherField();
+        if (!formData.has('_subject')) {
+            formData.append('_subject', 'Kundenfragebogen – Fahrerbedarf');
+        }
+        if (!formData.has('_captcha')) {
+            formData.append('_captcha', 'false');
+        }
+
+        const action = form.getAttribute('action') || 'https://formsubmit.co/info@eswork.eu';
+        const endpoint = action.includes('/ajax/') ? action : action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+
+        const payload = new URLSearchParams();
+        formData.forEach((value, key) => {
+            payload.append(key, value);
+        });
+
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: payload
+        });
+
+        if (!response.ok) {
+            throw new Error('Network error');
+        }
+
+        const result = await response.json();
+        if (result.success !== 'true' && result.success !== true) {
+            throw new Error('FormSubmit error');
+        }
     };
 
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
         clearStatus();
 
@@ -293,15 +278,15 @@
             return;
         }
 
-        submitForm();
-    });
-
-    form.addEventListener('reset', () => {
-        window.setTimeout(() => {
-            clearAllErrors();
-            clearStatus();
-            updateLicenseOtherField();
-        }, 0);
+        try {
+            setSubmitting(true);
+            await submitForm();
+            showStatus('Vielen Dank! Ihre Angaben wurden erfolgreich übermittelt. Wir melden uns zeitnah bei Ihnen.', false);
+        } catch (error) {
+            showStatus('Senden nicht möglich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt unter info@eswork.eu.', true);
+        } finally {
+            setSubmitting(false);
+        }
     });
 
     Array.from(form.querySelectorAll('input, textarea')).forEach((field) => {
@@ -327,8 +312,15 @@
 
     groupConfigs.forEach((config) => {
         const inputs = getGroupInputs(config.name);
+        const textInputs = getGroupTextInputs(config.name);
         inputs.forEach((input) => {
             input.addEventListener('change', () => {
+                validateGroup(config);
+                clearStatus();
+            });
+        });
+        textInputs.forEach((input) => {
+            input.addEventListener('input', () => {
                 validateGroup(config);
                 clearStatus();
             });
