@@ -163,6 +163,16 @@
                                 <input type="text" id="goods" name="goods" placeholder="z. B. Lebensmittel, Baustoffe" required>
                                 <p class="form-error" id="goods-error" aria-live="polite"></p>
                             </div>
+                            <div class="form-field">
+                                <label for="vehicleModels">Modele</label>
+                                <input type="text" id="vehicleModels" name="vehicleModels" placeholder="z. B. MAN, Mercedes">
+                                <p class="form-error" id="vehicleModels-error" aria-live="polite"></p>
+                            </div>
+                            <div class="form-field">
+                                <label for="vehicleYear">Baujahr</label>
+                                <input type="text" id="vehicleYear" name="vehicleYear" placeholder="z. B. 2018, 2020">
+                                <p class="form-error" id="vehicleYear-error" aria-live="polite"></p>
+                            </div>
                         </div>
                     </section>
 
@@ -246,7 +256,7 @@
                             <legend>Gewünschte Beschäftigungsform<span class="required-indicator" aria-hidden="true">*</span></legend>
                             <div class="option-row">
                                 <label class="checkbox-pill">
-                                    <input type="checkbox" name="beschaeftigungsform" value="Arbeitnehmerüberlassung" data-required-group="employment">
+                                    <input type="checkbox" name="beschaeftigungsform" value="Arbeitnehmerüberlassung" data-required-group="employment" checked>
                                     <span>Arbeitnehmerüberlassung</span>
                                 </label>
                                 <label class="checkbox-pill">
