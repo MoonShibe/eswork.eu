@@ -1,0 +1,359 @@
+.page-hero {
+    background: linear-gradient(135deg, rgba(0, 93, 170, 0.92), rgba(0, 125, 197, 0.85)), url('../img/hero-pattern.svg') center/cover no-repeat;
+    color: #ffffff;
+    padding: 4.5rem 0 3.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-logo img {
+    border-radius: 12px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+    background: #ffffff;
+    padding: 1rem 1.5rem;
+}
+
+.hero-text {
+    flex: 1;
+    min-width: 280px;
+    max-width: 650px;
+}
+
+.hero-kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.hero-text h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+.hero-lead {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn--light {
+    background: #ffffff;
+    color: var(--primary);
+}
+
+.btn--outline {
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    color: #ffffff;
+    background: transparent;
+}
+
+.btn--outline:hover,
+.btn--outline:focus-visible {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.questionnaire-main {
+    background: linear-gradient(180deg, #f4f6fb 0%, #ffffff 100%);
+    padding: 4rem 0 5rem;
+}
+
+.questionnaire-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.form-card,
+.info-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(15, 32, 49, 0.08);
+    padding: 2.5rem;
+}
+
+.form-card h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+.form-intro {
+    margin-bottom: 2.5rem;
+    color: var(--light-text);
+}
+
+.form-section + .form-section {
+    margin-top: 3.5rem;
+}
+
+.section-header {
+    margin-bottom: 1.8rem;
+}
+
+.section-header h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.4rem;
+    color: var(--primary);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-field--full {
+    grid-column: 1 / -1;
+}
+
+.form-field--compact input {
+    max-width: 320px;
+}
+
+.form-field label {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.form-field input,
+.form-field textarea {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(0, 93, 170, 0.15);
+    outline: none;
+}
+
+.option-group {
+    margin-top: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: 1.5rem;
+    background: rgba(244, 246, 251, 0.6);
+}
+
+.option-group legend {
+    font-weight: 700;
+    color: var(--dark);
+    padding: 0 0.5rem;
+}
+
+.option-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.2rem;
+}
+
+.option-row--tight {
+    gap: 0.5rem;
+}
+
+.checkbox-pill,
+.radio-pill {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.checkbox-pill input,
+.radio-pill input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.checkbox-pill span,
+.radio-pill span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    background: #ffffff;
+    color: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.checkbox-pill input:checked + span,
+.radio-pill input:checked + span {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 93, 170, 0.2);
+    color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.checkbox-pill input:focus-visible + span,
+.radio-pill input:focus-visible + span {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+.form-help {
+    font-size: 0.9rem;
+    margin-top: 0.75rem;
+    color: var(--light-text);
+}
+
+.form-error {
+    min-height: 1.2rem;
+    font-size: 0.9rem;
+    color: #d93025;
+}
+
+.required-indicator {
+    color: #d93025;
+    margin-left: 0.2rem;
+}
+
+.form-status {
+    margin-top: 2.5rem;
+    padding: 1.1rem 1.25rem;
+    border-radius: 12px;
+    background: rgba(0, 93, 170, 0.07);
+    border: 1px solid rgba(0, 93, 170, 0.16);
+    color: var(--dark);
+    display: none;
+}
+
+.form-status.is-visible {
+    display: block;
+}
+
+.form-status.is-error {
+    background: rgba(217, 48, 37, 0.08);
+    border-color: rgba(217, 48, 37, 0.3);
+    color: #8a1f17;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.btn.btn--ghost {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: var(--dark);
+}
+
+.btn.btn--ghost:hover,
+.btn.btn--ghost:focus-visible {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.info-card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.info-card p {
+    color: var(--light-text);
+    margin-bottom: 1.25rem;
+}
+
+.info-list {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.info-list a {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.info-highlight {
+    background: rgba(0, 93, 170, 0.08);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px dashed rgba(0, 93, 170, 0.4);
+}
+
+.info-highlight p {
+    margin: 0;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.questionnaire-footer {
+    background: #0f2031;
+    color: rgba(255, 255, 255, 0.72);
+    padding: 2.5rem 0;
+}
+
+.footer-content {
+    display: grid;
+    gap: 0.6rem;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 960px) {
+    .questionnaire-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-card {
+        order: -1;
+    }
+}
+
+@media (max-width: 720px) {
+    .page-hero {
+        padding: 3.5rem 0 2.5rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-card,
+    .info-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .option-group {
+        padding: 1.25rem;
+    }
+}

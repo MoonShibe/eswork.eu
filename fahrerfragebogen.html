@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kundenfragebogen – Fahrerbedarf | ES Work</title>
+    <meta name="description" content="Fragebogen für Unternehmen mit Fahrerbedarf. Teilen Sie uns Ihre Anforderungen mit, wir melden uns mit einem individuellen Angebot.">
+    <link rel="preload" href="assets/img/logo-eswork.jpeg" as="image" type="image/jpeg">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/questionnaire.css">
+</head>
+<body>
+    <header class="page-hero" aria-labelledby="hero-title">
+        <div class="container hero-layout">
+            <a class="hero-logo" href="index.html" aria-label="Zurück zur Startseite">
+                <img src="assets/img/logo-eswork.jpeg" alt="ES Work" width="190" height="70" loading="eager">
+            </a>
+            <div class="hero-text">
+                <p class="hero-kicker">ES Work SIA</p>
+                <h1 id="hero-title">Kundenfragebogen – Fahrerbedarf</h1>
+                <p class="hero-lead">Bitte füllen Sie diesen Fragebogen aus. Wir melden uns schnellstmöglich mit passenden Fahrerprofilen und einem konkreten Angebot.</p>
+                <div class="hero-actions">
+                    <a class="btn btn--light" href="index.html#contact">Zur Personal-Anfrage</a>
+                    <a class="btn btn--outline" href="mailto:info@eswork.eu?subject=Fragen%20zum%20Fahrerfragebogen">Direktkontakt aufnehmen</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="questionnaire-main">
+        <div class="container questionnaire-grid">
+            <section class="form-card" aria-labelledby="questionnaire-title">
+                <h2 id="questionnaire-title">Fragebogen ausfüllen</h2>
+                <p class="form-intro">Die mit <span aria-hidden="true" class="required-indicator">*</span> gekennzeichneten Felder sind Pflichtangaben. Nach dem Absenden erhalten wir Ihre Angaben direkt per E-Mail an <a href="mailto:info@eswork.eu">info@eswork.eu</a>.</p>
+                <form id="driverQuestionnaire" action="https://formsubmit.co/info@eswork.eu" method="POST" novalidate>
+                    <input type="hidden" name="_subject" value="Kundenfragebogen – Fahrerbedarf">
+                    <input type="hidden" name="_captcha" value="false">
+                    <section class="form-section" aria-labelledby="section-general">
+                        <div class="section-header">
+                            <h3 id="section-general">1. Allgemeine Informationen</h3>
+                            <p>Bitte nennen Sie uns die wichtigsten Kontaktdaten für Rückfragen.</p>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="company">Firma<span class="required-indicator" aria-hidden="true">*</span></label>
+                                <input type="text" id="company" name="company" autocomplete="organization" required>
+                                <p class="form-error" id="company-error" aria-live="polite"></p>
+                            </div>
+                            <div class="form-field">
+                                <label for="contactPerson">Ansprechpartner:in<span class="required-indicator" aria-hidden="true">*</span></label>
+                                <input type="text" id="contactPerson" name="contactPerson" autocomplete="name" required>
+                                <p class="form-error" id="contactPerson-error" aria-live="polite"></p>
+                            </div>
+                            <div class="form-field">
+                                <label for="position">Position im Unternehmen</label>
+                                <input type="text" id="position" name="position" autocomplete="organization-title">
+                                <p class="form-error" id="position-error" aria-live="polite"></p>
+                            </div>
+                            <div class="form-field">
+                                <label for="phone">Telefon<span class="required-indicator" aria-hidden="true">*</span></label>
+                                <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" pattern="^[+0-9()\s-]{6,}$" required>
+                                <p class="form-error" id="phone-error" aria-live="polite"></p>
+                            </div>
+                            <div class="form-field">
+                                <label for="email">E-Mail<span class="required-indicator" aria-hidden="true">*</span></label>
+                                <input type="email" id="email" name="email" autocomplete="email" required>
+                                <p class="form-error" id="email-error" aria-live="polite"></p>
+                            </div>
+                            <div class="form-field form-field--full">
+                                <label for="locations">Standort(e)<span class="required-indicator" aria-hidden="true">*</span></label>
+                                <input type="text" id="locations" name="locations" placeholder="z. B. Berlin, München" required>
+                                <p class="form-error" id="locations-error" aria-live="polite"></p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="form-section" aria-labelledby="section-demand">
+                        <div class="section-header">
+                            <h3 id="section-demand">2. Bedarf an Fahrpersonal</h3>
+                            <p>Erzählen Sie uns, wie viele Fahrer:innen Sie suchen und welche Qualifikationen erforderlich sind.</p>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="driverCount">Aktueller Bedarf<span class="required-indicator" aria-hidden="true">*</span></label>
+                                <input type="number" id="driverCount" name="driverCount" min="1" max="200" required>
+                                <p class="form-error" id="driverCount-error" aria-live="polite"></p>
+                            </div>
+                            <div class="form-field">
+                                <label for="startDate">Geplanter Einsatzbeginn<span class="required-indicator" aria-hidden="true">*</span></label>
+                                <input type="date" id="startDate" name="startDate" required>
+                                <p class="form-error" id="startDate-error" aria-live="polite"></p>
+                            </div>
+                        </div>
+
+                        <fieldset class="option-group" aria-describedby="einsatzdauer-help einsatzdauer-error">
+                            <legend>Einsatzdauer<span class="required-indicator" aria-hidden="true">*</span></legend>
+                            <div class="option-row">
+                                <label class="checkbox-pill">
+                                    <input type="checkbox" name="einsatzdauer" value="Kurzfristig" data-required-group="einsatzdauer">
+                                    <span>Kurzfristig</span>
+                                </label>
+                                <label class="checkbox-pill">
+                                    <input type="checkbox" name="einsatzdauer" value="Mittelfristig" data-required-group="einsatzdauer">
+                                    <span>Mittelfristig</span>
+                                </label>
+                                <label class="checkbox-pill">
+                                    <input type="checkbox" name="einsatzdauer" value="Langfristig" data-required-group="einsatzdauer">
+                                    <span>Langfristig</span>
+                                </label>
+                            </div>
+                            <p class="form-help" id="einsatzdauer-help">Mehrfachauswahl möglich.</p>
+                            <p class="form-error" id="einsatzdauer-error" aria-live="polite"></p>
+                        </fieldset>
+
+                        <fieldset class="option-group" aria-describedby="einsatztyp-error">
+                            <legend>Einsatzart<span class="required-indicator" aria-hidden="true">*</span></legend>
+                            <div class="option-row option-row--tight">
+                                <label class="radio-pill">
+                                    <input type="radio" name="einsatztyp" value="Einmalig" required data-required-group="einsatztyp">
+                                    <span>Einmalig</span>
+                                </label>
+                                <label class="radio-pill">
+                                    <input type="radio" name="einsatztyp" value="Regelmäßig" required data-required-group="einsatztyp">
+                                    <span>Regelmäßig</span>
+                                </label>
+                            </div>
+                            <p class="form-error" id="einsatztyp-error" aria-live="polite"></p>
+                        </fieldset>
+
+                        <fieldset class="option-group" aria-describedby="license-help license-error">
+                            <legend>Führerscheinklasse<span class="required-indicator" aria-hidden="true">*</span></legend>
+                            <div class="option-row">
+                                <label class="checkbox-pill">
+                                    <input type="checkbox" name="fuehrerscheinklasse" value="CE" data-required-group="license">
+                                    <span>CE</span>
+                                </label>
+                                <label class="checkbox-pill">
+                                    <input type="checkbox" name="fuehrerscheinklasse" value="C" data-required-group="license">
+                                    <span>C</span>
+                                </label>
+                                <label class="checkbox-pill">
+                                    <input type="checkbox" id="licenseOther" name="fuehrerscheinklasse" value="Andere" data-required-group="license" data-toggle-target="licenseOtherText">
+                                    <span>Andere</span>
+                                </label>
+                            </div>
+                            <div class="form-field form-field--compact">
+                                <label for="licenseOtherText" class="sr-only">Weitere Führerscheinklassen</label>
+                                <input type="text" id="licenseOtherText" name="licenseOtherText" placeholder="Bitte konkretisieren" disabled>
+                                <p class="form-error" id="licenseOtherText-error" aria-live="polite"></p>
+                            </div>
+                            <p class="form-help" id="license-help">Mehrfachauswahl möglich.</p>
+                            <p class="form-error" id="license-error" aria-live="polite"></p>
+                        </fieldset>
+
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="vehicleTypes">Fahrzeugtypen<span class="required-indicator" aria-hidden="true">*</span></label>
+                                <input type="text" id="vehicleTypes" name="vehicleTypes" placeholder="z. B. Sattelzug, Kühlfahrzeug" required>
+                                <p class="form-error" id="vehicleTypes-error" aria-live="polite"></p>
+                            </div>
+                            <div class="form-field">
+                                <label for="goods">Transportierte Güter<span class="required-indicator" aria-hidden="true">*</span></label>
+                                <input type="text" id="goods" name="goods" placeholder="z. B. Lebensmittel, Baustoffe" required>
+                                <p class="form-error" id="goods-error" aria-live="polite"></p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="form-section" aria-labelledby="section-conditions">
+                        <div class="section-header">
+                            <h3 id="section-conditions">3. Einsatzbedingungen</h3>
+                            <p>Beschreiben Sie das Einsatzgebiet sowie Rahmenbedingungen wie Arbeitszeiten und Sprache.</p>
+                        </div>
+                        <div class="form-field">
+                            <label for="tourArea">Einsatzgebiet / Touren<span class="required-indicator" aria-hidden="true">*</span></label>
+                            <textarea id="tourArea" name="tourArea" rows="3" required></textarea>
+                            <p class="form-error" id="tourArea-error" aria-live="polite"></p>
+                        </div>
+                        <div class="form-field">
+                            <label for="workingHours">Arbeitszeiten / Schichtsystem<span class="required-indicator" aria-hidden="true">*</span></label>
+                            <textarea id="workingHours" name="workingHours" rows="3" required></textarea>
+                            <p class="form-error" id="workingHours-error" aria-live="polite"></p>
+                        </div>
+
+                        <fieldset class="option-group" aria-describedby="overnight-error">
+                            <legend>Übernachtung im Fahrzeug erforderlich?<span class="required-indicator" aria-hidden="true">*</span></legend>
+                            <div class="option-row option-row--tight">
+                                <label class="radio-pill">
+                                    <input type="radio" name="overnight" value="Ja" required data-required-group="overnight">
+                                    <span>Ja</span>
+                                </label>
+                                <label class="radio-pill">
+                                    <input type="radio" name="overnight" value="Nein" required data-required-group="overnight">
+                                    <span>Nein</span>
+                                </label>
+                            </div>
+                            <p class="form-error" id="overnight-error" aria-live="polite"></p>
+                        </fieldset>
+
+                        <fieldset class="option-group" aria-describedby="accommodation-error">
+                            <legend>Unterkunft wird gestellt?<span class="required-indicator" aria-hidden="true">*</span></legend>
+                            <div class="option-row option-row--tight">
+                                <label class="radio-pill">
+                                    <input type="radio" name="accommodation" value="Ja" required data-required-group="accommodation">
+                                    <span>Ja</span>
+                                </label>
+                                <label class="radio-pill">
+                                    <input type="radio" name="accommodation" value="Nein" required data-required-group="accommodation">
+                                    <span>Nein</span>
+                                </label>
+                            </div>
+                            <p class="form-error" id="accommodation-error" aria-live="polite"></p>
+                        </fieldset>
+
+                        <fieldset class="option-group" aria-describedby="language-help language-error">
+                            <legend>Sprache im Betrieb<span class="required-indicator" aria-hidden="true">*</span></legend>
+                            <div class="option-row">
+                                <label class="checkbox-pill">
+                                    <input type="checkbox" name="betriebssprache" value="Deutsch" data-required-group="language">
+                                    <span>Deutsch</span>
+                                </label>
+                                <label class="checkbox-pill">
+                                    <input type="checkbox" name="betriebssprache" value="Englisch" data-required-group="language">
+                                    <span>Englisch</span>
+                                </label>
+                                <label class="checkbox-pill">
+                                    <input type="checkbox" name="betriebssprache" value="Russisch" data-required-group="language">
+                                    <span>Russisch</span>
+                                </label>
+                            </div>
+                            <div class="form-field form-field--compact">
+                                <label for="languageOther" class="sr-only">Weitere Sprachen</label>
+                                <input type="text" id="languageOther" name="betriebssprache" placeholder="Weitere Sprachen eintragen" data-group-text="language" aria-describedby="language-help">
+                            </div>
+                            <p class="form-help" id="language-help">Mehrfachauswahl möglich. Sie können weitere Sprachen eintragen.</p>
+                            <p class="form-error" id="language-error" aria-live="polite"></p>
+                        </fieldset>
+                    </section>
+
+                    <section class="form-section" aria-labelledby="section-conditions-2">
+                        <div class="section-header">
+                            <h3 id="section-conditions-2">4. Konditionen &amp; Organisation</h3>
+                            <p>Je genauer Ihre Angaben sind, desto präziser können wir kalkulieren.</p>
+                        </div>
+                        <fieldset class="option-group" aria-describedby="employment-error">
+                            <legend>Gewünschte Beschäftigungsform<span class="required-indicator" aria-hidden="true">*</span></legend>
+                            <div class="option-row">
+                                <label class="checkbox-pill">
+                                    <input type="checkbox" name="beschaeftigungsform" value="Arbeitnehmerüberlassung" data-required-group="employment">
+                                    <span>Arbeitnehmerüberlassung</span>
+                                </label>
+                                <label class="checkbox-pill">
+                                    <input type="checkbox" name="beschaeftigungsform" value="Vermittlung" data-required-group="employment">
+                                    <span>Vermittlung</span>
+                                </label>
+                            </div>
+                            <p class="form-error" id="employment-error" aria-live="polite"></p>
+                        </fieldset>
+
+                        <fieldset class="option-group" aria-describedby="billing-error">
+                            <legend>Abrechnung<span class="required-indicator" aria-hidden="true">*</span></legend>
+                            <div class="option-row option-row--tight">
+                                <label class="radio-pill">
+                                    <input type="radio" name="abrechnung" value="pro Stunde" required data-required-group="abrechnung">
+                                    <span>pro Stunde</span>
+                                </label>
+                                <label class="radio-pill">
+                                    <input type="radio" name="abrechnung" value="pro Tag" required data-required-group="abrechnung">
+                                    <span>pro Tag</span>
+                                </label>
+                                <label class="radio-pill">
+                                    <input type="radio" name="abrechnung" value="pro Woche" required data-required-group="abrechnung">
+                                    <span>pro Woche</span>
+                                </label>
+                            </div>
+                            <p class="form-error" id="billing-error" aria-live="polite"></p>
+                        </fieldset>
+
+                        <div class="form-field">
+                            <label for="budget">Zielvorstellung (Stundensatz / Budget)<span class="required-indicator" aria-hidden="true">*</span></label>
+                            <input type="text" id="budget" name="budget" placeholder="z. B. 30 € / Stunde" required>
+                            <p class="form-error" id="budget-error" aria-live="polite"></p>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="notes">Weitere betriebliche Besonderheiten</label>
+                            <textarea id="notes" name="notes" rows="4" placeholder="z. B. spezielle Sicherheitsunterweisungen, ADR-Pflicht"></textarea>
+                            <p class="form-error" id="notes-error" aria-live="polite"></p>
+                        </div>
+                    </section>
+
+                    <div class="form-status" data-form-status aria-live="polite"></div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Fragebogen absenden</button>
+                    </div>
+                </form>
+            </section>
+
+            <aside class="info-card" aria-label="ES Work Kontaktinformationen">
+                <h2>Ihr direkter Draht zu ES Work</h2>
+                <p>Wir begleiten Sie von der Bedarfsermittlung bis zum ersten Einsatz. Gerne organisieren wir auch Probefahrten und übernehmen alle administrativen Schritte.</p>
+                <ul class="info-list">
+                    <li>
+                        <strong>E-Mail:</strong>
+                        <a href="mailto:info@eswork.eu">info@eswork.eu</a>
+                    </li>
+                    <li>
+                        <strong>Telefon:</strong>
+                        <a href="tel:+37125296639">+371 25296639</a>
+                    </li>
+                    <li>
+                        <strong>Anschrift:</strong>
+                        <span>Jaunmoku iela 34, Rīga, LV-1046</span>
+                    </li>
+                    <li>
+                        <strong>Servicezeiten:</strong>
+                        <span>Mo–Fr, 8:00 – 18:00 Uhr (EET)</span>
+                    </li>
+                </ul>
+                <div class="info-highlight">
+                    <p>Sie benötigen kurzfristig Personal? Rufen Sie uns direkt an – innerhalb von 24 Stunden erhalten Sie erste Profile.</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="questionnaire-footer">
+        <div class="container footer-content">
+            <p>ES Work SIA · Handelsregister: 50203645661 · USt-ID: LV50203645661</p>
+            <p>Bank: AS Citadele banka · BIC: PARXLV22 · IBAN: LV74PARX0033416520001</p>
+        </div>
+    </footer>
+
+    <script defer src="assets/js/driver-questionnaire.js"></script>
+</body>
+</html>
