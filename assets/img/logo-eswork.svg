@@ -1,11 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" role="img" aria-labelledby="title desc">
-  <title id="title">ES Work Firmenlogo</title>
-  <desc id="desc">Graues ES-Monogramm mit schwarzen Buchstaben work.</desc>
-  <rect x="0" y="12" width="200" height="96" rx="10" fill="#6d6d6d" />
-  <rect x="30" y="30" width="140" height="18" rx="4" fill="#ffffff" />
-  <rect x="30" y="51" width="88" height="18" rx="4" fill="#ffffff" />
-  <rect x="122" y="51" width="48" height="18" rx="4" fill="#f0f0f0" />
-  <rect x="30" y="72" width="140" height="18" rx="4" fill="#ffffff" />
-  <rect x="146" y="51" width="24" height="18" rx="4" fill="#6d6d6d" />
-  <text x="228" y="82" font-family="'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="700" letter-spacing="-1.5" fill="#101010">work</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 56" role="img" aria-labelledby="title desc">
+  <title id="title">ES Work Logo</title>
+  <desc id="desc">Wordmark for ES Work with ES monogram</desc>
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#005daa" />
+      <stop offset="100%" stop-color="#00a3ff" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="180" height="56" fill="white" rx="12" />
+  <g transform="translate(12 10)">
+    <rect x="0" y="0" width="56" height="36" rx="12" fill="url(#grad)" />
+    <text x="28" y="24" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="700" fill="white">ES</text>
+    <text x="72" y="25" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="700" fill="#0a2540" letter-spacing="0.24em">WORK</text>
+  </g>
 </svg>

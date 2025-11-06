@@ -10,7 +10,7 @@
     <meta name="google-site-verification" content="UOQwzP0bRWM3GeMENxH4F38Gn2sN0T10IjxLlWZ8xcw">
     <link rel="canonical" href="https://www.eswork.eu/">
     <link rel="preload" href="assets/css/styles.css" as="style">
-    <link rel="preload" href="assets/img/hero-pattern.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="assets/img/logo-eswork.svg" as="image" type="image/svg+xml">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="de_DE">
     <meta property="og:locale:alternate" content="en_GB">
@@ -20,16 +20,11 @@
     <meta property="og:title" content="ES Work – Qualifizierte Fachkräfte aus dem Baltikum">
     <meta property="og:description" content="Wir vermitteln qualifizierte Fach- und Hilfskräfte aus Lettland, Litauen und Estland an deutsche Unternehmen und übernehmen alle administrativen Aufgaben.">
     <meta property="og:url" content="https://www.eswork.eu/">
-    <meta property="og:image" content="https://www.eswork.eu/assets/img/share-banner.svg">
-    <meta property="og:image:alt" content="ES Work – Personalvermittlung für Fachkräfte aus dem Baltikum">
-    <meta property="og:image:type" content="image/svg+xml">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="https://www.eswork.eu/assets/img/logo-eswork.svg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ES Work – Qualifizierte Fachkräfte aus dem Baltikum">
     <meta name="twitter:description" content="Schnelle Vermittlung von Fachkräften und vollständige Personaladministration für deutsche Unternehmen.">
-    <meta name="twitter:image" content="https://www.eswork.eu/assets/img/share-banner.svg">
-    <meta name="twitter:image:alt" content="ES Work – Personalvermittlung für Fachkräfte aus dem Baltikum">
+    <meta name="twitter:image" content="https://www.eswork.eu/assets/img/logo-eswork.svg">
     <title>ES Work - Qualifizierte Fachkräfte aus dem Baltikum</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="alternate" hreflang="de" href="https://www.eswork.eu/?lang=de">
@@ -43,8 +38,8 @@
             "@type": "Organization",
             "name": "ES Work SIA",
             "url": "https://www.eswork.eu/",
-            "logo": "https://www.eswork.eu/assets/img/logo-eswork.jpeg",
-            "image": "https://www.eswork.eu/assets/img/share-banner.svg",
+            "logo": "https://www.eswork.eu/assets/img/logo-eswork.svg",
+            "image": "https://www.eswork.eu/assets/img/logo-eswork.svg",
             "description": "ES Work SIA vermittelt qualifizierte Fach- und Hilfskräfte aus dem Baltikum nach Deutschland und übernimmt die komplette Personaladministration.",
             "email": "info@eswork.eu",
             "telephone": "+37125296639",
@@ -59,7 +54,7 @@
         <div class="container">
             <nav class="navbar" aria-label="Hauptnavigation">
                 <a class="logo" href="#top" aria-label="ES Work">
-                    <img src="assets/img/logo-eswork.jpeg" alt="ES Work" width="180" height="60" loading="eager">
+                    <img class="logo__image" src="assets/img/logo-eswork.svg" alt="ES Work" width="180" height="56" loading="eager" decoding="async">
                     <span class="sr-only" data-l10n="nav_logo">ES Work</span>
                 </a>
                 <div class="nav-controls">
@@ -100,10 +95,6 @@
 
     <main id="top">
         <section class="hero" aria-labelledby="hero-title">
-            <picture class="hero-media" aria-hidden="true">
-                <source srcset="assets/img/hero-pattern.svg" type="image/svg+xml">
-                <img src="assets/img/hero-pattern.svg" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
-            </picture>
             <div class="container">
                 <h1 id="hero-title" data-l10n="hero_title">Qualifizierte Fachkräfte aus dem Baltikum</h1>
                 <p data-l10n="hero_description">Schnelle und zuverlässige Vermittlung von Fach- und Hilfskräften für Ihren Unternehmenserfolg in Deutschland.</p>
@@ -195,6 +186,51 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects reveal" data-reveal aria-labelledby="projects-title">
+            <div class="container">
+                <h2 class="section-title" id="projects-title" data-l10n="projects_title">Aktuelle Projekte unserer Fachkräfte</h2>
+                <p class="section-intro" data-l10n="projects_intro">Ein Auszug erfolgreicher Einsätze, die wir für Kunden in Deutschland organisiert haben.</p>
+                <div class="projects-grid" role="list">
+                    <article class="project-card" role="listitem">
+                        <figure>
+                            <div class="project-card__visual" data-placeholder-src="assets/img/projects/assembly-line.jpg" aria-hidden="true"></div>
+                            <figcaption>
+                                <h3 data-l10n="project1_title">Elektromobilitäts-Montage</h3>
+                                <p data-l10n="project1_text">Spezialisiertes Team für Batteriemodule in einer deutschen Automobilfertigung, inklusive Qualitätssicherung und Schichtkoordination.</p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="project-card" role="listitem">
+                        <figure>
+                            <div class="project-card__visual" data-placeholder-src="assets/img/projects/construction-crew.jpg" aria-hidden="true"></div>
+                            <figcaption>
+                                <h3 data-l10n="project2_title">Industriebau in Bayern</h3>
+                                <p data-l10n="project2_text">Fachkräfte für Betonierung, Montage und Finish eines neuen Logistikzentrums – inklusive Baustellenkoordination.</p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="project-card" role="listitem">
+                        <figure>
+                            <div class="project-card__visual" data-placeholder-src="assets/img/projects/site-installation.jpg" aria-hidden="true"></div>
+                            <figcaption>
+                                <h3 data-l10n="project3_title">Anlageninstallation</h3>
+                                <p data-l10n="project3_text">Monteure und Elektriker für die Inbetriebnahme neuer Fertigungslinien inklusive Sicherheitstests und Dokumentation.</p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="project-card" role="listitem">
+                        <figure>
+                            <div class="project-card__visual" data-placeholder-src="assets/img/projects/logistics-team.jpg" aria-hidden="true"></div>
+                            <figcaption>
+                                <h3 data-l10n="project4_title">Logistik &amp; Umschlag</h3>
+                                <p data-l10n="project4_text">Gabelstaplerfahrer:innen und Disponent:innen unterstützen 24/7 beim Warenfluss eines internationalen E-Commerce-Hubs.</p>
+                            </figcaption>
+                        </figure>
+                    </article>
                 </div>
             </div>
         </section>
@@ -324,6 +360,39 @@
                         </div>
                         <div class="vacancy-footer">
                             <strong data-l10n="vacancy_languages_label">Sprachen:</strong> <span data-l10n="vacancy3_languages">Deutsch (A2), Russisch (Muttersprache), Englisch (Grundkenntnisse)</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="team" aria-labelledby="team-title">
+            <div class="container">
+                <h2 class="section-title" id="team-title" data-l10n="team_title">Unser Kernteam</h2>
+                <p class="section-intro" data-l10n="team_intro">Wir begleiten jedes Projekt persönlich – von der Bedarfsklärung bis zur laufenden Betreuung Ihrer Fachkräfte.</p>
+                <div class="team-grid" role="list">
+                    <article class="team-card reveal" data-reveal role="listitem">
+                        <div class="team-card__visual" data-placeholder-src="assets/img/team/team-management.jpg" aria-hidden="true"></div>
+                        <div class="team-card__content">
+                            <h3 data-l10n="team_member1_name">Agnese Kalniņa</h3>
+                            <p class="team-card__role" data-l10n="team_member1_role">Leitung Kundenbetreuung</p>
+                            <p data-l10n="team_member1_text">Ihre erste Ansprechpartnerin für alle Personalbedarfe – deutschsprachig, verlässlich und mit umfassender Branchenkenntnis.</p>
+                        </div>
+                    </article>
+                    <article class="team-card reveal" data-reveal role="listitem">
+                        <div class="team-card__visual" data-placeholder-src="assets/img/team/team-coordinator.jpg" aria-hidden="true"></div>
+                        <div class="team-card__content">
+                            <h3 data-l10n="team_member2_name">Mārtiņš Ozols</h3>
+                            <p class="team-card__role" data-l10n="team_member2_role">Projektkoordination</p>
+                            <p data-l10n="team_member2_text">Koordiniert Einsätze vor Ort, kümmert sich um Unterkünfte, Anreise und sorgt für einen reibungslosen Start Ihrer Teams.</p>
+                        </div>
+                    </article>
+                    <article class="team-card reveal" data-reveal role="listitem">
+                        <div class="team-card__visual" data-placeholder-src="assets/img/team/team-operations.jpg" aria-hidden="true"></div>
+                        <div class="team-card__content">
+                            <h3 data-l10n="team_member3_name">Elīna Petrauska</h3>
+                            <p class="team-card__role" data-l10n="team_member3_role">Operations &amp; Compliance</p>
+                            <p data-l10n="team_member3_text">Übernimmt Verträge, Lohnabrechnung und rechtssichere Dokumentation – inklusive 24/7-Erreichbarkeit bei Rückfragen.</p>
                         </div>
                     </article>
                 </div>

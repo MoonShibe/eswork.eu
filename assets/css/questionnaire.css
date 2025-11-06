@@ -1,5 +1,5 @@
 .page-hero {
-    background: linear-gradient(135deg, rgba(0, 93, 170, 0.92), rgba(0, 125, 197, 0.85)), url('../img/hero-pattern.svg') center/cover no-repeat;
+    background: linear-gradient(135deg, rgba(0, 93, 170, 0.92), rgba(0, 125, 197, 0.85));
     color: #ffffff;
     padding: 4.5rem 0 3.5rem;
     position: relative;
@@ -14,11 +14,29 @@
     justify-content: space-between;
 }
 
-.hero-logo img {
-    border-radius: 12px;
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
-    background: #ffffff;
-    padding: 1rem 1.5rem;
+.hero-logo {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.hero-logo__image {
+    position: relative;
+    z-index: 1;
+    display: block;
+    height: 3.25rem;
+    width: auto;
+}
+
+.hero-logo::after {
+    content: '';
+    position: absolute;
+    inset: -0.65rem -1rem;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    filter: blur(0.5px);
 }
 
 .hero-text {
