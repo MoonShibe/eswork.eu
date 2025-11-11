@@ -278,18 +278,36 @@
         const action = form.getAttribute('action') || 'https://formsubmit.co/info@eswork.eu';
         const endpoint = action.includes('/ajax/') ? action : action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
 
-        const payload = new URLSearchParams();
+        const payload = {};
         formData.forEach((value, key) => {
-            payload.append(key, value);
+            const stringValue = (typeof File !== 'undefined' && value instanceof File)
+                ? value.name
+                : String(value);
+            if (Object.prototype.hasOwnProperty.call(payload, key)) {
+                const existing = payload[key];
+                if (Array.isArray(existing)) {
+                    existing.push(stringValue);
+                } else {
+                    payload[key] = [existing, stringValue];
+                }
+            } else {
+                payload[key] = stringValue;
+            }
+        });
+
+        Object.keys(payload).forEach((key) => {
+            if (Array.isArray(payload[key])) {
+                payload[key] = payload[key].join(', ');
+            }
         });
 
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/json'
             },
-            body: payload
+            body: JSON.stringify(payload)
         });
 
         if (!response.ok) {
