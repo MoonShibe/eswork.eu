@@ -8,6 +8,18 @@
     const submitButton = form.querySelector('[type="submit"]');
     const otherToggle = document.getElementById('licenseOther');
     const otherTextField = document.getElementById('licenseOtherText');
+    const mailtoTarget = (form.getAttribute('data-mailto') || 'info@eswork.eu').trim();
+    const mailtoSubject = (form.getAttribute('data-mailto-subject') || 'Kundenfragebogen – Fahrerbedarf').trim() || 'Kundenfragebogen – Fahrerbedarf';
+    const MAILTO_IGNORED_FIELDS = new Set([
+        '_subject',
+        '_template',
+        '_captcha',
+        '_next',
+        '_honey',
+        '_autoresponse',
+        '_cc',
+        '_bcc'
+    ]);
 
     const groupConfigs = [
         {
@@ -199,6 +211,61 @@
         form.classList.toggle('is-submitting', Boolean(isSubmitting));
     };
 
+    const buildMailtoLinkFromForm = () => {
+        if (!mailtoTarget) {
+            return null;
+        }
+
+        const formData = new FormData(form);
+        const subjectValue = formData.get('_subject') || mailtoSubject;
+        const subject = String(subjectValue || mailtoSubject).trim() || mailtoSubject;
+
+        const aggregated = new Map();
+        formData.forEach((value, key) => {
+            if (MAILTO_IGNORED_FIELDS.has(key)) {
+                return;
+            }
+            const stringValue = value == null ? '' : String(value).trim();
+            if (!stringValue) {
+                return;
+            }
+            const existing = aggregated.get(key) || [];
+            existing.push(stringValue);
+            aggregated.set(key, existing);
+        });
+
+        const lines = [];
+        aggregated.forEach((values, key) => {
+            const label = key.replace(/_/g, ' ');
+            lines.push(`${label}: ${values.join(', ')}`);
+        });
+
+        const body = lines.join('\n');
+        const params = [];
+        if (subject) {
+            params.push(`subject=${encodeURIComponent(subject)}`);
+        }
+        if (body) {
+            params.push(`body=${encodeURIComponent(body)}`);
+        }
+
+        const query = params.length ? `?${params.join('&')}` : '';
+        return `mailto:${mailtoTarget}${query}`;
+    };
+
+    const triggerMailtoFallback = () => {
+        try {
+            const link = buildMailtoLinkFromForm();
+            if (!link) {
+                return false;
+            }
+            window.location.href = link;
+            return true;
+        } catch (error) {
+            return false;
+        }
+    };
+
     const submitForm = async () => {
         const formData = new FormData(form);
         if (!formData.has('_subject')) {
@@ -283,7 +350,12 @@
             await submitForm();
             showStatus('Vielen Dank! Ihre Angaben wurden erfolgreich übermittelt. Wir melden uns zeitnah bei Ihnen.', false);
         } catch (error) {
-            showStatus('Senden nicht möglich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt unter info@eswork.eu.', true);
+            const handled = triggerMailtoFallback();
+            if (handled) {
+                showStatus('Der Formularservice ist derzeit nicht erreichbar. Wir haben eine E-Mail an info@eswork.eu für Sie vorbereitet – bitte prüfen Sie die Angaben und senden Sie die Nachricht.', false);
+            } else {
+                showStatus('Senden nicht möglich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt unter info@eswork.eu.', true);
+            }
         } finally {
             setSubmitting(false);
         }
