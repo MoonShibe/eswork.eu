@@ -283,7 +283,7 @@
             await submitForm();
             showStatus('Vielen Dank! Ihre Angaben wurden erfolgreich übermittelt. Wir melden uns zeitnah bei Ihnen.', false);
         } catch (error) {
-            showStatus('Senden nicht möglich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt unter info@eswork.eu.', true);
+            showStatus('Senden nicht möglich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt unter +49 (0) 152 25362172 oder info@eswork.eu.', true);
         } finally {
             setSubmitting(false);
         }
