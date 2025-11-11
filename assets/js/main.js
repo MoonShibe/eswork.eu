@@ -352,10 +352,41 @@
 
     if (navToggle && navLinks) {
         const collapseButtons = navLinks.querySelectorAll('[data-nav-collapse]');
+        const navDropdownItems = navLinks.querySelectorAll('.nav-item--dropdown');
+
+        const setDropdownState = (item, open) => {
+            if (!item) {
+                return;
+            }
+
+            item.classList.toggle('is-open', open);
+
+            const trigger = item.querySelector('[data-nav-dropdown-toggle]');
+            const menu = item.querySelector('[data-nav-dropdown-menu]');
+
+            if (trigger) {
+                trigger.setAttribute('aria-expanded', String(open));
+            }
+
+            if (menu) {
+                menu.setAttribute('aria-hidden', String(!open));
+            }
+        };
+
+        const closeNavDropdowns = (exception = null) => {
+            navDropdownItems.forEach((item) => {
+                if (exception && item === exception) {
+                    return;
+                }
+
+                setDropdownState(item, false);
+            });
+        };
 
         const closeNav = () => {
             navLinks.classList.remove('active');
             navToggle.setAttribute('aria-expanded', 'false');
+            closeNavDropdowns();
         };
 
         navToggle.addEventListener('click', () => {
@@ -365,11 +396,92 @@
         });
 
         navLinks.querySelectorAll('a').forEach((link) => {
+            if (link.hasAttribute('data-nav-dropdown-toggle')) {
+                return;
+            }
+
             link.addEventListener('click', closeNav);
         });
 
         collapseButtons.forEach((button) => {
             button.addEventListener('click', closeNav);
+        });
+
+        const isDesktop = () => window.matchMedia('(min-width: 993px)').matches;
+
+        navDropdownItems.forEach((item) => {
+            const trigger = item.querySelector('[data-nav-dropdown-toggle]');
+            const menu = item.querySelector('[data-nav-dropdown-menu]');
+
+            setDropdownState(item, false);
+
+            if (!trigger) {
+                return;
+            }
+
+            trigger.addEventListener('click', (event) => {
+                if (isDesktop()) {
+                    closeNavDropdowns(item);
+                    setDropdownState(item, true);
+                    return;
+                }
+
+                const isOpen = item.classList.contains('is-open');
+                if (!isOpen) {
+                    event.preventDefault();
+                    closeNavDropdowns(item);
+                    setDropdownState(item, true);
+                } else {
+                    event.preventDefault();
+                    setDropdownState(item, false);
+                }
+            });
+
+            trigger.addEventListener('pointerenter', () => {
+                if (!isDesktop()) {
+                    return;
+                }
+
+                closeNavDropdowns(item);
+                setDropdownState(item, true);
+            });
+
+            item.addEventListener('mouseleave', () => {
+                if (!isDesktop()) {
+                    return;
+                }
+
+                setDropdownState(item, false);
+            });
+
+            item.addEventListener('keyup', (event) => {
+                if (event.key === 'Escape') {
+                    setDropdownState(item, false);
+                    trigger.focus({ preventScroll: true });
+                }
+            });
+
+            if (menu) {
+                menu.querySelectorAll('a, button').forEach((link) => {
+                    link.addEventListener('focus', () => {
+                        if (isDesktop()) {
+                            closeNavDropdowns(item);
+                            setDropdownState(item, true);
+                        }
+                    });
+
+                    link.addEventListener('click', () => {
+                        closeNavDropdowns();
+                        closeNav();
+                    });
+                });
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!navLinks.contains(event.target)) {
+                closeNavDropdowns();
+            }
         });
     }
 
