@@ -350,12 +350,7 @@
             await submitForm();
             showStatus('Vielen Dank! Ihre Angaben wurden erfolgreich übermittelt. Wir melden uns zeitnah bei Ihnen.', false);
         } catch (error) {
-            const handled = triggerMailtoFallback();
-            if (handled) {
-                showStatus('Der Formularservice ist derzeit nicht erreichbar. Wir haben eine E-Mail an info@eswork.eu für Sie vorbereitet – bitte prüfen Sie die Angaben und senden Sie die Nachricht.', false);
-            } else {
-                showStatus('Senden nicht möglich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt unter info@eswork.eu.', true);
-            }
+            showStatus('Senden nicht möglich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt unter +49 (0) 152 25362172 oder info@eswork.eu.', true);
         } finally {
             setSubmitting(false);
         }

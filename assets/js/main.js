@@ -913,17 +913,6 @@
                     ctaText: copy('modal_success_cta')
                 });
             } catch (error) {
-                const handled = triggerMailtoFallback(requestForm);
-                if (handled) {
-                    openModal({
-                        title: copy('modal_mail_title'),
-                        message: copy('modal_mail_message'),
-                        isError: false,
-                        ctaText: copy('modal_mail_cta')
-                    });
-                    return;
-                }
-
                 openModal({
                     title: copy('modal_error_title'),
                     message: copy('modal_error_message'),
