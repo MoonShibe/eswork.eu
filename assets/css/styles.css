@@ -175,6 +175,7 @@ header {
 .nav-contact--mail {
     margin-left: 0.25rem;
     align-items: center;
+    display: none;
 }
 
 .nav-contact--phone a {
@@ -1491,6 +1492,10 @@ footer .contact-list a {
         text-align: left;
     }
 
+    .nav-contact--mail {
+        display: flex;
+    }
+
     .nav-contact--mail a {
         padding: 0.75rem 1rem;
         display: block;
@@ -1514,6 +1519,12 @@ footer .contact-list a {
 
     .form-container {
         padding: 2.25rem;
+    }
+}
+
+@media (min-width: 993px) {
+    .nav-controls .language-switcher {
+        display: none;
     }
 }
 
