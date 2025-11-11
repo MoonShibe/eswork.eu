@@ -11,6 +11,7 @@
     const revealElements = document.querySelectorAll('[data-reveal]');
     const videoPlaceholders = document.querySelectorAll('[data-video-placeholder]');
     const languageSwitchers = document.querySelectorAll('[data-language-switcher]');
+    const languageDropdowns = document.querySelectorAll('.language-switcher--dropdown');
     const modalBackdrop = document.getElementById('modal-backdrop');
     const modal = document.getElementById('form-modal');
     const modalTitle = document.getElementById('form-modal-title');
@@ -104,11 +105,65 @@
 
     const updateLanguageButtons = (lang) => {
         languageSwitchers.forEach((switcher) => {
+            let activeButton = null;
+
             switcher.querySelectorAll('.language-option').forEach((button) => {
                 const isActive = button.dataset.lang === lang;
                 button.classList.toggle('active', isActive);
                 button.setAttribute('aria-pressed', String(isActive));
+                if (isActive) {
+                    activeButton = button;
+                }
             });
+
+            const toggle = switcher.querySelector('[data-language-toggle]');
+            if (toggle && activeButton) {
+                const flagTarget = toggle.querySelector('[data-language-flag]');
+                const labelTarget = toggle.querySelector('[data-language-label]');
+                const flag = activeButton.dataset.flag || activeButton.textContent.trim();
+                const label = activeButton.dataset.label || (activeButton.dataset.lang || '').toUpperCase();
+                const readableLabel = activeButton.getAttribute('aria-label') || activeButton.textContent.trim();
+
+                if (flagTarget && flag) {
+                    flagTarget.textContent = flag;
+                }
+
+                if (labelTarget && label) {
+                    labelTarget.textContent = label;
+                }
+
+                if (readableLabel) {
+                    toggle.setAttribute('title', readableLabel);
+                }
+            }
+        });
+    };
+
+    const closeLanguageDropdown = (dropdown) => {
+        if (!dropdown || !dropdown.classList.contains('is-open')) {
+            return;
+        }
+
+        dropdown.classList.remove('is-open');
+
+        const toggle = dropdown.querySelector('[data-language-toggle]');
+        if (toggle) {
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+
+        const list = dropdown.querySelector('.language-list');
+        if (list) {
+            list.setAttribute('aria-hidden', 'true');
+        }
+    };
+
+    const closeAllLanguageDropdowns = (exception = null) => {
+        languageDropdowns.forEach((dropdown) => {
+            if (exception && dropdown === exception) {
+                return;
+            }
+
+            closeLanguageDropdown(dropdown);
         });
     };
 
@@ -201,6 +256,69 @@
         return DEFAULT_LANG;
     };
 
+    languageDropdowns.forEach((dropdown) => {
+        const toggle = dropdown.querySelector('[data-language-toggle]');
+        const list = dropdown.querySelector('.language-list');
+
+        if (!toggle || !list) {
+            return;
+        }
+
+        list.setAttribute('aria-hidden', 'true');
+
+        toggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const isOpen = dropdown.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', String(isOpen));
+            list.setAttribute('aria-hidden', String(!isOpen));
+
+            if (isOpen) {
+                closeAllLanguageDropdowns(dropdown);
+                const activeOption = list.querySelector('.language-option.active') || list.querySelector('.language-option');
+                if (activeOption) {
+                    activeOption.focus();
+                }
+            } else {
+                toggle.focus();
+            }
+        });
+
+        list.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const option = event.target.closest('.language-option');
+            if (!option) {
+                return;
+            }
+
+            closeLanguageDropdown(dropdown);
+        });
+    });
+
+    document.addEventListener('click', (event) => {
+        languageDropdowns.forEach((dropdown) => {
+            if (!dropdown.contains(event.target)) {
+                closeLanguageDropdown(dropdown);
+            }
+        });
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape' && event.key !== 'Esc') {
+            return;
+        }
+
+        languageDropdowns.forEach((dropdown) => {
+            const wasOpen = dropdown.classList.contains('is-open');
+            closeLanguageDropdown(dropdown);
+            if (wasOpen) {
+                const toggle = dropdown.querySelector('[data-language-toggle]');
+                if (toggle) {
+                    toggle.focus();
+                }
+            }
+        });
+    });
+
     languageSwitchers.forEach((switcher) => {
         switcher.querySelectorAll('.language-option').forEach((button) => {
             button.addEventListener('click', () => {
@@ -234,10 +352,70 @@
 
     if (navToggle && navLinks) {
         const collapseButtons = navLinks.querySelectorAll('[data-nav-collapse]');
+        const navDropdownItems = navLinks.querySelectorAll('.nav-item--dropdown');
+        const navDropdownCloseTimers = new WeakMap();
+
+        const cancelDropdownClose = (item) => {
+            if (!item) {
+                return;
+            }
+
+            const timer = navDropdownCloseTimers.get(item);
+            if (timer) {
+                window.clearTimeout(timer);
+                navDropdownCloseTimers.delete(item);
+            }
+        };
+
+        const scheduleDropdownClose = (item) => {
+            if (!item) {
+                return;
+            }
+
+            cancelDropdownClose(item);
+
+            const timer = window.setTimeout(() => {
+                setDropdownState(item, false);
+                navDropdownCloseTimers.delete(item);
+            }, 180);
+
+            navDropdownCloseTimers.set(item, timer);
+        };
+
+        const setDropdownState = (item, open) => {
+            if (!item) {
+                return;
+            }
+
+            item.classList.toggle('is-open', open);
+
+            const trigger = item.querySelector('[data-nav-dropdown-toggle]');
+            const menu = item.querySelector('[data-nav-dropdown-menu]');
+
+            if (trigger) {
+                trigger.setAttribute('aria-expanded', String(open));
+            }
+
+            if (menu) {
+                menu.setAttribute('aria-hidden', String(!open));
+            }
+        };
+
+        const closeNavDropdowns = (exception = null) => {
+            navDropdownItems.forEach((item) => {
+                if (exception && item === exception) {
+                    return;
+                }
+
+                cancelDropdownClose(item);
+                setDropdownState(item, false);
+            });
+        };
 
         const closeNav = () => {
             navLinks.classList.remove('active');
             navToggle.setAttribute('aria-expanded', 'false');
+            closeNavDropdowns();
         };
 
         navToggle.addEventListener('click', () => {
@@ -247,11 +425,116 @@
         });
 
         navLinks.querySelectorAll('a').forEach((link) => {
+            if (link.hasAttribute('data-nav-dropdown-toggle')) {
+                return;
+            }
+
             link.addEventListener('click', closeNav);
         });
 
         collapseButtons.forEach((button) => {
             button.addEventListener('click', closeNav);
+        });
+
+        const isDesktop = () => window.matchMedia('(min-width: 993px)').matches;
+
+        navDropdownItems.forEach((item) => {
+            const trigger = item.querySelector('[data-nav-dropdown-toggle]');
+            const menu = item.querySelector('[data-nav-dropdown-menu]');
+
+            setDropdownState(item, false);
+
+            if (!trigger) {
+                return;
+            }
+
+            trigger.addEventListener('click', (event) => {
+                if (isDesktop()) {
+                    closeNavDropdowns(item);
+                    cancelDropdownClose(item);
+                    setDropdownState(item, true);
+                    return;
+                }
+
+                const isOpen = item.classList.contains('is-open');
+                if (!isOpen) {
+                    event.preventDefault();
+                    closeNavDropdowns(item);
+                    cancelDropdownClose(item);
+                    setDropdownState(item, true);
+                } else {
+                    event.preventDefault();
+                    setDropdownState(item, false);
+                }
+            });
+
+            trigger.addEventListener('pointerenter', () => {
+                if (!isDesktop()) {
+                    return;
+                }
+
+                closeNavDropdowns(item);
+                cancelDropdownClose(item);
+                setDropdownState(item, true);
+            });
+
+            item.addEventListener('mouseleave', () => {
+                if (!isDesktop()) {
+                    return;
+                }
+
+                scheduleDropdownClose(item);
+            });
+
+            item.addEventListener('keyup', (event) => {
+                if (event.key === 'Escape') {
+                    cancelDropdownClose(item);
+                    setDropdownState(item, false);
+                    trigger.focus({ preventScroll: true });
+                }
+            });
+
+            if (menu) {
+                menu.addEventListener('pointerenter', () => {
+                    if (!isDesktop()) {
+                        return;
+                    }
+
+                    cancelDropdownClose(item);
+                    setDropdownState(item, true);
+                });
+
+                menu.addEventListener('pointerleave', () => {
+                    if (!isDesktop()) {
+                        return;
+                    }
+
+                    scheduleDropdownClose(item);
+                });
+
+                menu.querySelectorAll('a, button').forEach((link) => {
+                    link.addEventListener('focus', () => {
+                        if (isDesktop()) {
+                            closeNavDropdowns(item);
+                            cancelDropdownClose(item);
+                            setDropdownState(item, true);
+                        }
+                    });
+
+                    link.addEventListener('click', () => {
+                        cancelDropdownClose(item);
+                        closeNavDropdowns();
+                        closeNav();
+                    });
+                });
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!navLinks.contains(event.target)) {
+                navDropdownItems.forEach(cancelDropdownClose);
+                closeNavDropdowns();
+            }
         });
     }
 
