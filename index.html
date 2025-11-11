@@ -73,11 +73,30 @@
                     <span class="sr-only" data-l10n="nav_logo">ES Work</span>
                 </a>
                 <div class="nav-controls">
-                    <div class="language-switcher" data-language-switcher aria-label="Sprachauswahl" data-l10n-aria-label="language_label">
-                        <button type="button" class="language-option" data-lang="de" title="Deutsch" aria-label="Deutsch">🇩🇪</button>
-                        <button type="button" class="language-option" data-lang="en" title="English" aria-label="English">🇬🇧</button>
-                        <button type="button" class="language-option" data-lang="ru" title="Русский" aria-label="Русский">🇷🇺</button>
-                        <button type="button" class="language-option" data-lang="lv" title="Latviešu" aria-label="Latviešu">🇱🇻</button>
+                    <div class="language-switcher language-switcher--dropdown" data-language-switcher aria-label="Sprachauswahl" data-l10n-aria-label="language_label">
+                        <button type="button" class="language-toggle" data-language-toggle aria-expanded="false" aria-haspopup="true" data-l10n-aria-label="language_label">
+                            <span class="language-toggle__flag" data-language-flag aria-hidden="true">🇩🇪</span>
+                            <span class="language-toggle__label" data-language-label>DE</span>
+                            <span class="language-toggle__icon" aria-hidden="true">▾</span>
+                        </button>
+                        <div class="language-list" role="menu">
+                            <button type="button" class="language-option" data-lang="de" data-flag="🇩🇪" data-label="DE" title="Deutsch" aria-label="Deutsch" role="menuitem">
+                                <span class="language-option__flag" aria-hidden="true">🇩🇪</span>
+                                <span class="language-option__name">Deutsch</span>
+                            </button>
+                            <button type="button" class="language-option" data-lang="en" data-flag="🇬🇧" data-label="EN" title="English" aria-label="English" role="menuitem">
+                                <span class="language-option__flag" aria-hidden="true">🇬🇧</span>
+                                <span class="language-option__name">English</span>
+                            </button>
+                            <button type="button" class="language-option" data-lang="ru" data-flag="🇷🇺" data-label="RU" title="Русский" aria-label="Русский" role="menuitem">
+                                <span class="language-option__flag" aria-hidden="true">🇷🇺</span>
+                                <span class="language-option__name">Русский</span>
+                            </button>
+                            <button type="button" class="language-option" data-lang="lv" data-flag="🇱🇻" data-label="LV" title="Latviešu" aria-label="Latviešu" role="menuitem">
+                                <span class="language-option__flag" aria-hidden="true">🇱🇻</span>
+                                <span class="language-option__name">Latviešu</span>
+                            </button>
+                        </div>
                     </div>
                     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-l10n="nav_toggle" data-l10n-aria-label="nav_toggle_label">Menü</button>
                 </div>
@@ -96,10 +115,22 @@
                     <li class="nav-contact nav-contact--mail"><a href="mailto:info@eswork.eu" data-l10n="nav_email_text" data-l10n-aria-label="nav_email_label">✉️ info@eswork.eu</a></li>
                     <li class="nav-language">
                         <div class="language-switcher language-switcher--menu" data-language-switcher aria-label="Sprachauswahl" data-l10n-aria-label="language_label">
-                            <button type="button" class="language-option" data-lang="de" title="Deutsch" aria-label="Deutsch">🇩🇪</button>
-                            <button type="button" class="language-option" data-lang="en" title="English" aria-label="English">🇬🇧</button>
-                            <button type="button" class="language-option" data-lang="ru" title="Русский" aria-label="Русский">🇷🇺</button>
-                            <button type="button" class="language-option" data-lang="lv" title="Latviešu" aria-label="Latviešu">🇱🇻</button>
+                            <button type="button" class="language-option" data-lang="de" data-flag="🇩🇪" data-label="DE" title="Deutsch" aria-label="Deutsch">
+                                <span class="language-option__flag" aria-hidden="true">🇩🇪</span>
+                                <span class="language-option__name">Deutsch</span>
+                            </button>
+                            <button type="button" class="language-option" data-lang="en" data-flag="🇬🇧" data-label="EN" title="English" aria-label="English">
+                                <span class="language-option__flag" aria-hidden="true">🇬🇧</span>
+                                <span class="language-option__name">English</span>
+                            </button>
+                            <button type="button" class="language-option" data-lang="ru" data-flag="🇷🇺" data-label="RU" title="Русский" aria-label="Русский">
+                                <span class="language-option__flag" aria-hidden="true">🇷🇺</span>
+                                <span class="language-option__name">Русский</span>
+                            </button>
+                            <button type="button" class="language-option" data-lang="lv" data-flag="🇱🇻" data-label="LV" title="Latviešu" aria-label="Latviešu">
+                                <span class="language-option__flag" aria-hidden="true">🇱🇻</span>
+                                <span class="language-option__name">Latviešu</span>
+                            </button>
                         </div>
                     </li>
                     <li class="nav-collapse">

@@ -11,6 +11,7 @@
     const revealElements = document.querySelectorAll('[data-reveal]');
     const videoPlaceholders = document.querySelectorAll('[data-video-placeholder]');
     const languageSwitchers = document.querySelectorAll('[data-language-switcher]');
+    const languageDropdowns = document.querySelectorAll('.language-switcher--dropdown');
     const modalBackdrop = document.getElementById('modal-backdrop');
     const modal = document.getElementById('form-modal');
     const modalTitle = document.getElementById('form-modal-title');
@@ -104,11 +105,65 @@
 
     const updateLanguageButtons = (lang) => {
         languageSwitchers.forEach((switcher) => {
+            let activeButton = null;
+
             switcher.querySelectorAll('.language-option').forEach((button) => {
                 const isActive = button.dataset.lang === lang;
                 button.classList.toggle('active', isActive);
                 button.setAttribute('aria-pressed', String(isActive));
+                if (isActive) {
+                    activeButton = button;
+                }
             });
+
+            const toggle = switcher.querySelector('[data-language-toggle]');
+            if (toggle && activeButton) {
+                const flagTarget = toggle.querySelector('[data-language-flag]');
+                const labelTarget = toggle.querySelector('[data-language-label]');
+                const flag = activeButton.dataset.flag || activeButton.textContent.trim();
+                const label = activeButton.dataset.label || (activeButton.dataset.lang || '').toUpperCase();
+                const readableLabel = activeButton.getAttribute('aria-label') || activeButton.textContent.trim();
+
+                if (flagTarget && flag) {
+                    flagTarget.textContent = flag;
+                }
+
+                if (labelTarget && label) {
+                    labelTarget.textContent = label;
+                }
+
+                if (readableLabel) {
+                    toggle.setAttribute('title', readableLabel);
+                }
+            }
+        });
+    };
+
+    const closeLanguageDropdown = (dropdown) => {
+        if (!dropdown || !dropdown.classList.contains('is-open')) {
+            return;
+        }
+
+        dropdown.classList.remove('is-open');
+
+        const toggle = dropdown.querySelector('[data-language-toggle]');
+        if (toggle) {
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+
+        const list = dropdown.querySelector('.language-list');
+        if (list) {
+            list.setAttribute('aria-hidden', 'true');
+        }
+    };
+
+    const closeAllLanguageDropdowns = (exception = null) => {
+        languageDropdowns.forEach((dropdown) => {
+            if (exception && dropdown === exception) {
+                return;
+            }
+
+            closeLanguageDropdown(dropdown);
         });
     };
 
@@ -200,6 +255,69 @@
         }
         return DEFAULT_LANG;
     };
+
+    languageDropdowns.forEach((dropdown) => {
+        const toggle = dropdown.querySelector('[data-language-toggle]');
+        const list = dropdown.querySelector('.language-list');
+
+        if (!toggle || !list) {
+            return;
+        }
+
+        list.setAttribute('aria-hidden', 'true');
+
+        toggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const isOpen = dropdown.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', String(isOpen));
+            list.setAttribute('aria-hidden', String(!isOpen));
+
+            if (isOpen) {
+                closeAllLanguageDropdowns(dropdown);
+                const activeOption = list.querySelector('.language-option.active') || list.querySelector('.language-option');
+                if (activeOption) {
+                    activeOption.focus();
+                }
+            } else {
+                toggle.focus();
+            }
+        });
+
+        list.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const option = event.target.closest('.language-option');
+            if (!option) {
+                return;
+            }
+
+            closeLanguageDropdown(dropdown);
+        });
+    });
+
+    document.addEventListener('click', (event) => {
+        languageDropdowns.forEach((dropdown) => {
+            if (!dropdown.contains(event.target)) {
+                closeLanguageDropdown(dropdown);
+            }
+        });
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape' && event.key !== 'Esc') {
+            return;
+        }
+
+        languageDropdowns.forEach((dropdown) => {
+            const wasOpen = dropdown.classList.contains('is-open');
+            closeLanguageDropdown(dropdown);
+            if (wasOpen) {
+                const toggle = dropdown.querySelector('[data-language-toggle]');
+                if (toggle) {
+                    toggle.focus();
+                }
+            }
+        });
+    });
 
     languageSwitchers.forEach((switcher) => {
         switcher.querySelectorAll('.language-option').forEach((button) => {

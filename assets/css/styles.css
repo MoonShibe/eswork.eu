@@ -102,40 +102,147 @@ header {
 }
 
 .language-switcher {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    border: 1px solid rgba(0, 93, 170, 0.15);
-    border-radius: 999px;
-    padding: 0.25rem 0.4rem;
-    background-color: rgba(255, 255, 255, 0.9);
 }
 
-.language-switcher--menu {
-    justify-content: center;
-    margin-top: 0.75rem;
+.language-switcher--dropdown {
+    padding: 0.1rem;
+}
+
+.language-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid rgba(0, 93, 170, 0.18);
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem 0.35rem 0.6rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(235, 244, 255, 0.8));
+    color: var(--dark);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 12px 24px rgba(0, 93, 170, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.language-toggle__flag {
+    font-size: 1.4rem;
+    line-height: 1;
+    display: inline-flex;
+}
+
+.language-toggle__label {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+}
+
+.language-toggle__icon {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+.language-switcher--dropdown.is-open .language-toggle,
+.language-toggle:hover,
+.language-toggle:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(0, 93, 170, 0.4);
+    box-shadow: 0 18px 32px rgba(0, 93, 170, 0.16);
+}
+
+.language-toggle:focus-visible {
+    outline: 3px solid rgba(0, 93, 170, 0.35);
+    outline-offset: 3px;
+}
+
+.language-list {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    min-width: 11rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 93, 170, 0.12);
+    box-shadow: 0 20px 42px rgba(15, 46, 83, 0.18);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.75rem);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 20;
+}
+
+.language-switcher--dropdown.is-open .language-list {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
 .language-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     background: none;
     border: none;
-    font-size: 1.1rem;
-    line-height: 1;
+    font-size: 0.95rem;
+    line-height: 1.2;
     cursor: pointer;
-    padding: 0.25rem 0.35rem;
-    border-radius: 50%;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    font-weight: 600;
+    color: var(--dark);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .language-option:focus-visible {
-    outline: 3px solid rgba(0, 93, 170, 0.4);
+    outline: 3px solid rgba(0, 93, 170, 0.35);
     outline-offset: 2px;
+}
+
+.language-option__flag {
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+.language-option__name {
+    font-size: 0.95rem;
 }
 
 .language-option.active,
 .language-option:hover {
+    background: rgba(0, 93, 170, 0.12);
+    box-shadow: 0 8px 16px rgba(0, 93, 170, 0.14);
     transform: translateY(-1px);
-    box-shadow: 0 6px 14px rgba(0, 93, 170, 0.18);
+}
+
+.language-list .language-option {
+    width: 100%;
+    justify-content: flex-start;
+    border-radius: 0.75rem;
+    padding: 0.45rem 0.65rem;
+}
+
+.language-switcher--menu {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 93, 170, 0.12);
+    background: rgba(244, 249, 255, 0.85);
+}
+
+.language-switcher--menu .language-option {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 999px;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.95rem;
 }
 
 .nav-links {
@@ -1524,7 +1631,7 @@ footer .contact-list a {
 
 @media (min-width: 993px) {
     .nav-controls .language-switcher {
-        display: none;
+        display: inline-flex;
     }
 }
 
