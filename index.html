@@ -47,12 +47,13 @@
             "image": "https://www.eswork.eu/assets/img/share-banner.svg",
             "description": "ES Work SIA vermittelt qualifizierte Fach- und Hilfskräfte aus dem Baltikum nach Deutschland und übernimmt die komplette Personaladministration.",
             "email": "info@eswork.eu",
-            "telephone": "+37125296639",
+            "telephone": "+49 (0) 152 25362172",
             "areaServed": ["Deutschland", "Lettland", "Litauen", "Estland"]
         }
     </script>
     <script defer src="assets/js/translations.js"></script>
     <script defer src="assets/js/main.js"></script>
+    <script defer src="assets/js/call-widget.js"></script>
 </head>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9JHS02JSYC"></script>
@@ -72,28 +73,71 @@
                     <span class="sr-only" data-l10n="nav_logo">ES Work</span>
                 </a>
                 <div class="nav-controls">
-                    <div class="language-switcher" data-language-switcher aria-label="Sprachauswahl" data-l10n-aria-label="language_label">
-                        <button type="button" class="language-option" data-lang="de" title="Deutsch" aria-label="Deutsch">🇩🇪</button>
-                        <button type="button" class="language-option" data-lang="en" title="English" aria-label="English">🇬🇧</button>
-                        <button type="button" class="language-option" data-lang="ru" title="Русский" aria-label="Русский">🇷🇺</button>
-                        <button type="button" class="language-option" data-lang="lv" title="Latviešu" aria-label="Latviešu">🇱🇻</button>
+                    <div class="language-switcher language-switcher--dropdown" data-language-switcher aria-label="Sprachauswahl" data-l10n-aria-label="language_label">
+                        <button type="button" class="language-toggle" data-language-toggle aria-expanded="false" aria-haspopup="true" data-l10n-aria-label="language_label">
+                            <span class="language-toggle__flag" data-language-flag aria-hidden="true">🇩🇪</span>
+                            <span class="language-toggle__label" data-language-label>DE</span>
+                            <span class="language-toggle__icon" aria-hidden="true">▾</span>
+                        </button>
+                        <div class="language-list" role="menu">
+                            <button type="button" class="language-option" data-lang="de" data-flag="🇩🇪" data-label="DE" title="Deutsch" aria-label="Deutsch" role="menuitem">
+                                <span class="language-option__flag" aria-hidden="true">🇩🇪</span>
+                                <span class="language-option__name">Deutsch</span>
+                            </button>
+                            <button type="button" class="language-option" data-lang="en" data-flag="🇬🇧" data-label="EN" title="English" aria-label="English" role="menuitem">
+                                <span class="language-option__flag" aria-hidden="true">🇬🇧</span>
+                                <span class="language-option__name">English</span>
+                            </button>
+                            <button type="button" class="language-option" data-lang="ru" data-flag="🇷🇺" data-label="RU" title="Русский" aria-label="Русский" role="menuitem">
+                                <span class="language-option__flag" aria-hidden="true">🇷🇺</span>
+                                <span class="language-option__name">Русский</span>
+                            </button>
+                            <button type="button" class="language-option" data-lang="lv" data-flag="🇱🇻" data-label="LV" title="Latviešu" aria-label="Latviešu" role="menuitem">
+                                <span class="language-option__flag" aria-hidden="true">🇱🇻</span>
+                                <span class="language-option__name">Latviešu</span>
+                            </button>
+                        </div>
                     </div>
                     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-l10n="nav_toggle" data-l10n-aria-label="nav_toggle_label">Menü</button>
                 </div>
                 <ul class="nav-links" id="primary-navigation">
                     <li><a href="#services" data-l10n="nav_services">Dienstleistungen</a></li>
                     <li><a href="#offer" data-l10n="nav_offer">Top-Fachkraft</a></li>
-                    <li><a href="#contact" data-l10n="nav_contact">Anfrage</a></li>
+                    <li class="nav-item nav-item--dropdown">
+                        <a href="#contact" class="nav-link nav-link--dropdown" data-nav-dropdown-toggle aria-expanded="false">
+                            <span data-l10n="nav_contact">Anfrage</span>
+                            <span class="nav-link__icon" aria-hidden="true">▾</span>
+                        </a>
+                        <div class="nav-dropdown" data-nav-dropdown-menu role="menu" aria-hidden="true">
+                            <a href="fahrerfragebogen.html" class="nav-dropdown__link" data-l10n="nav_questionnaire" role="menuitem">Fahrerfragebogen</a>
+                        </div>
+                    </li>
                     <li><a href="#vacancies" data-l10n="nav_vacancies">Stellenangebote</a></li>
-                    <li><a href="fahrerfragebogen.html" data-l10n="nav_questionnaire">Fahrerfragebogen</a></li>
-                    <li class="nav-contact"><a href="tel:+37125296639" data-l10n="nav_phone_text" data-l10n-aria-label="nav_phone_label">📞 +371 25296639</a></li>
-                    <li class="nav-contact"><a href="mailto:info@eswork.eu" data-l10n="nav_email_text" data-l10n-aria-label="nav_email_label">✉️ info@eswork.eu</a></li>
+                    <li class="nav-contact nav-contact--phone">
+                        <a href="tel:+4915225362172" data-track-call data-track-source="nav_header" data-l10n-aria-label="nav_phone_label">
+                            <span class="nav-contact__badge" data-l10n="nav_phone_badge">Kostenlose Beratung</span>
+                            <span class="nav-contact__number" data-l10n="nav_phone_number">+49 (0) 152 25362172</span>
+                        </a>
+                    </li>
+                    <li class="nav-contact nav-contact--mail"><a href="mailto:info@eswork.eu" data-l10n="nav_email_text" data-l10n-aria-label="nav_email_label">✉️ info@eswork.eu</a></li>
                     <li class="nav-language">
                         <div class="language-switcher language-switcher--menu" data-language-switcher aria-label="Sprachauswahl" data-l10n-aria-label="language_label">
-                            <button type="button" class="language-option" data-lang="de" title="Deutsch" aria-label="Deutsch">🇩🇪</button>
-                            <button type="button" class="language-option" data-lang="en" title="English" aria-label="English">🇬🇧</button>
-                            <button type="button" class="language-option" data-lang="ru" title="Русский" aria-label="Русский">🇷🇺</button>
-                            <button type="button" class="language-option" data-lang="lv" title="Latviešu" aria-label="Latviešu">🇱🇻</button>
+                            <button type="button" class="language-option" data-lang="de" data-flag="🇩🇪" data-label="DE" title="Deutsch" aria-label="Deutsch">
+                                <span class="language-option__flag" aria-hidden="true">🇩🇪</span>
+                                <span class="language-option__name">Deutsch</span>
+                            </button>
+                            <button type="button" class="language-option" data-lang="en" data-flag="🇬🇧" data-label="EN" title="English" aria-label="English">
+                                <span class="language-option__flag" aria-hidden="true">🇬🇧</span>
+                                <span class="language-option__name">English</span>
+                            </button>
+                            <button type="button" class="language-option" data-lang="ru" data-flag="🇷🇺" data-label="RU" title="Русский" aria-label="Русский">
+                                <span class="language-option__flag" aria-hidden="true">🇷🇺</span>
+                                <span class="language-option__name">Русский</span>
+                            </button>
+                            <button type="button" class="language-option" data-lang="lv" data-flag="🇱🇻" data-label="LV" title="Latviešu" aria-label="Latviešu">
+                                <span class="language-option__flag" aria-hidden="true">🇱🇻</span>
+                                <span class="language-option__name">Latviešu</span>
+                            </button>
                         </div>
                     </li>
                     <li class="nav-collapse">
@@ -117,6 +161,11 @@
                 <h1 id="hero-title" data-l10n="hero_title">Qualifizierte Fachkräfte aus dem Baltikum</h1>
                 <p data-l10n="hero_description">Schnelle und zuverlässige Vermittlung von Fach- und Hilfskräften für Ihren Unternehmenserfolg in Deutschland.</p>
                 <a href="#contact" class="btn" data-l10n="hero_cta">Jetzt Personal anfragen</a>
+                <div class="hero-callout" role="note">
+                    <p class="hero-callout__label" data-l10n="hero_call_label">Oder sprechen Sie direkt mit uns:</p>
+                    <a class="hero-callout__number" href="tel:+4915225362172" data-track-call data-track-source="hero_call" data-l10n="hero_call_number">+49 (0) 152 25362172</a>
+                    <p class="hero-callout__note" data-l10n="hero_call_note">Kostenlose Erstberatung per Telefon.</p>
+                </div>
                 <div class="hero-highlights" aria-label="Kennzahlen">
                     <div class="hero-highlight" role="presentation">
                         <strong data-l10n="hero_highlight1_title">24 Stunden</strong>
@@ -229,67 +278,90 @@
             <div class="container">
                 <h2 class="section-title" id="contact-title" data-l10n="contact_title">Personalbedarf anfragen</h2>
                 <p class="section-intro" data-l10n="contact_intro">Schildern Sie uns Ihren Personalbedarf. Wir melden uns innerhalb eines Werktags mit passenden Profilen.</p>
+                <div class="contact-callout" role="note">
+                    <p class="contact-callout__label" data-l10n="contact_callout_label">Lieber telefonisch?</p>
+                    <p class="contact-callout__action">
+                        <span data-l10n="contact_callout_text">Kostenlose Sofortberatung unter</span>
+                        <a href="tel:+4915225362172" data-track-call data-track-source="contact_callout" data-l10n="contact_callout_number">+49 (0) 152 25362172</a>
+                    </p>
+                </div>
                 <div class="form-container">
-                    <form id="requestForm" action="https://formsubmit.co/info@eswork.eu" method="POST" aria-label="Kontaktformular für Personalbedarf" autocomplete="on">
-                        <input type="hidden" name="_subject" data-l10n-value="contact_subject" value="Neue Personal-Anfrage über die Website">
-                        <input type="hidden" name="_template" value="table">
-                        <div class="form-group">
-                            <label for="name" data-l10n="contact_name_label">Name*</label>
-                            <input type="text" id="name" name="Name" class="form-control" autocomplete="name" autocapitalize="words" required>
+                    <div class="form-card">
+                        <div class="form-card__header">
+                            <span class="form-card__badge" data-l10n="contact_badge">In 2 Minuten ausgefüllt</span>
+                            <h3 class="form-card__title" data-l10n="contact_form_title">Projekt-Briefing für Ihr Team</h3>
+                            <p class="form-card__text" data-l10n="contact_form_text">Ein paar Angaben genügen und wir schicken Ihnen passende Profile innerhalb eines Werktags.</p>
                         </div>
-                        <div class="form-group">
-                            <label for="company" data-l10n="contact_company_label">Firma*</label>
-                            <input type="text" id="company" name="Firma" class="form-control" autocomplete="organization" autocapitalize="words" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone" data-l10n="contact_phone_label">Telefon*</label>
-                            <input type="tel" id="phone" name="Telefon" class="form-control" autocomplete="tel" inputmode="tel" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" data-l10n="contact_email_label">E-Mail*</label>
-                            <input type="email" id="email" name="E-Mail" class="form-control" autocomplete="email" aria-describedby="email-error" required>
-                            <p class="error-message" id="email-error" role="alert" aria-live="polite"></p>
-                        </div>
-                        <div class="form-group">
-                            <label for="locations" data-l10n="contact_locations_label">Einsatzstandorte*</label>
-                            <input type="text" id="locations" name="Einsatzstandorte" class="form-control" list="german-city-options" placeholder="z. B. Berlin, München" autocomplete="address-level2" autocapitalize="words" required data-l10n-placeholder="contact_locations_placeholder">
-                            <datalist id="german-city-options">
-                                <option value="Berlin"></option>
-                                <option value="Hamburg"></option>
-                                <option value="München"></option>
-                                <option value="Köln"></option>
-                                <option value="Frankfurt am Main"></option>
-                                <option value="Stuttgart"></option>
-                                <option value="Düsseldorf"></option>
-                                <option value="Dresden"></option>
-                                <option value="Leipzig"></option>
-                                <option value="Nürnberg"></option>
-                                <option value="Hannover"></option>
-                                <option value="Bremen"></option>
-                                <option value="Essen"></option>
-                                <option value="Dortmund"></option>
-                                <option value="Mannheim"></option>
-                            </datalist>
-                        </div>
-                        <div class="form-group">
-                            <label for="start-date" data-l10n="contact_start_label">Gewünschter Starttermin*</label>
-                            <input type="date" id="start-date" name="Starttermin" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="activities" data-l10n="contact_activities_label">Welche Fachkräfte suchen Sie?*</label>
-                            <textarea id="activities" name="Tätigkeiten" class="form-control" rows="3" autocomplete="off" required data-l10n-placeholder="contact_activities_placeholder"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" data-l10n="contact_additional_label">Weitere Informationen</label>
-                            <textarea id="message" name="Weitere Informationen" class="form-control" rows="3" placeholder="Projektumfang, gewünschte Qualifikationen" data-l10n-placeholder="contact_additional_placeholder"></textarea>
-                        </div>
-                        <div class="form-group" style="display:none;">
-                            <label for="honeypot">Bitte leer lassen</label>
-                            <input type="text" id="honeypot" name="_honey" tabindex="-1" autocomplete="off">
-                        </div>
-                        <input type="hidden" name="_next" value="https://eswork.eu/#kontakt">
-                        <button type="submit" class="btn" data-l10n="contact_submit">Anfrage senden</button>
-                    </form>
+                        <form id="requestForm" class="form-card__form" action="https://formsubmit.co/info@eswork.eu" method="POST" aria-label="Kontaktformular für Personalbedarf" autocomplete="on">
+                            <input type="hidden" name="_subject" data-l10n-value="contact_subject" value="Neue Personal-Anfrage über die Website">
+                            <input type="hidden" name="_template" value="table">
+                            <div class="form-grid">
+                                <div class="form-field">
+                                    <label for="name" class="form-label" data-l10n="contact_name_label">Name*</label>
+                                    <input type="text" id="name" name="Name" class="form-control" autocomplete="name" autocapitalize="words" required>
+                                </div>
+                                <div class="form-field">
+                                    <label for="company" class="form-label" data-l10n="contact_company_label">Firma*</label>
+                                    <input type="text" id="company" name="Firma" class="form-control" autocomplete="organization" autocapitalize="words" required>
+                                </div>
+                                <div class="form-field">
+                                    <label for="phone" class="form-label" data-l10n="contact_phone_label">Telefon*</label>
+                                    <input type="tel" id="phone" name="Telefon" class="form-control" autocomplete="tel" inputmode="tel" required>
+                                </div>
+                                <div class="form-field">
+                                    <label for="email" class="form-label" data-l10n="contact_email_label">E-Mail*</label>
+                                    <input type="email" id="email" name="E-Mail" class="form-control" autocomplete="email" aria-describedby="email-error" required>
+                                    <p class="error-message" id="email-error" role="alert" aria-live="polite"></p>
+                                </div>
+                                <div class="form-field form-field--full">
+                                    <label for="locations" class="form-label" data-l10n="contact_locations_label">Einsatzstandorte*</label>
+                                    <input type="text" id="locations" name="Einsatzstandorte" class="form-control" list="german-city-options" placeholder="z. B. Berlin, München" autocomplete="address-level2" autocapitalize="words" required data-l10n-placeholder="contact_locations_placeholder">
+                                    <datalist id="german-city-options">
+                                        <option value="Berlin"></option>
+                                        <option value="Hamburg"></option>
+                                        <option value="München"></option>
+                                        <option value="Köln"></option>
+                                        <option value="Frankfurt am Main"></option>
+                                        <option value="Stuttgart"></option>
+                                        <option value="Düsseldorf"></option>
+                                        <option value="Dresden"></option>
+                                        <option value="Leipzig"></option>
+                                        <option value="Nürnberg"></option>
+                                        <option value="Hannover"></option>
+                                        <option value="Bremen"></option>
+                                        <option value="Essen"></option>
+                                        <option value="Dortmund"></option>
+                                        <option value="Mannheim"></option>
+                                    </datalist>
+                                </div>
+                                <div class="form-field">
+                                    <label for="start-date" class="form-label" data-l10n="contact_start_label">Gewünschter Starttermin*</label>
+                                    <input type="date" id="start-date" name="Starttermin" class="form-control" required>
+                                </div>
+                                <div class="form-field form-field--full">
+                                    <label for="activities" class="form-label" data-l10n="contact_activities_label">Welche Fachkräfte suchen Sie?*</label>
+                                    <textarea id="activities" name="Tätigkeiten" class="form-control form-control--textarea" rows="3" autocomplete="off" required data-l10n-placeholder="contact_activities_placeholder"></textarea>
+                                </div>
+                                <div class="form-field form-field--full">
+                                    <label for="message" class="form-label" data-l10n="contact_additional_label">Weitere Informationen</label>
+                                    <textarea id="message" name="Weitere Informationen" class="form-control form-control--textarea" rows="3" placeholder="Projektumfang, gewünschte Qualifikationen" data-l10n-placeholder="contact_additional_placeholder"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-field" style="display:none;">
+                                <label for="honeypot">Bitte leer lassen</label>
+                                <input type="text" id="honeypot" name="_honey" tabindex="-1" autocomplete="off">
+                            </div>
+                            <input type="hidden" name="_next" value="https://eswork.eu/#kontakt">
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn--wide" data-l10n="contact_submit">Anfrage senden</button>
+                                <p class="form-note form-note--call">
+                                    <span data-l10n="contact_call_secondary">Oder sprechen Sie sofort mit uns:</span>
+                                    <a href="tel:+4915225362172" data-track-call data-track-source="contact_form_footer" data-l10n="contact_call_secondary_number">+49 (0) 152 25362172</a>
+                                </p>
+                                <p class="form-note" data-l10n="contact_privacy_note">Wir behandeln Ihre Angaben vertraulich und melden uns persönlich bei Ihnen.</p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -396,6 +468,16 @@
         </div>
     </div>
 
+    <div class="call-fab" data-floating-call hidden>
+        <button type="button" class="call-fab__close" data-floating-call-close data-l10n-aria-label="call_fab_close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <a class="call-fab__button" href="tel:+4915225362172" data-track-call data-track-source="floating_button" data-l10n-aria-label="call_fab_aria">
+            <span class="call-fab__icon" aria-hidden="true">📞</span>
+            <span class="call-fab__label" data-l10n="call_fab_label">Jetzt anrufen</span>
+        </a>
+    </div>
+
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -406,7 +488,7 @@
                 <div class="footer-column">
                     <h3 data-l10n="footer_contact_title">Kontakt</h3>
                     <ul class="contact-list">
-                        <li><i aria-hidden="true">📞</i> <a href="tel:+37125296639" data-l10n="footer_phone_text" data-l10n-aria-label="footer_phone_label" style="color: inherit; text-decoration: none;">+371 25296639</a></li>
+                        <li><i aria-hidden="true">📞</i> <a href="tel:+4915225362172" data-l10n="footer_phone_text" data-l10n-aria-label="footer_phone_label" data-track-call data-track-source="footer" style="color: inherit; text-decoration: none;">+49 (0) 152 25362172</a></li>
                         <li><i aria-hidden="true">✉️</i> <a href="mailto:info@eswork.eu" data-l10n="footer_email_text" data-l10n-aria-label="footer_email_label" style="color: inherit; text-decoration: none;">info@eswork.eu</a></li>
                         <li><i aria-hidden="true">🌐</i> <a href="https://www.eswork.eu" rel="noopener" target="_blank" style="color: inherit; text-decoration: none;">www.eswork.eu</a></li>
                     </ul>
