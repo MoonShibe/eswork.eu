@@ -714,6 +714,93 @@
         });
     }
 
+    const MAILTO_DEFAULT = 'info@eswork.eu';
+    const MAILTO_IGNORED_FIELDS = new Set([
+        '_subject',
+        '_template',
+        '_captcha',
+        '_next',
+        '_honey',
+        '_autoresponse',
+        '_cc',
+        '_bcc'
+    ]);
+
+    const buildMailtoLinkFromForm = (formElement) => {
+        if (!formElement) {
+            return null;
+        }
+
+        const target = (formElement.getAttribute('data-mailto') || MAILTO_DEFAULT || '').trim();
+        if (!target) {
+            return null;
+        }
+
+        const formData = new FormData(formElement);
+        const subjectValue = formData.get('_subject');
+        const subjectKey = formElement.getAttribute('data-mailto-subject-key');
+        let localizedSubject = '';
+        if (subjectKey && typeof copy === 'function') {
+            localizedSubject = copy(subjectKey) || '';
+        } else if (typeof copy === 'function') {
+            localizedSubject = copy('contact_subject') || '';
+        }
+        const subject = String(subjectValue || localizedSubject || 'Neue Anfrage über die Website').trim();
+
+        const aggregated = new Map();
+        formData.forEach((value, key) => {
+            if (MAILTO_IGNORED_FIELDS.has(key)) {
+                return;
+            }
+            if (typeof File !== 'undefined' && value instanceof File) {
+                if (!value.name) {
+                    return;
+                }
+                const existing = aggregated.get(key) || [];
+                existing.push(value.name);
+                aggregated.set(key, existing);
+                return;
+            }
+            const stringValue = value == null ? '' : String(value).trim();
+            if (!stringValue) {
+                return;
+            }
+            const existing = aggregated.get(key) || [];
+            existing.push(stringValue);
+            aggregated.set(key, existing);
+        });
+
+        const lines = [];
+        aggregated.forEach((values, key) => {
+            const label = key.replace(/_/g, ' ');
+            lines.push(`${label}: ${values.join(', ')}`);
+        });
+
+        const body = lines.join('\n');
+        const params = [];
+        if (subject) {
+            params.push(`subject=${encodeURIComponent(subject)}`);
+        }
+        if (body) {
+            params.push(`body=${encodeURIComponent(body)}`);
+        }
+        const query = params.length ? `?${params.join('&')}` : '';
+        return `mailto:${target}${query}`;
+    };
+
+    const triggerMailtoFallback = (formElement) => {
+        try {
+            const link = buildMailtoLinkFromForm(formElement);
+            if (!link) {
+                return false;
+            }
+            window.location.href = link;
+            return true;
+        } catch (error) {
+            return false;
+        }
+    };
+
     const sendFormViaAjax = async (formElement) => {
         const formData = new FormData(formElement);
         if (!formData.has('_captcha')) {
@@ -889,6 +976,20 @@
                     ctaText: copy('lead_success_cta')
                 });
             } catch (error) {
+                const handled = triggerMailtoFallback(leadForm);
+                if (handled) {
+                    markLeadCapture();
+                    hideLeadCapture();
+
+                    openModal({
+                        title: copy('modal_mail_title'),
+                        message: copy('modal_mail_message'),
+                        isError: false,
+                        ctaText: copy('modal_mail_cta')
+                    });
+                    return;
+                }
+
                 openModal({
                     title: copy('lead_error_title'),
                     message: copy('lead_error_message'),
