@@ -353,6 +353,34 @@
     if (navToggle && navLinks) {
         const collapseButtons = navLinks.querySelectorAll('[data-nav-collapse]');
         const navDropdownItems = navLinks.querySelectorAll('.nav-item--dropdown');
+        const navDropdownCloseTimers = new WeakMap();
+
+        const cancelDropdownClose = (item) => {
+            if (!item) {
+                return;
+            }
+
+            const timer = navDropdownCloseTimers.get(item);
+            if (timer) {
+                window.clearTimeout(timer);
+                navDropdownCloseTimers.delete(item);
+            }
+        };
+
+        const scheduleDropdownClose = (item) => {
+            if (!item) {
+                return;
+            }
+
+            cancelDropdownClose(item);
+
+            const timer = window.setTimeout(() => {
+                setDropdownState(item, false);
+                navDropdownCloseTimers.delete(item);
+            }, 180);
+
+            navDropdownCloseTimers.set(item, timer);
+        };
 
         const setDropdownState = (item, open) => {
             if (!item) {
@@ -379,6 +407,7 @@
                     return;
                 }
 
+                cancelDropdownClose(item);
                 setDropdownState(item, false);
             });
         };
@@ -422,6 +451,7 @@
             trigger.addEventListener('click', (event) => {
                 if (isDesktop()) {
                     closeNavDropdowns(item);
+                    cancelDropdownClose(item);
                     setDropdownState(item, true);
                     return;
                 }
@@ -430,6 +460,7 @@
                 if (!isOpen) {
                     event.preventDefault();
                     closeNavDropdowns(item);
+                    cancelDropdownClose(item);
                     setDropdownState(item, true);
                 } else {
                     event.preventDefault();
@@ -443,6 +474,7 @@
                 }
 
                 closeNavDropdowns(item);
+                cancelDropdownClose(item);
                 setDropdownState(item, true);
             });
 
@@ -451,26 +483,46 @@
                     return;
                 }
 
-                setDropdownState(item, false);
+                scheduleDropdownClose(item);
             });
 
             item.addEventListener('keyup', (event) => {
                 if (event.key === 'Escape') {
+                    cancelDropdownClose(item);
                     setDropdownState(item, false);
                     trigger.focus({ preventScroll: true });
                 }
             });
 
             if (menu) {
+                menu.addEventListener('pointerenter', () => {
+                    if (!isDesktop()) {
+                        return;
+                    }
+
+                    cancelDropdownClose(item);
+                    setDropdownState(item, true);
+                });
+
+                menu.addEventListener('pointerleave', () => {
+                    if (!isDesktop()) {
+                        return;
+                    }
+
+                    scheduleDropdownClose(item);
+                });
+
                 menu.querySelectorAll('a, button').forEach((link) => {
                     link.addEventListener('focus', () => {
                         if (isDesktop()) {
                             closeNavDropdowns(item);
+                            cancelDropdownClose(item);
                             setDropdownState(item, true);
                         }
                     });
 
                     link.addEventListener('click', () => {
+                        cancelDropdownClose(item);
                         closeNavDropdowns();
                         closeNav();
                     });
@@ -480,6 +532,7 @@
 
         document.addEventListener('click', (event) => {
             if (!navLinks.contains(event.target)) {
+                navDropdownItems.forEach(cancelDropdownClose);
                 closeNavDropdowns();
             }
         });
