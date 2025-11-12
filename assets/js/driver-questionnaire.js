@@ -277,46 +277,26 @@
 
         const action = form.getAttribute('action') || 'https://formsubmit.co/info@eswork.eu';
         const endpoint = action.includes('/ajax/') ? action : action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
-
-        const payload = {};
-        formData.forEach((value, key) => {
-            const stringValue = (typeof File !== 'undefined' && value instanceof File)
-                ? value.name
-                : String(value);
-            if (Object.prototype.hasOwnProperty.call(payload, key)) {
-                const existing = payload[key];
-                if (Array.isArray(existing)) {
-                    existing.push(stringValue);
-                } else {
-                    payload[key] = [existing, stringValue];
-                }
-            } else {
-                payload[key] = stringValue;
-            }
-        });
-
-        Object.keys(payload).forEach((key) => {
-            if (Array.isArray(payload[key])) {
-                payload[key] = payload[key].join(', ');
-            }
-        });
+        const expectsJson = endpoint.includes('/ajax/');
 
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
+                Accept: 'application/json'
             },
-            body: JSON.stringify(payload)
+            body: formData
         });
 
         if (!response.ok) {
             throw new Error('Network error');
         }
 
-        const result = await response.json();
-        if (result.success !== 'true' && result.success !== true) {
-            throw new Error('FormSubmit error');
+        const contentType = response.headers ? response.headers.get('content-type') : null;
+        if (expectsJson || (contentType && contentType.includes('application/json'))) {
+            const result = await response.json();
+            if (result.success !== 'true' && result.success !== true) {
+                throw new Error('FormSubmit error');
+            }
         }
     };
 
