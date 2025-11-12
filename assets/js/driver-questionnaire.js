@@ -210,28 +210,26 @@
 
         const action = form.getAttribute('action') || 'https://formsubmit.co/info@eswork.eu';
         const endpoint = action.includes('/ajax/') ? action : action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
-
-        const payload = new URLSearchParams();
-        formData.forEach((value, key) => {
-            payload.append(key, value);
-        });
+        const expectsJson = endpoint.includes('/ajax/');
 
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded'
+                Accept: 'application/json'
             },
-            body: payload
+            body: formData
         });
 
         if (!response.ok) {
             throw new Error('Network error');
         }
 
-        const result = await response.json();
-        if (result.success !== 'true' && result.success !== true) {
-            throw new Error('FormSubmit error');
+        const contentType = response.headers ? response.headers.get('content-type') : null;
+        if (expectsJson || (contentType && contentType.includes('application/json'))) {
+            const result = await response.json();
+            if (result.success !== 'true' && result.success !== true) {
+                throw new Error('FormSubmit error');
+            }
         }
     };
 
@@ -283,7 +281,7 @@
             await submitForm();
             showStatus('Vielen Dank! Ihre Angaben wurden erfolgreich übermittelt. Wir melden uns zeitnah bei Ihnen.', false);
         } catch (error) {
-            showStatus('Senden nicht möglich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt unter info@eswork.eu.', true);
+            showStatus('Senden nicht möglich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt unter +49 (0) 152 25362172 oder info@eswork.eu.', true);
         } finally {
             setSubmitting(false);
         }
