@@ -907,12 +907,22 @@
                     ctaText: copy('modal_success_cta')
                 });
             } catch (error) {
-                openModal({
-                    title: copy('modal_error_title'),
-                    message: copy('modal_error_message'),
-                    isError: true,
-                    ctaText: copy('modal_error_cta')
-                });
+                const handled = triggerMailtoFallback(requestForm);
+                if (handled) {
+                    openModal({
+                        title: copy('modal_mail_title'),
+                        message: copy('modal_mail_message'),
+                        isError: false,
+                        ctaText: copy('modal_mail_cta')
+                    });
+                } else {
+                    openModal({
+                        title: copy('modal_error_title'),
+                        message: copy('modal_error_message'),
+                        isError: true,
+                        ctaText: copy('modal_error_cta')
+                    });
+                }
             } finally {
                 if (submitButton) {
                     submitButton.disabled = false;
