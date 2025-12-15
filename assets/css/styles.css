@@ -619,6 +619,73 @@ section {
     font-weight: 700;
 }
 
+.modern-recruiting {
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 65%);
+    padding: clamp(3.5rem, 7vw, 5rem) 0 clamp(4rem, 8vw, 6rem);
+}
+
+.modern-recruiting__header {
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.modern-recruiting .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.modern-recruiting__header h2 {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.modern-recruiting__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.visual-card {
+    background: #ffffff;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 93, 170, 0.08);
+    box-shadow: 0 20px 45px rgba(0, 93, 170, 0.08);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.visual-card__image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.visual-card__body {
+    padding: 1.25rem 1.4rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.visual-card__body h3 {
+    font-size: 1.2rem;
+    color: var(--dark);
+}
+
+.visual-card__body p {
+    color: var(--light-text);
+    line-height: 1.6;
+}
+
 .btn {
     display: inline-block;
     background-color: var(--accent);
